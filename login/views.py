@@ -1,5 +1,9 @@
 from django.shortcuts import render
 import json
+from django.http import HttpResponseRedirect
+
+from django.contrib.auth import logout as django_logout
+from decouple import config
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -18,3 +22,10 @@ def profile(request):
         
     }
     return render(request, 'profile.html', context)
+def logout(request):
+    django_logout(request)
+    domain= config("APP_DOMAIN")
+    client_id = config("APP_CLIENTID")
+    return_to = "http://localhost:8000"
+    return HttpResponseRedirect (f"https://{domain}/v2/logout?client_id={client_id}&returnTo={return_to}")
+    
