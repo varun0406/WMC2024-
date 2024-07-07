@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "login",
     'social_django',
+    "django_form_builder",
 ]
 SOCIAL_AUTH_TRAILING_SLASH = False
 SOCIAL_AUTH_AUTH0_DOMAIN = config('APP_DOMAIN')
