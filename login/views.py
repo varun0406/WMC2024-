@@ -15,6 +15,7 @@ def ProfileConfig(request):
 # Create your views here.
 def index(request):
     user = request.user
+    print('hello')
     if user.is_authenticated:
         auth_0_user = user.social_auth.get(provider='auth0')
         user_id= auth_0_user.uid
