@@ -6,5 +6,6 @@ urlpatterns = [
     path('profile', views.profile, name='profile.html'),
     path("",include("social_django.urls")),
     path('logout', views.logout, name='logout'),
+    path('Create_Profile', views.Create_Profile, name='Create_Profile'),
     
 ]
