@@ -15,7 +15,7 @@ def ProfileConfig(request):
 # Create your views here.
 def index(request):
     user = request.user
-    print('hello')
+    print(user)
     if user.is_authenticated:
         auth_0_user = user.social_auth.get(provider='auth0')
         user_id= auth_0_user.uid
@@ -31,6 +31,7 @@ def index(request):
         'user_profile':user_profile
         }
     return render(request,'index.html',params)
+
         
 
 def profile(request):
@@ -60,10 +61,12 @@ def Create_Profile(request):
         auth_0_user = user.social_auth.get(provider='auth0')
         user_name=request.POST.get('name')
         user_email=request.POST.get('user-email')
+        phone=request.POST.get('phone')
         profile, created=Profile.objects.get_or_create(user)
         profile.user_id=auth_0_user.uid
         profile.name=user_name
         profile.email=user_email
+        profile.mobile=phone
         profile.save()
         return redirect('/profile')
     return render(request, 'Create_Profile.html')

@@ -11,5 +11,6 @@ class Profile(models.Model):
     user_type = models.CharField(max_length=100, default="User")
     Membership_license = models.CharField(max_length=100,default="None")
     Total_Donation = models.IntegerField(default=0)
+    mobile = models.CharField(max_length=10,default="None")
     def __str__(self):
         return self.user_id
