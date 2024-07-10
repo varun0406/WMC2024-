@@ -56,6 +56,11 @@ def logout(request):
     return_to = "http://localhost:8000"
     return HttpResponseRedirect (f"https://{domain}/v2/logout?client_id={client_id}&returnTo={return_to}")
 def Create_Profile(request):
+    user=request.user
+    auth_0_user = user.social_auth.get(provider='auth0')
+    user_id=auth_0_user.uid
+    if Profile.objects.filter(user_id=user_id).exists():
+        return redirect('/profile')
     if request.method=='POST':
         user=request.user
         auth_0_user = user.social_auth.get(provider='auth0')
