@@ -26,7 +26,7 @@
     
     .marquee {
       width: var(--marquee-width);
-      height: var(--marquee-height);
+      height: 40px;
       background-color: #111;
       color: #eee;
       overflow: hidden;
@@ -97,23 +97,58 @@
         position: relative;
         width: 100%;
     }
-
+    li h2 {
+      font-family: "Playwrite HU", cursive;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+    }
+    .marquee-content li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* text-align: center; */
+      flex-shrink: 0;
+      width: 250px;
+      max-height: 100%;
+      white-space: nowrap;
+  }
+  .fa-brands, .fab {
+    font-family: none
+}
 
 
 
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 
-    <div class="marquee" style="margin-top:90.2vh;height:120px">
+<div class="image">
+
+</div>
+
+
+    <div class="marquee" style="margin-top:90.2vh;height:100px;border-top:2px solid black;boder-bottom:2px solid black">
         <ul class="marquee-content">
-          <li><h2 style="color:white;font-weight:bold">Faith</h3></li>
-          <li><i class="fab fa-codepen"></i></li>
-          <li><i class="fab fa-free-code-camp"></i></li>
-          <li><i class="fab fa-dev"></i></li>
-          <li><i class="fab fa-react"></i></li>
-          <li><i class="fab fa-vuejs"></i></li>
-          <li><i class="fab fa-angular"></i></li>
-          <li><i class="fab fa-node"></i></li>
-          <li><i class="fab fa-wordpress"></i></li>
+          <li>
+            <img src='/static/base/img/om.png' style="border:2px solid rgb(17, 17, 17);width:160px;height:160px">
+          </li>
+          <li>
+            <img src='/static/base/img/namaste.png' style="border:2px solid rgb(17, 17, 17);width:180px;height:180px">
+          </li>
+          <li>
+            <img src='/static/base/img/cow.png' style="border:2px solid rgb(17, 17, 17)">
+          </li>
+          <li>
+            <img src='/static/base/img/swastik.png' style="border:2px solid rgb(17, 17, 17);width:100px;height:100px">
+          </li>
+          <li>
+            <img src='/static/base/img/kalash.png' style="border:2px solid rgb(17, 17, 17);width:170px;height:170px">
+          </li>
+          <li>
+            <img src='/static/base/img/yoga.png' style="border:2px solid rgb(17, 17, 17);width:140px;height:140px">
+          </li>
         </ul>
       </div>
 
@@ -129,5 +164,6 @@ for(let i=0; i<marqueeElementsDisplayed; i++) {
   marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
 }
       </script>
+      
       <script src="https://kit.fontawesome.com/b59785c513.js" crossorigin="anonymous"></script>
 {% endblock body %}
