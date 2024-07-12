@@ -75,4 +75,6 @@ def Create_Profile(request):
         profile.save()
         return redirect('/profile')
     return render(request, 'Create_Profile.html')
+def About(request):
+    return render(request,'About.html')
     

@@ -22,7 +22,7 @@
     z-index: 99;
 }
 
-h1, h2, h3, .h1, .h2, .h3 {
+h1, h3, .h1, .h3 {
     font-weight: 400 !important;
     font-family: 'Playball', cursive !important;
 }
@@ -822,3 +822,8 @@ link:hover, .navbar .navbar-nav .nav-link{
   transform: rotate(180deg);
   transition: 0.2s ease;
 }
+h2{
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }

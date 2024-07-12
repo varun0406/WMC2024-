@@ -1,0 +1,475 @@
+{% extends './base.html' %}
+{% block body  %}
+
+<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+<style>
+    .nav-back{
+        background:transparent;
+    }
+    body{
+        background-color:rgb(22, 28, 56);
+    }
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+:root {
+  --primary: #ec994b;
+  --white: #ffffff;
+  --bg: #f5f5f5;
+}
+
+
+
+
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background: #797979;
+  transition: all 0.5s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #222224;
+}
+
+::-webkit-scrollbar-track {
+  background: #f9f9f9;
+}
+
+
+
+
+.cont {
+  max-width: 124rem;
+  padding: 0 1rem;
+  font-size: 1.6rem;
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.section-heading {
+  font-size: 3rem;
+  color: var(--primary);
+  padding: 2rem 0;
+}
+
+#tranding {
+  padding: 4rem 0;
+}
+
+@media (max-width:1440px) {
+  #tranding {
+    padding: 7rem 0;
+  }
+}
+
+#tranding .tranding-slider {
+  height: 52rem;
+  padding: 2rem 0;
+  position: relative;
+}
+
+@media (max-width:500px) {
+  #tranding .tranding-slider {
+    height: 30rem;
+  }
+}
+
+.tranding-slide {
+  width: 24rem;
+  height: 30rem;
+  position: relative;
+}
+
+
+@media (max-width:500px) {
+  .tranding-slide {
+    width: 20rem !important;
+    height: 30rem !important;
+  }
+  .tranding-slide .tranding-slide-img img {
+    width: 23rem !important;
+    height: 10rem !important;
+    border:2px solid yellow;
+  }
+}
+
+.tranding-slide .tranding-slide-img img {
+  width: 24rem;
+  height: 25rem;
+  border-radius: 2rem;
+  object-fit: cover;
+  border:2px;
+  box-shadow: 6px 6px 6px black;
+}
+
+.tranding-slide .tranding-slide-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.tranding-slide-content .food-price {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: var(--white);
+}
+
+.tranding-slide-content .tranding-slide-content-bottom {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  color: var(--white);
+}
+
+.food-rating {
+  padding-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.rating ion-icon {
+  color: var(--primary);
+}
+
+.swiper-slide-shadow-left,
+.swiper-slide-shadow-right {
+  display: none;
+}
+
+.tranding-slider-control {
+  position: relative;
+  bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tranding-slider-control .swiper-button-next {
+  left: 58% !important;
+  transform: translateX(-58%) !important;
+}
+
+@media (max-width:990px) {
+  .tranding-slider-control .swiper-button-next {
+    left: 70% !important;
+    transform: translateX(-70%) !important;
+  }
+}
+
+@media (max-width:450px) {
+  .tranding-slider-control .swiper-button-next {
+    left: 80% !important;
+    transform: translateX(-80%) !important;
+  }
+}
+
+@media (max-width:990px) {
+  .tranding-slider-control .swiper-button-prev {
+    left: 30% !important;
+    transform: translateX(-30%) !important;
+  }
+}
+
+@media (max-width:450px) {
+  .tranding-slider-control .swiper-button-prev {
+    left: 20% !important;
+    transform: translateX(-20%) !important;
+  }
+}
+
+.tranding-slider-control .slider-arrow {
+  background: var(--white);
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  left: 42%;
+  transform: translateX(-42%);
+  filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+}
+
+.tranding-slider-control .slider-arrow ion-icon {
+  font-size: 2rem;
+  color: #222224;
+}
+
+.tranding-slider-control .slider-arrow::after {
+  content: '';
+}
+
+.tranding-slider-control .swiper-pagination {
+  position: relative;
+  width: 15rem;
+  bottom: 1rem;
+}
+
+.tranding-slider-control .swiper-pagination .swiper-pagination-bullet {
+  filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+}
+
+.tranding-slider-control .swiper-pagination .swiper-pagination-bullet-active {
+  background: var(--primary);
+}
+#tranding .tranding-slider {
+    height: 34rem;}
+
+h3{
+  margin-bottom:3.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+h2{
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+.top-text{
+  position:absolute;
+  top:100px;
+  left:20px;
+  color:yellow;
+}
+</style>
+
+<div class="top-text" style="width:98%;text-align:center;box-sizing:border-box">
+  <h2 style="color: #FFA500;color:#FFA500
+
+">Extraordinary Benefits of the Epsilon Program!</h2>
+</div>
+
+
+<section id="tranding" style="margin-top:20px;">
+    <div class="cont" style="width:90%">
+      <div class="swiper tranding-slider">          
+        <div class="swiper-wrapper">
+          <!-- Slide-start -->
+          <div class="swiper-slide tranding-slide">
+            <div class="tranding-slide-img">
+              <img src='https://www.gtabase.com/images/gta-5/gangs/epsilon-cult.jpg' alt="Tranding">
+            </div>
+            <div class="tranding-slide-content">
+              <h1 class="food-price"></h1>
+              <div class="tranding-slide-content-bottom">
+                <h2 class="food-name" style="font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;">
+                  Special Pizza
+                </h2>
+                <h3 class="food-rating" id="">
+                  <span>4.5</span>
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+                </h3>
+              </div>
+            </div>
+          </div>
+          <!-- Slide-end -->
+          <!-- Slide-start -->
+          <div class="swiper-slide tranding-slide">
+            <div class="tranding-slide-img" style="height:200px">
+              <img src="https://images.unsplash.com/photo-1611629154254-f601125d8417?fm=jpg&w=3000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8a2FybWF8ZW58MHx8MHx8fDA%3D" alt="Tranding">
+            </div>
+            <div class="tranding-slide-content">
+              <h1 class="food-price"></h1>
+              <div class="tranding-slide-content-bottom">
+                <h2 class="food-name">
+                  Meat Ball
+                </h2>
+                <h3 class="food-rating">
+                  <span>4.5</span>
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+                </h3>
+              </div>
+            </div>
+          </div>
+          <!-- Slide-end -->
+          <!-- Slide-start -->
+          <div class="swiper-slide tranding-slide">
+            <div class="tranding-slide-img">
+              <img src="https://t3.ftcdn.net/jpg/00/49/30/90/360_F_49309089_1XZWcKeTNpuJ9ZlN3qq6LIhx6cwUvNdm.jpg" alt="Tranding">
+            </div>
+            <div class="tranding-slide-content">
+              <h1 class="food-price"></h1>
+              <div class="tranding-slide-content-bottom">
+                <h2 class="food-name">
+                  Burger
+                </h2>
+                <h3 class="food-rating">
+                  <span>4.5</span>
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+                </h3>
+              </div>
+            </div>
+          </div>
+          <!-- Slide-end -->
+          <!-- Slide-start -->
+          <div class="swiper-slide tranding-slide">
+            <div class="tranding-slide-img">
+              <img src="https://fly.storage.tigris.dev/pai-images/be5b6b8e1a1247118d61ba76ab9548d9.jpeg" alt="Tranding">
+            </div>
+            <div class="tranding-slide-content">
+              <h1 class="food-price"></h1>
+              <div class="tranding-slide-content-bottom">
+                <h2 class="food-name">
+                  Frish Curry
+                </h2>
+                <h3 class="food-rating">
+                  <span>4.5</span>
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+                </h3>
+              </div>
+            </div>
+          </div>
+          <!-- Slide-end -->
+          <!-- Slide-start -->
+          <div class="swiper-slide tranding-slide">
+            <div class="tranding-slide-img">
+              <img src="https://i.redd.it/seeking-enlightenment-prompt-the-giant-buddha-on-an-empty-v0-p6yaladrs01c1.png?width=960&format=png&auto=webp&s=5e1cf7a3cc08dd575e552625d0166e9fcd447cb3" alt="Tranding">
+            </div>
+            <div class="tranding-slide-content">
+              <h1 class="food-price"></h1>
+              <div class="tranding-slide-content-bottom">
+                <h2 class="food-name">
+                  Pane Cake
+                </h2>
+                <h3 class="food-rating">
+                  <span>4.5</span>
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+                </h3>
+              </div>
+            </div>
+          </div>
+          <!-- Slide-end -->
+          <!-- Slide-start -->
+          <div class="swiper-slide tranding-slide">
+            <div class="tranding-slide-img">
+              {% comment %} <img src="https://e0.pxfuel.com/wallpapers/510/322/desktop-wallpaper-consciousness-art-spiritual-consciousness-thumbnail.jpg" alt="Tranding"> {% endcomment %}
+              <img src="https://w0.peakpx.com/wallpaper/721/320/HD-wallpaper-scary-black-dark-horror-teeth-yellow-eyes.jpg" alt="Tranding">
+            </div>
+            <div class="tranding-slide-content">
+              <h1 class="food-price"></h1>
+              <div class="tranding-slide-content-bottom">
+                <h2 class="food-name">
+                  Vanilla cake
+                </h2>
+                <h3 class="food-rating">
+                  <span>4.5</span>
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+                </h3>
+              </div>
+            </div>
+          </div>
+          <!-- Slide-end -->
+          <!-- Slide-start -->
+          <!-- Slide-end -->
+        </div>
+
+        <div class="tranding-slider-control">
+          <div class="swiper-button-prev slider-arrow">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+          </div>
+          <div class="swiper-button-next slider-arrow" id="next-button">
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </div>
+</section>
+
+
+
+
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+
+
+
+    <script>
+        document.getElementById('nav-1').classList.remove('doubleactive');
+        document.getElementById('nav-2').classList.add('doubleactive');
+        var TrandingSlider = new Swiper('.tranding-slider', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            loop: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 2.5,
+            },
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            }
+          });
+
+          function clickButton() {
+            document.getElementById('next-button').click();
+        }
+
+        // Set an interval to click the button every 3 seconds (3000 milliseconds)
+        setInterval(clickButton, 3000);
+    </script>
+
+{% endblock body   %}
