@@ -14,3 +14,23 @@ class Profile(models.Model):
     mobile = models.CharField(max_length=10,default="None")
     def __str__(self):
         return self.user_id
+    
+class KarmaPoints(models.Model):
+    karma_points_id = models.AutoField(primary_key=True)
+    user_id = models.CharField(max_length=100)
+    karma_points = models.IntegerField(default=0)
+    karma_points_type = models.CharField(max_length=100)
+    reference_id = models.CharField(max_length=100)
+    def __str__(self):
+        return str(self.karma_points_id)
+    
+class Transactions(models.Model):
+    transaction_id = models.AutoField(primary_key=True)
+    payee_id = models.CharField(max_length=100)
+    payer_id = models.CharField(max_length=100)
+    transaction_type = models.CharField(max_length=100)
+    transaction_amount = models.IntegerField(default=0)
+    transaction_date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.transaction_id
