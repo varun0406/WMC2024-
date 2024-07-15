@@ -83,7 +83,7 @@ def Create_Profile(request):
         profile.KarmaPoints=profile.KarmaPoints+10
         profile.save()
         
-        KarmaPoints.objects.create(user_id=auth_0_user.uid,karma_points=10,karma_points_type="Sign Up",reference_id="No Reference")
+        KarmaPoints.objects.create(user_id=auth_0_user.uid,karma_points=10,karma_points_type="Sign Up")
         
         return redirect('/profile')
     return render(request, 'Create_Profile.html')
