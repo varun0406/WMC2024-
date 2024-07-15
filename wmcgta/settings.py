@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-i3w29smglt-+33eq*ly92frr$5xs8m5wx_pa1-a(55#e=6%q)p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["192.168.29.38"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "channels",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,8 +40,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "login",
     'social_django',
-    "django_form_builder",
+    'Donation_STATS',
+
 ]
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
+
 SOCIAL_AUTH_TRAILING_SLASH = False
 SOCIAL_AUTH_AUTH0_DOMAIN = config('APP_DOMAIN')
 SOCIAL_AUTH_AUTH0_KEY = config("APP_CLIENTID")
@@ -70,7 +81,7 @@ ROOT_URLCONF = 'wmcgta.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [],#BASE_DIR / "templates"
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,8 +94,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'wmcgta.wsgi.application'
-
+# WSGI_APPLICATION = 'wmcgta.wsgi.application'
+ASGI_APPLICATION ="wmcgta.asgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -143,5 +154,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login/auth0'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/complete/auth0'
 LOGOUT_REDIRECT_URL = '/'
