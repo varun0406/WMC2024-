@@ -20,3 +20,9 @@ class DashBoard(AsyncWebsocketConsumer):
             'message':"helol from server "
             
         }))
+
+
+class Donation(AsyncWebsocketConsumer):
+    async def connect(self):
+        
+        
