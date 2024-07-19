@@ -10,6 +10,42 @@
         margin-top:20px;
         background-color: black;
       }
+
+
+      
+      .conta{
+        width:90%;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom:10px;
+    }
+    .tablee{
+        background-color: white;
+        border:1px solid black;
+        width:100%;
+    }
+    .tablee-content{
+        width:100%;
+        background-color: lightgreen;
+        border:2px solid green;
+
+    }
+    .tablee-content{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .coins{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        width:30%;
+    }
+    .coins img{
+        height:34px;
+        margin:10px;
+    }
     </style>
 </head>
 <body>
@@ -46,28 +82,24 @@
                   <div class="card mt-3">
                     <div class="col-sm-6 mb-3" style="width:100%">
                       <div class="card h-100">
-                        <div class="card-body">
-                          <h6 class="d-flex align-items-center mb-3 width:100%" style="justify-content: center;">Recent KARMA Points </h6>
-                          <small>Web Design</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="card-body" style="padding:0px;display:flex;justify-content:center;align-items:center;flex-direction:column">
+                          <h6 class="d-flex align-items-center mb-3 width:100%" style="justify-content: center;font-size:18px;margin-top:4px">Recent KARMA Points </h6>
+                          <div class="conta">
+                            <div class="tablee">
+                                <div class="tablee-content">
+                                    <div class="coins"><h5 style="margin:0px">+10</h3> <img src="\static\base\images\karma (1).png" alt="" srcset=""></div>
+                                    <div class="coins-desc"><h5 style="margin:0px">received by creating profile</h3></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="conta">
+                          <div class="tablee">
+                              <div class="tablee-content">
+                                  <div class="coins"><h5 style="margin:0px">+10</h3> <img src="\static\base\images\karma (1).png" alt="" srcset=""></div>
+                                  <div class="coins-desc"><h5 style="margin:0px">received by creating profile</h3></div>
+                              </div>
                           </div>
-                          <small>Website Markup</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>One Page</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>Mobile Template</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>Backend API</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
+                      </div>
                         </div>
                       </div>
                     </div>
@@ -131,7 +163,7 @@
                       </div>
                       <hr>
                       <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-3" style="">
                           <h6 class="mb-0">Karma Points</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
@@ -141,13 +173,13 @@
                       <hr>
                       <div class="row" style="display:flex;justify-content: center;align-items: center;width:100%">
                         <div class="col-sm-12" style="display:flex ;    width: 96%;justify-content:space-around" >
-                          <a class="btn btn-info " style="background-color: lightgreen;display:flex;justify-content: center;align-items: center;"target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">
+                          <a class="btn btn-info " style="background-image: linear-gradient(0deg, rgba(216, 28, 10, 0.3) 0%,rgba(255, 189, 248, 0.3) 100%),linear-gradient(90deg, rgb(208, 18, 218),rgb(197, 126, 179));;display:flex;justify-content: center;align-items: center;"target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">
                             <img  src="/static/base/img/payments_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" alt="" srcset="" style="height:30px;margin-right:8px">
                             DONATE</a>
-                            <a class="btn btn-info " style="background-color: lightgreen;display:flex;justify-content: center;align-items: center;"target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">
+                            <a class="btn btn-info " style="background-image: linear-gradient(0deg, rgb(113, 136, 223),rgb(17, 213, 207));;display:flex;justify-content: center;align-items: center;"target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">
                               <img  src="/static/base/img/rupee.png" alt="" srcset="" style="height:30px;margin-right:8px">
                               ADD MONEY</a>
-                          <a class="btn btn-info " style="background-color: lightgreen;display:flex;justify-content: center;align-items: center"target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">
+                          <a class="btn btn-info " style="background-image: linear-gradient(90deg, rgb(237, 228, 100),rgb(252, 152, 51));;display:flex;justify-content: center;align-items: center" href="/Leaderboard">
                             <img  src="/static/base/img/leaderboard.png" alt="" srcset="" style="height:30px;margin-right:8px">
                             KARMA LEADERBOARD</a>
                         </div>
@@ -158,28 +190,30 @@
                   <div class="row gutters-sm" style="display:flex;justify-content: center;align-items: center;" >
                     <div class="col-sm-6 mb-3" style="width:100%">
                       <div class="card h-100">
-                        <div class="card-body">
-                          <h6 class="d-flex align-items-center mb-3" style="justify-content: center;">Recent TRANSACTIONS Details</h6>
-                          <small>Web Design</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>Website Markup</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>One Page</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>Mobile Template</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <small>Backend API</small>
-                          <div class="progress mb-3" style="height: 5px">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
+                        <div class="card-body" style="display:flex;flex-direction:column;justify-content:center;align-items:center;background-color:#47BDD5">
+                          <h6 class="d-flex align-items-center mb-3" style="justify-content: center;font-size:18px">Recent TRANSACTIONS </h6>
+                          <div class="conta">
+                            <div class="tablee" style="display: flex;justify-content: center;align-items: center;border:0px;background-color:#47BDD5">
+                                <div class="tablee-content" style="background-color:rgb(233, 141, 141);width:50%;min-width:400px">
+                                    <div class="coins"><h5 style="margin:0px">-10</h3> <img  src="/static/base/img/rupee.png" alt="" srcset="" style="height:26px;margin-right:8px"></div>
+                                    <div class="coins-desc"><h5 style="margin:0px">dontated to self care </h3></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="conta">
+                            <div class="tablee" style="display: flex;justify-content: center;align-items: center;border:0px;background-color:#47BDD5">
+                                <div class="tablee-content" style="background-color:rgb(233, 141, 141);width:50%;min-width:400px">
+                                    <div class="coins"><h5 style="margin:0px">-10</h3> <img  src="/static/base/img/rupee.png" alt="" srcset="" style="height:26px;margin-right:8px"></div>
+                                    <div class="coins-desc"><h5 style="margin:0px">dontated to self care </h3></div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn btn-info " style="background-color: lightblue;display:flex;justify-content: center;align-items: center;width:250px"target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">
+
+                          <h6 style="display:flex;justify-content: center;align-items: center;margin:4px;font-size:18px">
+                            <img  src="\static\base\images\money-transfer.png" alt="" srcset="" style="height:30px;margin-right:8px">
+                            
+                            Transaction Detail</h6></a>
                         </div>
                       </div>
                     </div>
