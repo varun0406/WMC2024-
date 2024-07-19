@@ -86,6 +86,12 @@ def Create_Profile(request):
         
         return redirect('/profile')
     return render(request, 'Create_Profile.html')
+
 def About(request):
     return render(request,'About.html')
+
+def Leaderboard(request):
+    return render(request,'Lead.html')
+def Donate_Ngo(request):
+    return render(request,'NGO_Donation.html')
     
