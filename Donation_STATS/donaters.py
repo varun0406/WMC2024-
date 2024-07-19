@@ -22,7 +22,7 @@ class DashBoard(AsyncWebsocketConsumer):
         }))
 
 
-class Donation(AsyncWebsocketConsumer):
-    async def connect(self):
+# class Donation(AsyncWebsocketConsumer):
+#     async def connect(self):
         
         

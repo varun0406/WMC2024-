@@ -3,6 +3,12 @@ from .models import Donation,Statistics
 
 # Create your views here.
 
+def donaters(request):
+    if request.method =="POST":
+        Donation_amount=request.POST.get("Donation_amount")
+        obj = 
+        
+    return render(request,".\Donation.html",{})
 def donate_main(request):
     qs= Statistics.objects.all()
     if request.method == 'POST':

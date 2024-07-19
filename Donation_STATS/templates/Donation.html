@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donation Page</title>
+</head>
+<body>
+    <h1>Donation Page</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" id="amount" required>
+        <br><br>
+        <input type="submit" value="Donate">
+    </form>
+</body>
+</html>

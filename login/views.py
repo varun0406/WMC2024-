@@ -8,8 +8,7 @@ from decouple import config
 from login.models import Profile,KarmaPoints
 from django.http import Http404
 
-def ProfileConfig(request):
-    return render()
+
             
     
 # Create your views here.

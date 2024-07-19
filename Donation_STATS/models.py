@@ -9,6 +9,7 @@ from django.urls import reverse
 class Statistics(models.Model):
     Donaters_UserID=models.CharField(max_length=100,default="unknown")
     value = models.PositiveSmallIntegerField()
+    ranking = models.PositiveSmallIntegerField()
     slug = models.SlugField(blank=True)
     def get_absolute_url(self):
         return reverse("Donation_STATS:Donaters_Dashboard", kwargs={"slug": self.slug})
