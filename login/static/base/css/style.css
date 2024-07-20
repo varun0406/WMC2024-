@@ -22,7 +22,7 @@
     z-index: 99;
 }
 
-h1, h3, .h1, .h3 {
+h3, .h3 {
     font-weight: 400 !important;
     font-family: 'Playball', cursive !important;
 }
