@@ -35,8 +35,8 @@ class Statistics(models.Model):
 
 class Donation(models.Model):
     donation_id = models.AutoField(primary_key=True)
-    Donaters_UserID = models.ForeignKey(Statistics,on_delete=models.CASCADE)
-    user_name = models.CharField(max_length=100)
+    UserID = models.CharField(max_length=100)
+    user_name = models.ForeignKey(Statistics,on_delete=models.CASCADE)
     donation_amount = models.IntegerField(default=0) 
     donation_date = models.DateTimeField(auto_now_add=True)
     donation_category = models.CharField(max_length=100)

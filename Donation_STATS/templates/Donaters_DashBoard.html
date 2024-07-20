@@ -1,4 +1,4 @@
-{% extends 'C:\\Users\\VARUN\\Downloads\\GTA_WMC\\WMC2024-\\login\\templates\\base.html' %}
+{% comment %} {% extends 'C:\\Users\\VARUN\\Downloads\\GTA_WMC\\WMC2024-\\login\\templates\\base.html' %} {% endcomment %}
 {% load static %}
 {% block scripts%} 
 <script src="{% static 'stats/DashBoard.js' %}" defer ></script>
@@ -20,9 +20,9 @@
           <div
             class="text-6xl text-white max-md:mt-4 max-md:max-w-full max-md:text-4xl"
           >
-            Name
+            {{name}}
             <br />
-            Total Donations
+            {{value}}
             <br />
             Karma Points
             <br />
@@ -42,6 +42,9 @@
         {{name}}, {{user}}
         
         <script src="" async defer></script>
+
+
+        {{Donations}}
     </body>
 
 
