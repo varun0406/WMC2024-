@@ -5,10 +5,25 @@
 </head>
 <body>
     <h1>Donation Page</h1>
+    <label for ="alert">{{alert}} </label>
     <form method="post" action="">
         {% csrf_token %}
+        
         <label for="amount">Amount:</label>
-        <input type="number" name="amount" id="amount" required>
+        <input type="number" name="donation_amount" id="donation_amount" required>
+        <br><br>
+        <label for="user_id">User ID:{{user_id}}</label>
+        <label for="donation_category">Donation Category:</label>
+        <select name="donation_category" id="donation_category">
+            <option value="1">Food</option>
+            <option value="2">Clothes</option>
+            <option value="3">Money</option>
+            <option value="4">Other</option>
+        </select>
+        <label for="donation_description">Donation Description:</label>
+        <input type="text" name="donation_description" id="donation_description" required>
+        
+        
         <br><br>
         <input type="submit" value="Donate">
     </form>

@@ -8,6 +8,7 @@ from django.urls import reverse
     
 class Statistics(models.Model):
     Donaters_UserID=models.CharField(max_length=100,default="unknown")
+    Name=models.CharField(max_length=100,default="unknown")
     value = models.PositiveSmallIntegerField()
     ranking = models.PositiveSmallIntegerField()
     slug = models.SlugField(blank=True)

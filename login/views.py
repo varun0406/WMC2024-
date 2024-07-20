@@ -17,6 +17,7 @@ def index(request):
     print(user)
     if user.is_authenticated:
         auth_0_user = user.social_auth.get(provider='auth0')
+        print(auth_0_user.uid)  
         user_id= auth_0_user.uid
         try:
             user_profile = Profile.objects.get(user_id=user_id)
