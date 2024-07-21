@@ -21,7 +21,7 @@ def donaters(request):
         donation_category = request.POST.get('donation_category')
         donation_description = request.POST.get('donation_description')
         print(Donation_amount)
-        if
+        
         print("error point 1")
         obj, created = Statistics.objects.get_or_create(Donaters_UserID=AuthO_user_id, Name=FullName, defaults={'value': 0, 'ranking': 0})
         if created:
@@ -95,7 +95,7 @@ def Donaters_Dashboard(request,slug):
     
     
     
-    return render(request,f".\Lead.html",{
+    return render(request,f".\Donaters_DashBoard.html",{
         "name": obj.Donaters_UserID,
         "value": obj.value,
         "slug": obj.slug,
