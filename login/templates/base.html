@@ -54,7 +54,7 @@
             .hidden {
                 top: -80px;
                 transform: translateY(-100%);
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+                transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
             }
             .visible {
                 top: 0;
@@ -452,9 +452,8 @@
                         <div class="btnn">
                             <button style="background-color: black;background:black ; width:25%;"class="btn-search" data-bs-toggle="modal" data-bs-target="#searchModal"><img style="height:26px;" src="static/base/img/search (4).png" alt="" srcset=""></button>
                             <div class="containerrr">
-                                <button class="btn-dropdown" id="btn2">
+                                <button class="btn-dropdown" id="btn2" style="background-color:black">
                                     <img src="static/base/img/user (1).png" alt="" srcset="" style="height:26px">
-                                  
                                 </button>
                                 <div class="drop" id="dropdown2" style="color:white;">
                                     {%if user.is_authenticated%}
