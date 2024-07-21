@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <link href="/new/css/style.css" rel="stylesheet">
-
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <style>
       :root {
         --marquee-width: 80vw;
@@ -792,7 +792,9 @@
       <section class="section about" id="about">
         <div class="container">
 
-          <figure class="about-banner">
+          <figure class="about-banner" data-aos="fade-right"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine">
 
             <img style="box-shadow: 6px 6px 8px black;" src="https://www.gtabase.com/images/gta-5/gangs/epsilon-cult.jpg" width="800" height="652" loading="lazy" alt="Ethan's Photo"
               class="img-cover">
@@ -808,13 +810,15 @@
    
             </div>
 
-            <div class="abs-icon abs-icon-3">
-              <ion-icon name="logo-angular"></ion-icon>
+            <div class="abs-icon abs-icon-3" style="padding:0px;background-color:transparent">
+              
             </div>
 
           </figure>
 
-          <div class="about-content">
+          <div class="about-content" data-aos="fade-left"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine">
 
             <p class="section-subtitle">Karma Program</p>
 
@@ -858,4 +862,8 @@ for(let i=0; i<marqueeElementsDisplayed; i++) {
       <script src="https://kit.fontawesome.com/b59785c513.js" crossorigin="anonymous"></script>
       <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
       <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script>
+  AOS.init();
+</script>
 {% endblock body %}

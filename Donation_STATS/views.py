@@ -16,7 +16,7 @@ def donaters(request):
         FullName = user_id.first_name + " " + user_id.last_name        
         
         Donation_amount = int(request.POST.get('donation_amount'))
-        donation_category = request.POST.get('donation_category')
+        donation_category = 'Karma_Foundation'
         donation_description = request.POST.get('donation_description')
         print(Donation_amount)
         
@@ -47,7 +47,7 @@ def donaters(request):
         karma_points_obj, karma_points_created = KarmaPoints.objects.get_or_create(
             user_id=payer_id,
             karma_points_type="Donation",
-            karma_points=(Donation_amount / 100),
+            karma_points=(Donation_amount),
             reference_id=transaction_obj.transaction_id
         )
         karma_points_obj.save()
