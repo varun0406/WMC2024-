@@ -365,9 +365,9 @@
                     {% for q in qs %}
                         <tr>
                             <td> {{ forloop.counter }} </td>
-                            <td><img src="images/Jeet Saru.png" alt=""> {{ q.Donaters_UserID }} </td>
+                            <td> {{ q.Donaters_UserID }} </td>
                             <td> buisnessman</td>
-                            <td> <strong>${{q.value}}</strong> </td>
+                            <td> <strong>{{q.value}}</strong> </td>
                         </tr>
                     {% endfor %}           
                 </tbody>
