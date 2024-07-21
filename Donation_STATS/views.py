@@ -21,7 +21,7 @@ def donaters(request):
         donation_category = request.POST.get('donation_category')
         donation_description = request.POST.get('donation_description')
         print(Donation_amount)
-        
+        if
         print("error point 1")
         obj, created = Statistics.objects.get_or_create(Donaters_UserID=AuthO_user_id, Name=FullName, defaults={'value': 0, 'ranking': 0})
         if created:
@@ -70,7 +70,8 @@ def donaters(request):
     return render(request, "./Donation.html", context)
 
 def donate_main(request):
-    qs = Statistics.objects.all().order_by('ranking')
+    qs = Statistics.objects.all().order_by('value')
+    qs.reverse()
     if request.method == 'POST':
         Donaters_UserID = request.POST.get('Donaters_UserID')
         response =Statistics.objects.get(Donaters_UserID=Donaters_UserID)
