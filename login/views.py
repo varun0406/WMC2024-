@@ -5,8 +5,9 @@ from django.shortcuts import render,HttpResponse,redirect,get_object_or_404
 
 from django.contrib.auth import logout as django_logout
 from decouple import config
-from login.models import Profile,KarmaPoints
+from login.models import Profile,KarmaPoints,Transactions
 from django.http import Http404
+
 
 
             
@@ -46,6 +47,7 @@ def profile(request):
         context={
             'user_profile':user_profile
         }
+
         return render(request, 'profile.html',context)
     else:
         raise Http404("User not logged in")
