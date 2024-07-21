@@ -22,7 +22,7 @@ class KarmaPoints(models.Model):
     karma_points_type = models.CharField(max_length=100)
     reference_id = models.CharField(max_length=100,default='No Reference')
     def __str__(self):
-        return str(self.karma_points_id)
+        return f"{self.user_id} : {self.karma_points} : {self.karma_points_type}"
     
 class Transactions(models.Model):
     transaction_id = models.AutoField(primary_key=True)
@@ -33,4 +33,4 @@ class Transactions(models.Model):
     transaction_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.transaction_id
+        return f"{self.payer_id} : {self.payee_id} : {self.transaction_type} : {self.transaction_amount} : {self.transaction_date}"

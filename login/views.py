@@ -17,9 +17,8 @@ def index(request):
     user = request.user
     print(user)
     if user.is_authenticated:
-        auth_0_user = user.social_auth.get(provider='auth0')
-        print(auth_0_user.uid)  
-        user_id= auth_0_user.uid
+          
+        user_id= user.username
         try:
             user_profile = Profile.objects.get(user_id=user_id)
         except Profile.DoesNotExist:
@@ -38,19 +37,24 @@ def index(request):
 def profile(request):
     user=request.user
     if user.is_authenticated:
-        auth_0_user = user.social_auth.get(provider='auth0')
-        user_id= auth_0_user.uid
+    
+        user_id= user.username
         try:
             user_profile = Profile.objects.get(user_id=user_id)
         except Profile.DoesNotExist:
             raise Http404("User profile does not exist")
+        karma=KarmaPoints.objects.filter(user_id=user_id)
+        trans=Transactions.objects.filter(payer_id=user_id)
         context={
-            'user_profile':user_profile
+            'user_profile':user_profile,
+            'karma_points':karma,
+            'Transactions':trans
         }
-
+        print(context)
         return render(request, 'profile.html',context)
     else:
         raise Http404("User not logged in")
+    
 def logout(request):
     django_logout(request)
     domain= config("APP_DOMAIN")
@@ -62,15 +66,14 @@ def Create_Profile(request):
     
     user=request.user
     print(user)
-    auth_0_user = user.social_auth.get(provider='auth0')
-    user_id=auth_0_user.uid
+
+    user_id=user.username
     if Profile.objects.filter(user_id=user_id).exists():
         return redirect('/profile')
     if request.method=='POST':
         
         user=request.user
-        print(user)
-        auth_0_user = user.social_auth.get(provider='auth0')
+      
         print("Error space 1")
         user_name=request.POST.get('name')
         user_email=request.POST.get('user-email')
@@ -78,15 +81,14 @@ def Create_Profile(request):
         print("Error space 2")
         profile, created=Profile.objects.get_or_create(user_id=user)
         print("Error space 3")
-        profile.user_id=auth_0_user.uid
+        profile.user_id=user.username
         profile.name=user_name
         profile.email=user_email
         profile.mobile=phone
         profile.KarmaPoints=profile.KarmaPoints+10
         profile.save()
         
-        KarmaPoints.objects.create(user_id=auth_0_user.uid,karma_points=10,karma_points_type="Sign Up")
-        
+        KarmaPoints.objects.create(user_id=user.username,karma_points=10,karma_points_type="Sign Up")
         return redirect('/profile')
     return render(request, 'Create_Profile.html')
 
