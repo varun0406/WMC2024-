@@ -9,7 +9,7 @@
 {% if qs %}
     <ul>
     {% for q in qs %}
-        <li><a href="{{ q.get_absolute_url }}">{{ q.Donaters_UserID }}</a></li>
+        <li><a href="{{ q.get_absolute_url }}">{{ q.Donaters_UserID }}   {{q.value}}</a></li>
     {% endfor %}
     </ul>
 {% endif %}
