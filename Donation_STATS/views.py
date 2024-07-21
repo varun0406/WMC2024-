@@ -16,7 +16,7 @@ def donaters(request):
         FullName = user_id.first_name + " " + user_id.last_name        
         
         Donation_amount = int(request.POST.get('donation_amount'))
-        donation_category = request.POST.get('donation_category')
+        donation_category = 'Karma_Foundation'
         donation_description = request.POST.get('donation_description')
         print(Donation_amount)
         

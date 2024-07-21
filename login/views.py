@@ -5,8 +5,9 @@ from django.shortcuts import render,HttpResponse,redirect,get_object_or_404
 
 from django.contrib.auth import logout as django_logout
 from decouple import config
-from login.models import Profile,KarmaPoints
+from login.models import Profile,KarmaPoints,Transactions
 from django.http import Http404
+
 
 
             
@@ -42,13 +43,18 @@ def profile(request):
             user_profile = Profile.objects.get(user_id=user_id)
         except Profile.DoesNotExist:
             raise Http404("User profile does not exist")
+        karma=KarmaPoints.objects.filter(user_id=user_id)
+        trans=Transactions.objects.filter(payer_id=user_id)
         context={
-            'user_profile':user_profile
+            'user_profile':user_profile,
+            'karma_points':karma,
+            'Transactions':trans
         }
-        
+        print(context)
         return render(request, 'profile.html',context)
     else:
         raise Http404("User not logged in")
+    
 def logout(request):
     django_logout(request)
     domain= config("APP_DOMAIN")
@@ -83,7 +89,6 @@ def Create_Profile(request):
         profile.save()
         
         KarmaPoints.objects.create(user_id=user.username,karma_points=10,karma_points_type="Sign Up")
-        
         return redirect('/profile')
     return render(request, 'Create_Profile.html')
 
