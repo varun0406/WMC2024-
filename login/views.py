@@ -9,6 +9,37 @@ from login.models import Profile,KarmaPoints,Transactions
 from django.http import Http404
 
 
+def MemberShip_tier(request):
+    if request.method=='POST':
+        user=request.user
+        user_id=user.username
+        print(request.POST)
+        tier=request.POST.get('membership-tier')
+        Karma_Available=Profile.objects.get(user_id=user_id)
+        print(Karma_Available)
+        if tier=="Gold":
+            if Karma_Available<100:
+                return HttpResponse("Not enough Karma Points")
+            else:
+                KarmaPoints.objects.create(user_id=user_id,karma_points=-100,karma_points_type="Membership Tier Upgrade")
+                Karma_Available=Karma_Available-100
+        elif tier=="Silver":
+            if Karma_Available<50:
+                return HttpResponse("Not enough Karma Points")
+            else:
+                KarmaPoints.objects.create(user_id=user_id,karma_points=-50,karma_points_type="Membership Tier Upgrade")
+                Karma_Available=Karma_Available-50
+        elif tier=="Bronze":
+            if Karma_Available<10:
+                return HttpResponse("Not enough Karma Points")
+            else:
+                Karma_Available=Karma_Available-10
+        KarmaPoints.objects.create(user_id=user_id,karma_points=-10,karma_points_type="Membership Tier Upgrade")
+        Profile.objects.update(user_id=user_id,KarmaPoints=Karma_Available)
+        profile=Profile.objects.get(user_id=user_id)
+        profile.Membership_tier=tier
+        profile.save()
+    return render(request,'Membership_tier.html')
 
             
     

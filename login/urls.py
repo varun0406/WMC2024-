@@ -10,4 +10,5 @@ urlpatterns = [
     path('About', views.About, name='About'),
     path('Leaderboard', views.Leaderboard, name='Leaderboard'),
     path('Donate_Ngo', views.Donate_Ngo, name='Donate_Ngo'),
+    path("member",views.MemberShip_tier,name="MemberShip_tier"),
 ]
