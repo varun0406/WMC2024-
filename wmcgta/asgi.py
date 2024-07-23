@@ -19,3 +19,4 @@ application = ProtocolTypeRouter({
         )
     ),
 })
+asgi=django_asgi_app
