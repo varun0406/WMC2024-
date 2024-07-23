@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("login.urls")),
     path('', include("Donation_STATS.urls",namespace="Donation_STATS")),
+    path("", include("events.urls",namespace="events")),
 ]
 

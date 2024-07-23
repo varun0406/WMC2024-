@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "login",
     'social_django',
     'Donation_STATS',
+    "events",
 
 ]
 CHANNEL_LAYERS = {
