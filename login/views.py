@@ -99,4 +99,6 @@ def Leaderboard(request):
     return render(request,'Lead.html')
 def Donate_Ngo(request):
     return render(request,'NGO_Donation.html')
+def Membership(request):
+    return render(request,'Membership.html')
     
