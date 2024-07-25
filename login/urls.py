@@ -11,4 +11,9 @@ urlpatterns = [
     path('Leaderboard', views.Leaderboard, name='Leaderboard'),
     path('Donate_Ngo', views.Donate_Ngo, name='Donate_Ngo'),
     path('Membership', views.Membership, name='Membership'),
+
+    path("member",views.MemberShip_tier,name="MemberShip_tier"),
+    path("Events",views.Events,name="Events"),
+    path("Eventpage",views.Eventpage,name="Events"),
+
 ]
