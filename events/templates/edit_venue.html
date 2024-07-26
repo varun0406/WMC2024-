@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Venue</title>
+    {% load static %}
+</head>
+<body>
+    <h1>Edit Venue</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+    <a href="{% url 'events:admin_dashboard' %}">Back to Admin Dashboard</a>
+</body>
+</html>

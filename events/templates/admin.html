@@ -1,80 +1,53 @@
 <!DOCTYPE html>
-{% comment %} {% url 'create_venue' %} {% endcomment %}
-{% comment %} {% url 'create_organization' %} {% endcomment %}
-{% comment %} {% url 'create_event' %} {% endcomment %}
 <html>
 <head>
     <title>Admin Dashboard</title>
+    {% load static %}
 </head>
 <body>
     <h1>Admin Dashboard</h1>
 
-    <h2>Venue Management</h2>
-    <form action="" method="POST">
+    <h2>Create Venue</h2>
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <label for="venue_name">Venue Name:</label>
-        <input type="text" id="venue_name" name="venue_name" required>
-        <br>
-        <label for="venue_address">Venue Address:</label>
-        <textarea id="venue_address" name="venue_address"></textarea>
-        <br>
-        <label for="venue_contact">Venue Contact:</label>
-        <input type="text" id="venue_contact" name="venue_contact">
-        <br>
-        <label for="venue_capacity">Venue Capacity:</label>
-        <input type="number" id="venue_capacity" name="venue_capacity" required>
-        <br>
-        <button type="submit">Create Venue</button>
+        {{ venue_form.as_p }}
+        <button type="submit" name="create_venue">Create Venue</button>
     </form>
 
-    <h2>Organization Management</h2>
-    <form action="" method="POST">
+    <h2>Create Organization</h2>
+    <form method="POST">
         {% csrf_token %}
-        <label for="org_name">Organization Name:</label>
-        <input type="text" id="org_name" name="org_name" required>
-        <br>
-        <label for="org_contact">Organization Contact:</label>
-        <input type="text" id="org_contact" name="org_contact">
-        <br>
-        <label for="org_email">Organization Email:</label>
-        <input type="email" id="org_email" name="org_email">
-        <br>
-        <label for="org_desc">Organization Description:</label>
-        <textarea id="org_desc" name="org_desc"></textarea>
-        <br>
-        <button type="submit">Create Organization</button>
+        {{ organization_form.as_p }}
+        <button type="submit" name="create_organization">Create Organization</button>
     </form>
 
-    <h2>Event Management</h2>
-    <form action="" method="POST">
+    <h2>Create Event</h2>
+    <form method="POST">
         {% csrf_token %}
-        <label for="event_name">Event Name:</label>
-        <input type="text" id="event_name" name="event_name" required>
-        <br>
-        <label for="event_desc">Event Description:</label>
-        <textarea id="event_desc" name="event_desc"></textarea>
-        <br>
-        <label for="event_s_time">Event Start Time:</label>
-        <input type="datetime-local" id="event_s_time" name="event_s_time" required>
-        <br>
-        <label for="event_e_time">Event End Time:</label>
-        <input type="datetime-local" id="event_e_time" name="event_e_time" required>
-        <br>
-        <label for="venue">Venue:</label>
-        <select id="venue" name="venue" required>
-            {% for venue in venues %}
-                <option value="{{ venue.id }}">{{ venue.venue_name }}</option>
-            {% endfor %}
-        </select>
-        <br>
-        <label for="organization">Organization:</label>
-        <select id="organization" name="organization" required>
-            {% for organization in organizations %}
-                <option value="{{ organization.id }}">{{ organization.org_name }}</option>
-            {% endfor %}
-        </select>
-        <br>
-        <button type="submit">Create Event</button>
+        {{ event_form.as_p }}
+        <button type="submit" name="create_event">Create Event</button>
     </form>
+
+    <h2>Manage Venues</h2>
+    <ul id="venue_list">
+        {% for venue in venues %}
+        <li>{{ venue.venue_name }} (ID: {{ venue.id }}) - <a href="{% url 'events:edit_venue' venue.id %}">Edit</a> - <a href="{% url 'events:delete_venue' venue.id %}">Delete</a></li>
+
+        {% endfor %}
+    </ul>
+
+    <h2>Manage Organizations</h2>
+    <ul id="organization_list">
+        {% for organization in organizations %}
+            <li>{{ organization.org_name }} - <a href="{% url 'edit_organization' organization.id %}">Edit</a> - <a href="{% url 'delete_organization' organization.id %}">Delete</a></li>
+        {% endfor %}
+    </ul>
+
+    <h2>Manage Events</h2>
+    <ul id="event_list">
+        {% for event in events %}
+            <li>{{ event.event_name }} - <a href="{% url 'edit_event' event.id %}">Edit</a> - <a href="{% url 'delete_event' event.id %}">Delete</a></li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
