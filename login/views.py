@@ -136,5 +136,7 @@ def Events(request):
     return render(request,'Events.html')
 def Eventpage(request):
     return render(request,'Eventpage.html')
+def Membership_Buy(request):
+    return render(request,'Membership_Buy.html')
     
     
