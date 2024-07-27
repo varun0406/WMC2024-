@@ -1134,20 +1134,21 @@ width:25%;
 </div>
 <script>
         var a=document.getElementById('total');
-        a.innerHTML="100";
+        document.getElementById('total').innerHTML="100";
+
         function mem(){
-        var value=120;
-        a.innerHTML=value;
+        var value="120";
+        document.getElementById('total').innerHTML="100";
         console.log(value);
         }
         function memm(){
         var value=120;
-        a.innerHTML="120";
+        document.getElementById('total').innerHTML="120";
         console.log(value);
         }
         function memmm(){
             value=150;
-            a.innerHTML="150";
+            document.getElementById('total').innerHTML="150";
             console.log(value);
             }
 </script>
