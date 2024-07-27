@@ -61,6 +61,7 @@ def donaters(request):
             donation_description=donation_description
         )
         donation_obj.save()
+        Profile.objects.filter(user_id=UserName).update(KarmaPoints=Profile.objects.get(user_id=UserName).KarmaPoints+Donation_amount)
         
     context = {
         "user_id": request.user

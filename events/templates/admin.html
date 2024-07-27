@@ -3,51 +3,153 @@
 <head>
     <title>Admin Dashboard</title>
     {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2em;
+        }
+
+        .create-section, .manage-section {
+            background-color: #fff;
+            padding: 1em;
+            margin-bottom: 1em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .create-forms, .manage-lists {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .create-form, .manage-list {
+            margin: 1em;
+            padding: 1em;
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .create-form h3, .manage-list h3 {
+            margin-top: 0;
+            color: #337ab7;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            padding: 0.5em;
+            border-bottom: 1px solid #ccc;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+
+        a:hover {
+            color: #23527c;
+        }
+
+        button[type="submit"] {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #23527c;
+        }
+    </style>
 </head>
 <body>
-    <h1>Admin Dashboard</h1>
-
-    <h2>Create Venue</h2>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ venue_form.as_p }}
-        <button type="submit" name="create_venue">Create Venue</button>
-    </form>
-
-    <h2>Create Organization</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ organization_form.as_p }}
-        <button type="submit" name="create_organization">Create Organization</button>
-    </form>
-
-    <h2>Create Event</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ event_form.as_p }}
-        <button type="submit" name="create_event">Create Event</button>
-    </form>
-
-    <h2>Manage Venues</h2>
-    <ul id="venue_list">
-        {% for venue in venues %}
-        <li>{{ venue.venue_name }} (ID: {{ venue.id }}) - <a href="{% url 'events:edit_venue' venue.id %}">Edit</a> - <a href="{% url 'events:delete_venue' venue.id %}">Delete</a></li>
-
-        {% endfor %}
-    </ul>
-
-    <h2>Manage Organizations</h2>
-    <ul id="organization_list">
-        {% for organization in organizations %}
-            <li>{{ organization.org_name }} - <a href="{% url 'edit_organization' organization.id %}">Edit</a> - <a href="{% url 'delete_organization' organization.id %}">Delete</a></li>
-        {% endfor %}
-    </ul>
-
-    <h2>Manage Events</h2>
-    <ul id="event_list">
-        {% for event in events %}
-            <li>{{ event.event_name }} - <a href="{% url 'edit_event' event.id %}">Edit</a> - <a href="{% url 'delete_event' event.id %}">Delete</a></li>
-        {% endfor %}
-    </ul>
+    <header>
+        <h1>Admin Dashboard</h1>
+    </header>
+    <main>
+        <section class="create-section">
+            <h2>Create</h2>
+            <div class="create-forms">
+                <form method="POST" enctype="multipart/form-data" class="create-form">
+                    {% csrf_token %}
+                    <h3>Create Venue</h3>
+                    {{ venue_form.as_p }}
+                    <button type="submit" name="create_venue">Create Venue</button>
+                </form>
+                <form method="POST" class="create-form">
+                    {% csrf_token %}
+                    <h3>Create Organization</h3>
+                    {{ organization_form.as_p }}
+                    <button type="submit" name="create_organization">Create Organization</button>
+                </form>
+                <form method="POST" class="create-form">
+                    {% csrf_token %}
+                    <h3>Create Event</h3>
+                    {{ event_form.as_p }}
+                    <button type="submit" name="create_event">Create Event</button>
+                </form>
+            </div>
+        </section>
+        <section class="manage-section">
+            <h2>Manage</h2>
+            <div class="manage-lists">
+                <div class="manage-list">
+                    <h3>Venues</h3>
+                    <ul id="venue_list">
+                        {% for venue in venues %}
+                        <li>{{ venue.venue_name }} (ID: {{ venue.id }}) - <a href="{% url 'events:edit_venue' venue.id %}">Edit</a> - <a href="{% url 'events:delete_venue' venue.id %}">Delete</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="manage-list">
+                    <h3>Organizations</h3>
+                    <ul id="organization_list">
+                        {% for organization in organizations %}
+                            <li>{{ organization.org_name }} - <a href="{% url 'events:edit_organization' organization.id %}">Edit</a> - <a href="{% url 'events:delete_organization' organization.id %}">Delete</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="manage-list">
+                    <h3>Events</h3>
+                    <ul id="event_list">
+                        {% for event in events %}
+                            <li>{{ event.event_name }} - <a href="{% url 'edit_event' event.id %}">Edit</a> - <a href="{% url 'delete_event' event.id %}">Delete</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
+                   

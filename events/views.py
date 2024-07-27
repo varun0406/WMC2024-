@@ -13,17 +13,17 @@ def admin_dashboard(request):
             venue_form = VenueForm(request.POST, request.FILES)
             if venue_form.is_valid():
                 venue_form.save()
-                return redirect('admin_dashboard')
+                return redirect('events:admin_dashboard')
         elif 'create_organization' in request.POST:
             organization_form = OrganizationForm(request.POST)
             if organization_form.is_valid():
                 organization_form.save()
-                return redirect('admin_dashboard')
+                return redirect('events:admin_dashboard')
         elif 'create_event' in request.POST:
             event_form = EventForm(request.POST)
             if event_form.is_valid():
                 event_form.save()
-                return redirect('admin_dashboard')
+                return redirect('events:admin_dashboard')
 
     # Query all records from database
     venues = Venue.objects.all()
@@ -55,7 +55,7 @@ def delete_venue(request, venue_id):
     venue = get_object_or_404(Venue, id=venue_id)
     if request.method == 'POST':
         venue.delete()
-        return redirect('admin_dashboard')
+        return redirect('events:admin_dashboard')
     return render(request, 'delete_venue.html', {'venue': venue})
 
 def edit_organization(request, org_id):
@@ -64,7 +64,7 @@ def edit_organization(request, org_id):
         form = OrganizationForm(request.POST, instance=organization)
         if form.is_valid():
             form.save()
-            return redirect('admin_dashboard')
+            return redirect('events:admin_dashboard')
     else:
         form = OrganizationForm(instance=organization)
     return render(request, 'edit_organization.html', {'form': form})
@@ -73,7 +73,7 @@ def delete_organization(request, org_id):
     organization = get_object_or_404(Organization, id=org_id)
     if request.method == 'POST':
         organization.delete()
-        return redirect('admin_dashboard')
+        return redirect('events:admin_dashboard')
     return render(request, 'delete_organization.html', {'organization': organization})
 
 def edit_event(request, event_id):
@@ -82,7 +82,7 @@ def edit_event(request, event_id):
         form = EventForm(request.POST, instance=event)
         if form.is_valid():
             form.save()
-            return redirect('admin_dashboard')
+            return redirect('events:admin_dashboard')
     else:
         form = EventForm(instance=event)
     return render(request, 'edit_event.html', {'form': form})
@@ -91,5 +91,5 @@ def delete_event(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     if request.method == 'POST':
         event.delete()
-        return redirect('admin_dashboard')
+        return redirect('events:admin_dashboard')
     return render(request, 'delete_event.html', {'event': event})

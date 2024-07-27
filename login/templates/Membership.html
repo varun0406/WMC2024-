@@ -892,12 +892,12 @@ border-bottom: 1px solid #e5e5e5;
                 <div class="pricing-heading" id="bac-1">
                   <!-- Title -->
                   <div class="title">
-                    <h6 style="font-size: 24px;">Starter</h6>
+                    <h6 style="font-size: 24px;">Bronze</h6>
                     
                   </div>
                   <!-- Price -->
                   <div class="price">
-                    <h2>39.00<span>$</span></h2>
+                    <h2>10.00<span>$</span></h2>
                     <p>/Person</p>
                   </div>
                 </div>
@@ -911,7 +911,11 @@ border-bottom: 1px solid #e5e5e5;
                   </ul>
                 </div>
                 <div class="pricing-footer text-center">
-                  <a href="#" class="btn btn-transparent-md" style="color:white;font-size:13px">Buy Membership</a>
+                  <form method="POST" action="{% url 'Membership' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="membership-tier" value="Bronze">
+                    <button type="submit" class="btn btn-transparent-md" style="color:white;font-size:13px">Buy Membership</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -921,11 +925,11 @@ border-bottom: 1px solid #e5e5e5;
                 <div class="pricing-heading" id="bac-2">
                   <!-- Title -->
                   <div class="title">
-                    <h6 style="font-size: 24px">Standard</h6>
+                    <h6 style="font-size: 24px">Silver</h6>
                   </div>
                   <!-- Price -->
                   <div class="price">
-                    <h2>49.00<span>$</span></h2>
+                    <h2>50.00<span>$</span></h2>
                     <p>/Person</p>
                   </div>
                 </div>
@@ -939,7 +943,11 @@ border-bottom: 1px solid #e5e5e5;
                   </ul>
                 </div>
                 <div class="pricing-footer text-center">
-                  <a href="#" class="btn btn-main-md" style="color:white;font-size:13px">Buy Membership</a>
+                  <form method="POST" action="{% url 'Membership' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="membership-tier" value="Silver">
+                    <button type="submit" class="btn btn-transparent-md" style="color:white;font-size:13px">Buy Membership</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -949,11 +957,11 @@ border-bottom: 1px solid #e5e5e5;
                 <div class="pricing-heading" id="bac-3">
                   <!-- Title -->
                   <div class="title">
-                    <h6 style="font-size: 24px;">Platinum</h6>
+                    <h6 style="font-size: 24px;">Gold</h6>
                   </div>
                   <!-- Price -->
                   <div class="price">
-                    <h2>99.00<span>$</span></h2>
+                    <h2>100.00<span>$</span></h2>
                     <p>/Person</p>
                   </div>
                 </div>
@@ -967,7 +975,11 @@ border-bottom: 1px solid #e5e5e5;
                   </ul>
                 </div>
                 <div class="pricing-footer text-center">
-                  <a href="#" class="btn btn-transparent-md" style="color:white;font-size:13px">Buy Membership</a>
+                  <form method="POST" action="{% url 'Membership' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="membership-tier" value="Gold">
+                    <button type="submit" class="btn btn-transparent-md" style="color:white;font-size:13px">Buy Membership</button>
+                  </form>
                 </div>
               </div>
             </div>

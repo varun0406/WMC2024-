@@ -131,6 +131,38 @@ def Leaderboard(request):
 def Donate_Ngo(request):
     return render(request,'NGO_Donation.html')
 def Membership(request):
+    if request.method=='POST':
+        user=request.user
+        user_id=str(user.username)
+        print(request.POST)
+        tier=request.POST.get('membership-tier')
+        print(tier)
+        Karma_Available=Profile.objects.get(user_id=user_id).KarmaPoints
+        print(Karma_Available)
+        if tier=="Gold":
+            if Karma_Available<100:
+                return HttpResponse("Not enough Karma Points")
+            else:
+                KarmaPoints.objects.create(user_id=user_id,karma_points=-100,karma_points_type="Membership Tier Upgrade")
+                Karma_Available=Karma_Available-100
+        elif tier=="Silver":
+            if Karma_Available<50:
+                return HttpResponse("Not enough Karma Points")
+            else:
+                KarmaPoints.objects.create(user_id=user_id,karma_points=-50,karma_points_type="Membership Tier Upgrade")
+                Karma_Available=Karma_Available-50
+        elif tier=="Bronze":
+            if Karma_Available<10:
+                return HttpResponse("Not enough Karma Points")
+            else:
+                Karma_Available=Karma_Available-10
+        KarmaPoints.objects.create(user_id=user_id,karma_points=-10,karma_points_type="Membership Tier Upgrade")
+        # Profile.objects.update(user_id=user_id,KarmaPoints=Karma_Available)
+        profile=Profile.objects.get(user_id=user_id)
+        print(Karma_Available)
+        profile.KarmaPoints = Karma_Available
+        profile.Membership_license = tier
+        profile.save()
     return render(request,'Membership.html')
 def Events(request):
     return render(request,'Events.html')
