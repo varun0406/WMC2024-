@@ -33,32 +33,6 @@
         <!-- Template Stylesheet -->
         <link href="/static/base/css/style.css" rel="stylesheet">
         <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-        <script>
-            "use strict";
-            
-            !function() {
-              var t = window.driftt = window.drift = window.driftt || [];
-              if (!t.init) {
-                if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
-                t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
-                t.factory = function(e) {
-                  return function() {
-                    var n = Array.prototype.slice.call(arguments);
-                    return n.unshift(e), t.push(n), t;
-                  };
-                }, t.methods.forEach(function(e) {
-                  t[e] = t.factory(e);
-                }), t.load = function(t) {
-                  var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
-                  o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
-                  var i = document.getElementsByTagName("script")[0];
-                  i.parentNode.insertBefore(o, i);
-                };
-              }
-            }();
-            drift.SNIPPET_VERSION = '0.3.1';
-            drift.load('93zuh93e42f3');
-            </script>
           <style>
         <style>
             .container::before {
@@ -400,6 +374,12 @@
                 bottom: 0;
                 right: 0px;
             }
+            button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled) {
+                cursor: pointer;
+                border: 2px;
+                font-size: 19px;
+                margin-left: 10px;
+            }
         </style>
     </head>
 
@@ -436,7 +416,7 @@
          </div>
 
         <!-- Navbar start -->
-        <div class="container-fluid nav-bar visible" id="navbarr" style="box-sizing: border-box;margin:0px;position:sticky;z-index:1000; border-raius:10px;">
+        <div class="container-fluid nav-bar visible" id="navbarr" style="box-sizing: border-box;margin:0px;position:sticky;z-index:1000; border-raius:10px;border-bottom: 1px solid #ffffff57;">
             <div class="container" style="box-sizing: border-box;margin:0px" >
                 <nav class="navbar navbar-light navbar-expand-lg py-4" style="box-sizing: border-box;margin:0px" >
                     <div class="navbar-brand" >
@@ -449,39 +429,31 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav mx-auto" >
-                            <a href="/" id="nav-1" class="nav-item nav-link active doubleactive">Home</a>
-                            <a href="/About" id="nav-2"  class="nav-item nav-link active">About Us</a>
-                            <a href="/Events" id="nav-3"  class="nav-item nav-link active">Events</a>
-                            <a href="/Membership" id="nav-4"  class="nav-item nav-link active">Membership</a>
-                            <div class="containerrr">
-                                <button class="btn-dropdown" id="btn1">
+                            <a href="/" id="nav-1" class="nav-item nav-link active doubleactive" style="font-weight:400;font-size:19px">Home</a>
+                            <a href="/About" id="nav-2"  class="nav-item nav-link active" style="font-weight:400;font-size:19px">About Us</a>
+                            <a href="/Events" id="nav-3"  class="nav-item nav-link active" style="font-weight:400;font-size:19px">Events</a>
+                            <a href="/Membership" id="nav-4"  class="nav-item nav-link active" style="font-weight:400;font-size:19px">Membership</a>
+                            <div class="containerrr" style="border:0px">
+                                <button class="btn-dropdown" id="btn1" style="border:0px" style="font-weight:300;font-size:19px">
                                     Menu
                                     <i class="bx bx-chevron-down" id="arrow1"></i>
                                 </button>
                                 <div class="drop" id="dropdown1" style="color:white;">
-                                    <a href="#create">
-                                        <i class="bx bx-plus-circle"></i>
-                                        Create New
+                                    <a href="/donation">
+                                        <img src="/static/Events/img/charity (1).png" alt="" srcset="" style="height:26px;">    
+                                        Donate
                                     </a>
-                                    <a href="#draft">
-                                        <i class="bx bx-book"></i>
-                                        All Drafts
+                                    <a href="/donate_main">
+                                        <img src="/static/Events/img/medal.png" alt="" srcset="" style="height:26px;">
+                                        Leaderboard
                                     </a>
-                                    <a href="#move">
-                                        <i class="bx bx-folder"></i>
-                                        Move To
+                                    <a href="/profile">
+                                        <img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px;">
+                                        Profile
                                     </a>
-                                    <a href="#profile">
-                                        <i class="bx bx-user"></i>
-                                        Profile Settings
-                                    </a>
-                                    <a href="#notification">
-                                        <i class="bx bx-bell"></i>
-                                        Notification
-                                    </a>
-                                    <a href="#settings">
-                                        <i class="bx bx-cog"></i>
-                                        Settings
+                                    <a href="/Membership">
+                                        <img src="/static/Events/img/premium.png" alt="" srcset="" style="height:26px;">
+                                        Membership
                                     </a>
                                 </div>
                             </div>
@@ -565,7 +537,7 @@
                 var preloder=document.getElementById('lod');
                 setTimeout(function() {
                     preloder.style.display = 'none';
-                  }, 5000);
+                  }, 5);
             
               });
         </script>

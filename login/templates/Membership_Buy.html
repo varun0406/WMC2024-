@@ -1052,15 +1052,18 @@
     margin-top: 20px;">Account</h4>
 <div class="input-group input-group-icon">
   <input type="text" placeholder="Full Name"/>
-  <div class="input-icon"><i class="fa fa-user"></i></div>
+  <div class="input-icon"><img src="/static/Events/img/user-avatar.png" alt="" srcset="" style="height:30px;margin-right: 10px;    margin-left: 20px;
+    margin-top: 10px;"></div>
 </div>
 <div class="input-group input-group-icon">
   <input type="email" placeholder="Email Adress"/>
-  <div class="input-icon"><i class="fa fa-envelope"></i></div>
+  <div class="input-icon"><img src="/static/Events/img/mail.png" alt="" srcset="" style="height:30px;margin-right: 10px;    margin-left: 20px;
+    margin-top: 10px;"></div>
 </div>
 <div class="input-group input-group-icon">
-  <input type="password" placeholder="Password"/>
-  <div class="input-icon"><i class="fa fa-key"></i></div>
+  <input type="text" placeholder="Occupation"/>
+  <div class="input-icon"><img src="/static/Events/img/portfolio.png" alt="" srcset="" style="height:30px;margin-right: 10px;    margin-left: 20px;
+    margin-top: 10px;"></div>
 </div>
 </div>
 <div class="row">
@@ -1097,7 +1100,7 @@
   <input id="payment-method-card" type="radio" name="payment-method" value="card" checked="true" onclick='mem()'/>
   <label for="payment-method-card" style="display:flex;justify-content:center;align-items:center;font-size:17px;width:30%"><span><i class="fa fa-cc-visa"></i>Basic</span></label>
   <input id="payment-method-paypal" type="radio" name="payment-method" value="paypal" onclick='memm()'/>
-  <label for="payment-method-paypal" style="display:flex;justify-content:center;align-items:center;font-size:17px;width:30% " onclick='memm()'> <span><i class="fa fa-cc-paypal"></i>Advance</span></label>
+  <label for="payment-method-paypal" style="display:flex;justify-content:center;align-items:center;font-size:17px;width:30% " onclick='memm()'> <span><i class="fa fa-cc-paypal"></i>Standard</span></label>
   <input id="payment-method-paypal-2" type="radio" name="payment-method" value="paypal-2" onclick='memmm()'/>
   <label for="payment-method-paypal-2" style="display:flex;justify-content:center;align-items:center;font-size:17px;width:30% " onclick='memm()'> <span><i class="fa fa-cc-paypal"></i>Premium</span></label>
 </div>
@@ -1142,13 +1145,13 @@ width:25%;
         console.log(value);
         }
         function memm(){
-        var value=120;
-        document.getElementById('total').innerHTML="120";
+        var value=500;
+        document.getElementById('total').innerHTML="500";
         console.log(value);
         }
         function memmm(){
-            value=150;
-            document.getElementById('total').innerHTML="150";
+            value=2000;
+            document.getElementById('total').innerHTML="2000";
             console.log(value);
             }
 </script>
