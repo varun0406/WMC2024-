@@ -1272,11 +1272,21 @@
         color: white;
         width: 334px;
         margin: 0px;
+        }
+        .landing_page .textinput {
+          width: 100%;
+          color: white;
+          width: 334px;
+      }
+      #btn-1:focus{
+        border:0px;
+        color:white;
     }
-    .landing_page .textinput {
-      width: 100%;
-      color: white;
-      width: 334px;
+    .btn-secondary:not(:disabled):not(.disabled).active:focus, .btn-secondary:not(:disabled):not(.disabled):active:focus, .show>.btn-secondary.dropdown-toggle:focus {
+        box-shadow: 0 0 0 0rem rgba(108, 117, 125, .5);
+    }
+    .btn-secondary:not(:disabled):not(.disabled).active:focus, .btn-secondary:not(:disabled):not(.disabled):active:focus, .show>.btn-secondary.dropdown-toggle:focus {
+      box-shadow:0 0 0 .2rem rgb(93 96 99 / 6%);
   }
     </style>
 </head>
@@ -1308,7 +1318,13 @@
     <!-- loader end -->
 
 
-
+    <div class="top-img" style="position:absolute;
+        width:100%;
+        height:200px;
+        background-color:black;
+        top:0px;
+        left:0px;
+        z-index:-2"></div>
 
 
 
@@ -1327,10 +1343,10 @@
                 <p class="text-blk contactus-head">
                   <a class="link" href="">
                   </a>
-                  Get a quote
+                  Ask Question
                 </p>
                 <p class="text-blk contactus-subhead">
-                  We will get back to you in 24 hours
+                  We will answer you in 24 hours
                 </p>
                 <div class="responsive-container-block">
                   <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12" id="i10mt-7" style="border:0px">
@@ -1372,7 +1388,7 @@
 
 
 
-    <div class="nav-container visible" id="navbarr" style="">
+    <div class="nav-container visible" id="navbarr" style="border-bottom: 1px solid #ffffff57;">
         <div class="mainnavabr fle">
             <div class="left-nav fle">
                 <img style="height:30px;margin-left:36px" src="https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/c46845952588bf44125a37117d4da32c.svg" alt="" srcset="" >
@@ -1386,13 +1402,14 @@
                     <a href="/Events" id="nav-3"  class="nav-item nav-link active">Events</a>
                     <a href="/Membership" id="nav-4"  class="nav-item nav-link active">Membership</a>
                     <div class="dropdown show" id="menu2-parent" style="width:20%;display: flex;justify-content: center;align-items: center;z-index:200000">
-                        <a class="btn btn-secondary dropdown-toggle" style="background-color: black;border: 2px solid black;padding:0px;padding-left:10px;font-size:19px;width:100%" href="#" role="button" onclick="drop2()" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-secondary dropdown-toggle" style="background-color: black;border: 2px solid black;padding:0px;padding-left:10px;font-size:19px;width:100%;box-sizing:border-box" href="#" role="button" onclick="drop2()" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Menu         
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="menu2" style="background-color:black">
-                          <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="#"><i class="bx"><img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px"></i>View Profile</a>
-                          <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="#"><i class="bx"><img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px;margin-right: 10px;"></i>Login/ Sign Up</a>
-                          <a class="dropdown-item" id="item" style="color:white;font-size:17px;padding-right:64px;;padding-left:24px;padding-right:50px;font-weight:400" href="#"><img src="/static/base/img/logout.png" alt="" srcset="" style="height:26px">Logout</a>
+                          <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="/donation"><i class="bx"><img src="/static/Events/img/charity (1).png" alt="" srcset="" style="height:26px"></i><div style="width:60%">Donate</div></a>
+                          <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="/donate_main"><i class="bx"><img src="/static/Events/img/medal.png" alt="" srcset="" style="height:26px;margin-right: 10px;"></i><div>Leaderboard</div></a>
+                          <a class="dropdown-item" id="item" style="color:white;font-size:17px;padding-right:64px;;padding-left:24px;padding-right:50px;font-weight:400" href="/profile"><img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px"><div style="width:60%">Profile</div></a>
+                          <a class="dropdown-item" id="item" style="color:white;font-size:17px;padding-right:30px;padding-left:24px;padding-right:27px;font-weight:400" href="/Membership"><img src="/static/Events/img/premium.png" alt="" srcset="" style="height:26px;"><div>Membership</div></a>
                         </div>
                       </div>
                 </div>
@@ -1451,7 +1468,7 @@
             var preloder=document.getElementById('lod');
             setTimeout(function() {
                 preloder.style.display = 'none';
-            }, 5000);
+            }, 5);
                     
         });
 

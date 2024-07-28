@@ -761,97 +761,97 @@
   }
   #membership-hover-1:hover + #membership-hover-2 #bac-2 h6{
     color:black;
-}
-#membership-hover-1:hover + #membership-hover-2 #bac-2 .price h2,p{
-  color:black;
-}
-#membership-hover-1:hover + #membership-hover-2 #bac-2 .price p{
-  color:black;
-}
-#membership-hover-1:hover + #membership-hover-2 #bac-2 h6 {
-  border-bottom: 1px solid #e5e5e5;
-}
+        }
+        #membership-hover-1:hover + #membership-hover-2 #bac-2 .price h2,p{
+          color:black;
+        }
+        #membership-hover-1:hover + #membership-hover-2 #bac-2 .price p{
+          color:black;
+        }
+        #membership-hover-1:hover + #membership-hover-2 #bac-2 h6 {
+          border-bottom: 1px solid #e5e5e5;
+        }
 
 
-#membership-hover-1:hover + #membership-hover-2 .btn-main-md {
-  padding: 15px 40px;
-  border-radius: 0;
-  background: transparent;
-  color: #fff;
-  outline: none;
-  font-size: 0.9375rem;
-  border:2px solid white;
-  box-sizing:border-box;
-}
+        #membership-hover-1:hover + #membership-hover-2 .btn-main-md {
+          padding: 15px 40px;
+          border-radius: 0;
+          background: transparent;
+          color: #fff;
+          outline: none;
+          font-size: 0.9375rem;
+          border:2px solid white;
+          box-sizing:border-box;
+        }
 
-#membership-hover-1:hover .btn-transparent-md {
-  padding: 15px 40px;
-  border-radius: 0;
-  background: #ff6600;
-  color: #fff;
-  outline: none;
-  font-size: 0.9375rem;
-  border:0px;
-  box-sizing:border-box;
-}
-
-
+        #membership-hover-1:hover .btn-transparent-md {
+          padding: 15px 40px;
+          border-radius: 0;
+          background: #ff6600;
+          color: #fff;
+          outline: none;
+          font-size: 0.9375rem;
+          border:0px;
+          box-sizing:border-box;
+        }
 
 
-{% comment %} membership hover 3 {% endcomment %}
-#membership-hover-3:hover .btn-transparent-md {
-  background: #ff6600;
-  border:0px;
-  box-sizing:border-box;
-}
-#membership-hover-3:hover + #membership-hover-2 .btn-main-md {
-  background: transparent;
-  border:2px solid white;
-  box-sizing:border-box;
-}
-#membership-hover-3:hover #bac-3{
-  background: #ff6600;
-}
-#membership-hover-3:hover #bac-3 .price h2 , p{
-  color:white;
-}
-#membership-hover-3:hover #bac-3 .price p{
-  color:white;
-}
-#membership-hover-3:hover #bac-3 h6{
-  color:white;
-  border-bottom:1px solid #f69351;
-}
-#membership-hover-3:hover ~ #membership-hover-2 #bac-2 h6 {
-  border-bottom: 1px solid #e5e5e5;
-}
-#membership-hover-3:hover ~ #membership-hover-2 #bac-2 {
-  background: white;
-}
-
-#membership-hover-3:hover ~ #membership-hover-2 #bac-2 h6{
-color:black;
-}
-#membership-hover-3:hover ~ #membership-hover-2 #bac-2 .price h2,p{
-color:black;
-}
-#membership-hover-3:hover ~ #membership-hover-2 #bac-2 .price p{
-color:black;
-}
-#membership-hover-3:hover ~ #membership-hover-2 #bac-2 h6 {
-border-bottom: 1px solid #e5e5e5;
-}
 
 
-#nav-1{
-    border-bottom:0px;
-}
-#nav-4{
-    border-bottom:2px solid white;
-}
-#nav-1:hover{
-    border-bottom:2px solid white;
-}
+        {% comment %} membership hover 3 {% endcomment %}
+        #membership-hover-3:hover .btn-transparent-md {
+          background: #ff6600;
+          border:0px;
+          box-sizing:border-box;
+        }
+        #membership-hover-3:hover + #membership-hover-2 .btn-main-md {
+          background: transparent;
+          border:2px solid white;
+          box-sizing:border-box;
+        }
+        #membership-hover-3:hover #bac-3{
+          background: #ff6600;
+        }
+        #membership-hover-3:hover #bac-3 .price h2 , p{
+          color:white;
+        }
+        #membership-hover-3:hover #bac-3 .price p{
+          color:white;
+        }
+        #membership-hover-3:hover #bac-3 h6{
+          color:white;
+          border-bottom:1px solid #f69351;
+        }
+        #membership-hover-3:hover ~ #membership-hover-2 #bac-2 h6 {
+          border-bottom: 1px solid #e5e5e5;
+        }
+        #membership-hover-3:hover ~ #membership-hover-2 #bac-2 {
+          background: white;
+        }
+
+        #membership-hover-3:hover ~ #membership-hover-2 #bac-2 h6{
+        color:black;
+        }
+        #membership-hover-3:hover ~ #membership-hover-2 #bac-2 .price h2,p{
+        color:black;
+        }
+        #membership-hover-3:hover ~ #membership-hover-2 #bac-2 .price p{
+        color:black;
+        }
+        #membership-hover-3:hover ~ #membership-hover-2 #bac-2 h6 {
+        border-bottom: 1px solid #e5e5e5;
+        }
+
+
+        #nav-1{
+            border-bottom:0px;
+        }
+        #nav-4{
+            border-bottom:2px solid white;
+        }
+        #nav-1:hover{
+            border-bottom:2px solid white;
+        }
 
 
 </style>
@@ -863,7 +863,12 @@ border-bottom: 1px solid #e5e5e5;
 
 
 
-
+{% if alert %}
+<script>
+  alert("{{ alert }}");
+  window.location.href = "/Membership";
+</script>
+{% endif %}
 
 
 
@@ -911,7 +916,7 @@ border-bottom: 1px solid #e5e5e5;
                   </ul>
                 </div>
                 <div class="pricing-footer text-center">
-                  <a href="#" class="btn btn-transparent-md" style="color:white;font-size:13px">Buy Membership</a>
+                  <a href="#" class="btn btn-transparent-md" style="color:white;font-size:13px" onclick="abc()">Buy Membership</a>
                 </div>
               </div>
             </div>
@@ -940,7 +945,7 @@ border-bottom: 1px solid #e5e5e5;
                   </ul>
                 </div>
                 <div class="pricing-footer text-center">
-                  <a href="#" class="btn btn-main-md" style="color:white;font-size:13px">Buy Membership</a>
+                  <a href="#" class="btn btn-main-md" style="color:white;font-size:13px" onclick="abc()">Buy Membership</a>
                 </div>
               </div>
             </div>
@@ -969,7 +974,7 @@ border-bottom: 1px solid #e5e5e5;
                   </ul>
                 </div>
                 <div class="pricing-footer text-center">
-                  <a href="#" class="btn btn-transparent-md" style="color:white;font-size:13px">Buy Membership</a>
+                  <a href="#" class="btn btn-transparent-md" style="color:white;font-size:13px" onclick="abc()">Buy Membership</a>
                 </div>
               </div>
             </div>
@@ -993,6 +998,9 @@ border-bottom: 1px solid #e5e5e5;
 
 
       <script>
+        function abc(){
+          window.location.href = "/Membership_Buy";
+        }
         const root = document.documentElement;
 const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
 const marqueeContent = document.querySelector("ul.marquee-content");

@@ -89,14 +89,25 @@
                         <div class="card-body" style="padding:0px;display:flex;justify-content:center;align-items:center;flex-direction:column">
                           <h6 class="d-flex align-items-center mb-3 width:100%" style="justify-content: center;font-size:18px;margin-top:4px">Recent KARMA Points </h6>
                         {% for point in karma_points %}
-                        <div class="conta">
-                          <div class="tablee">
-                              <div class="tablee-content">
-                                  <div class="coins"><h5 style="margin:0px">+{{point.karma_points}}</h3> <img src="\static\base\images\karma (1).png" alt="" srcset=""></div>
-                                  <div class="coins-desc"><h5 style="margin:0px">received by {{point.karma_points_type}}</h3></div>
+                          {% if point.karma_points > 0 %}
+                            <div class="conta">
+                              <div class="tablee">
+                                  <div class="tablee-content">
+                                      <div class="coins"><h5 style="margin:0px">+{{point.karma_points}}</h3> <img src="\static\base\images\karma (1).png" alt="" srcset=""></div>
+                                      <div class="coins-desc"><h5 style="margin:0px">received by {{point.karma_points_type}}</h3></div>
+                                  </div>
+                                </div>
                               </div>
-                          </div>
-                      </div>
+                          {% else %}
+                          <div class="conta">
+                            <div class="tablee">
+                                <div class="tablee-content" style="background-color:#ff000087">
+                                    <div class="coins"><h5 style="margin:0px">{{point.karma_points}}</h3> <img src="\static\base\images\karma (1).png" alt="" srcset=""></div>
+                                    <div class="coins-desc"><h5 style="margin:0px">used for {{point.karma_points_type}}</h3></div>
+                                </div>
+                              </div>
+                            </div>
+                        {% endif %}
                       {%endfor%}
                         </div>
                       </div>
