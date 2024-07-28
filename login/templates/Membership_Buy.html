@@ -1046,22 +1046,23 @@
 
 <div class="main-containerr" style="margin:auto;padding:0px;width:50em">
 <div class="container" style="margin:0px;max-width:1000em;width:100%;padding:20px">
-<form>
+    <form method="POST" action="" id="membership_buy_form">
+        {% csrf_token %}
 <div class="row">
 <h4 style="font-size:20px;margin-bottom: 20px;
     margin-top: 20px;">Account</h4>
-<div class="input-group input-group-icon">
-  <input type="text" placeholder="Full Name"/>
+<div class="input-group input-group-icon" >
+  <input type="text" placeholder="Full Name" name="full_name"/>
   <div class="input-icon"><img src="/static/Events/img/user-avatar.png" alt="" srcset="" style="height:30px;margin-right: 10px;    margin-left: 20px;
     margin-top: 10px;"></div>
 </div>
-<div class="input-group input-group-icon">
-  <input type="email" placeholder="Email Adress"/>
+<div class="input-group input-group-icon" >
+  <input type="email" placeholder="Email Adress" name="email"/>
   <div class="input-icon"><img src="/static/Events/img/mail.png" alt="" srcset="" style="height:30px;margin-right: 10px;    margin-left: 20px;
     margin-top: 10px;"></div>
 </div>
 <div class="input-group input-group-icon">
-  <input type="text" placeholder="Occupation"/>
+  <input type="text" placeholder="Occupation" name="occupation" />
   <div class="input-icon"><img src="/static/Events/img/portfolio.png" alt="" srcset="" style="height:30px;margin-right: 10px;    margin-left: 20px;
     margin-top: 10px;"></div>
 </div>
@@ -1072,13 +1073,13 @@
     margin-top: 20px;">Date of Birth</h4>
   <div class="input-group">
     <div class="col-third">
-      <input type="text" placeholder="DD"/>
+      <input type="text" placeholder="DD" name="dob_day"/>
     </div>
     <div class="col-third">
-      <input type="text" placeholder="MM"/>
+      <input type="text" placeholder="MM" name="dob_month"/>
     </div>
     <div class="col-third">
-      <input type="text" placeholder="YYYY"/>
+      <input type="text" placeholder="YYYY" name="dob_year"/>
     </div>
   </div>
 </div>
@@ -1097,11 +1098,11 @@
 <h4 style="font-size:20px;    margin-bottom: 20px;
     margin-top: 20px;">Membership Details</h4>
 <div class="input-group" style="display:flex;justify-content:space-between;align-items:center">
-  <input id="payment-method-card" type="radio" name="payment-method" value="card" checked="true" onclick='mem()'/>
+  <input id="payment-method-card" type="radio" name="payment-method" value="basic" checked="true" onclick='mem()'/>
   <label for="payment-method-card" style="display:flex;justify-content:center;align-items:center;font-size:17px;width:30%"><span><i class="fa fa-cc-visa"></i>Basic</span></label>
-  <input id="payment-method-paypal" type="radio" name="payment-method" value="paypal" onclick='memm()'/>
+  <input id="payment-method-paypal" type="radio" name="payment-method" value="standard" onclick='memm()'/>
   <label for="payment-method-paypal" style="display:flex;justify-content:center;align-items:center;font-size:17px;width:30% " onclick='memm()'> <span><i class="fa fa-cc-paypal"></i>Standard</span></label>
-  <input id="payment-method-paypal-2" type="radio" name="payment-method" value="paypal-2" onclick='memmm()'/>
+  <input id="payment-method-paypal-2" type="radio" name="payment-method" value="premium" onclick='memmm()'/>
   <label for="payment-method-paypal-2" style="display:flex;justify-content:center;align-items:center;font-size:17px;width:30% " onclick='memm()'> <span><i class="fa fa-cc-paypal"></i>Premium</span></label>
 </div>
 </div>
@@ -1118,7 +1119,7 @@
 <h4 style="font-size:20px;    margin-bottom: 20px;
     margin-top: 20px;">Terms and Conditions</h4>
 <div class="input-group">
-  <input id="terms" type="checkbox"/>
+  <input id="terms" type="checkbox" name="terms"/>
   <label for="terms" style="font-size: 16px;">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
 </div>
 <button style="
@@ -1136,6 +1137,11 @@ width:25%;
 </div>
 </div>
 <script>
+    var form =document.getElementById('membership_buy_form')
+    function donate(){
+    form.submit()
+    }
+
         var a=document.getElementById('total');
         document.getElementById('total').innerHTML="100";
 

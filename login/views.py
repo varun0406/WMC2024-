@@ -166,49 +166,72 @@ def Membership(request,alert=None):
     return render(request,'Membership.html',{"alert":alert})
 def Events(request):
     events = Event.objects.all()
-    username=request.user.username
-    Check_membership=Profile.objects.get(user_id=username).Membership_license
-    if Check_membership=="None":
-        return render(request,"Membership.html",{"alert":"Please buy a membership to access this page"})
+    user = request.user
+
+    print(user)  # This will print the User object or AnonymousUser instance
+
+    if not user.is_authenticated:
+        return render(request, "index.html", {"alert": "You need to log in first to access this page"})
+    try:
+        profile = Profile.objects.get(user_id=user)
+        check_membership = profile.Membership_license
+
+        if check_membership == "None":
+            return render(request, "Membership.html", {"alert": "Please buy a membership to access this page"})
+        
+    except Profile.DoesNotExist:
+        # Handle the case where the profile does not exist
+        return render(request, "index.html", {"alert": "Profile not found. Please create a profile."})
+
     print(events)
     return render(request, 'Events.html', {'events': events})
    
 def Eventpage(request):
     return render(request,'Eventpage.html')
 def Membership_Buy(request):
+    user = request.user
+    if not user.is_authenticated:
+        return render(request, "index.html", {"alert": "You need to log in first to access this page"})
     if request.method=='POST':
         user=request.user
         user_id=str(user.username)
         print(request.POST)
-        tier=request.POST.get('membership-tier')
-        print(tier)
         Karma_Available=Profile.objects.get(user_id=user_id).KarmaPoints
         print(Karma_Available)
-        if tier=="Gold":
+
+        full_name = request.POST.get('full_name')
+        email = request.POST.get('email')
+        occupation = request.POST.get('occupation')
+        dob_day = request.POST.get('dob_day')
+        dob_month = request.POST.get('dob_month')
+        dob_year = request.POST.get('dob_year')
+        gender = request.POST.get('gender')
+        terms = request.POST.get('terms')
+        tier=request.POST.get('payment-method')
+        if tier=="basic":
             if Karma_Available<100:
-                return HttpResponse("Not enough Karma Points")
+                return render(request, "index.html", {"alert": "You dont have enough karma points to buy our basic membership"})
             else:
-                
-                KarmaPoints.objects.create(user_id=user_id,karma_points=-100,karma_points_type="Membership Tier Upgrade")
+                KarmaPoints.objects.create(user_id=user_id,karma_points=-100,karma_points_type="Basic Membership")
                 Karma_Available=Karma_Available-100
-        elif tier=="Silver":
-            if Karma_Available<50:
-                return HttpResponse("Not enough Karma Points")
+        elif tier=="standard":
+            if Karma_Available<500:
+                return render(request, "index.html", {"alert": "You dont have enough karma points to buy our Standard membership"})
             else:
-                KarmaPoints.objects.create(user_id=user_id,karma_points=-50,karma_points_type="Membership Tier Upgrade")
-                Karma_Available=Karma_Available-50
-        elif tier=="Bronze":
-            if Karma_Available<10:
-                return HttpResponse("Not enough Karma Points")
+                KarmaPoints.objects.create(user_id=user_id,karma_points=-500,karma_points_type="Membership Tier Upgrade")
+                Karma_Available=Karma_Available-500
+        elif tier=="premium":
+            if Karma_Available<2000:
+                return render(request, "index.html", {"alert": "You dont have enough karma points to buy our Premium membership"})
             else:
-                Karma_Available=Karma_Available-10
-        KarmaPoints.objects.create(user_id=user_id,karma_points=-10,karma_points_type="Membership Tier Upgrade")
+                Karma_Available=Karma_Available-2000
         # Profile.objects.update(user_id=user_id,KarmaPoints=Karma_Available)
         profile=Profile.objects.get(user_id=user_id)
         print(Karma_Available)
         profile.KarmaPoints = Karma_Available
         profile.Membership_license = tier
         profile.save()
+        return render(request,'index.html', {"alert": f"You successfully bought our {tier} membership."})
     return render(request,'Membership_Buy.html')
     
     
