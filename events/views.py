@@ -1,12 +1,26 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Venue, Organization, Event
 from .forms import VenueForm, OrganizationForm, EventForm
+from login.models import Profile
 
 def admin_dashboard(request):
     # Initialize forms for GET request
     venue_form = VenueForm()
     organization_form = OrganizationForm()
     event_form = EventForm()
+    user = request.user
+    print(user)
+    if user.is_authenticated:
+          
+        user_id= user.username
+        try:
+            user_profile = Profile.objects.get(user_id=user_id)
+            if user_profile.user_type!="Admin":
+                return render(request,'index.html', {"alert": "You are not ADMIN!"})
+        except Profile.DoesNotExist:
+            return render(request,'index.html', {"alert": "You have to login first to acces This page"})
+    else:
+        return render(request,'index.html', {"alert": "You have to login first to acces This page"})
     
     if request.method == 'POST':
         if 'create_venue' in request.POST:

@@ -8,8 +8,6 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('Create_Profile', views.Create_Profile, name='Create_Profile'),
     path('About', views.About, name='About'),
-    path('Leaderboard', views.Leaderboard, name='Leaderboard'),
-    path('Donate_Ngo', views.Donate_Ngo, name='Donate_Ngo'),
     path('Membership', views.Membership, name='Membership'),
 
     path("member",views.MemberShip_tier,name="MemberShip_tier"),
