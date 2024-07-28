@@ -18,32 +18,6 @@
         <link href="/static/Ngo/lib/flaticon/font/flaticon.css" rel="stylesheet">
         <link href="/static/Ngo/lib/animate/animate.min.css" rel="stylesheet">
         <link href="/static/Ngo/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <script>
-            "use strict";
-            
-            !function() {
-              var t = window.driftt = window.drift = window.driftt || [];
-              if (!t.init) {
-                if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
-                t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
-                t.factory = function(e) {
-                  return function() {
-                    var n = Array.prototype.slice.call(arguments);
-                    return n.unshift(e), t.push(n), t;
-                  };
-                }, t.methods.forEach(function(e) {
-                  t[e] = t.factory(e);
-                }), t.load = function(t) {
-                  var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
-                  o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
-                  var i = document.getElementsByTagName("script")[0];
-                  i.parentNode.insertBefore(o, i);
-                };
-              }
-            }();
-            drift.SNIPPET_VERSION = '0.3.1';
-            drift.load('93zuh93e42f3');
-            </script>
         <!-- Template Stylesheet -->
         <link href="/static/Ngo/css/style.css" rel="stylesheet">
     </head>
@@ -492,13 +466,13 @@
                                 </div>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label class="btn btn-custom active">
-                                        <input type="radio" name="donation_amount" value="10" checked> $10
+                                        <input type="radio" name="donation_amount" value="100" checked> $100
                                     </label>
                                     <label class="btn btn-custom">
-                                        <input type="radio" name="donation_amount" value="20"> $20
+                                        <input type="radio" name="donation_amount" value="500"> $500
                                     </label>
                                     <label class="btn btn-custom">
-                                        <input type="radio" name="donation_amount" value="30"> $30
+                                        <input type="radio" name="donation_amount" value="2000"> $1000
                                     </label>
                                 </div>
                                 <div>
