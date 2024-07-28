@@ -169,7 +169,7 @@ def Events(request):
     username=request.user.username
     Check_membership=Profile.objects.get(user_id=username).Membership_license
     if Check_membership=="None":
-        return redirect("Membership",{"alert":"Please buy a membership to access this page"})
+        return render(request,"Membership.html",{"alert":"Please buy a membership to access this page"})
     print(events)
     return render(request, 'Events.html', {'events': events})
    
