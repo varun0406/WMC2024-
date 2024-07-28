@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Venue</title>
+    {% load static %}
+</head>
+<body>
+    <h1>Delete Venue</h1>
+    <p>Are you sure you want to delete {{ venue.venue_name }}?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Confirm Delete</button>
+    </form>
+    <a href="{% url 'events:admin_dashboard' %}">Cancel</a>
+</body>
+</html>

@@ -19,6 +19,7 @@ class Venue(models.Model):
     venue_address = models.TextField(blank=True, null=True)
     venue_contact = models.CharField(max_length=255, blank=True, null=True)
     venue_capacity = models.IntegerField()
+    image=models.ImageField(upload_to='media/',blank=True,null=True)
 
     def __str__(self):
         return self.venue_name
@@ -39,7 +40,7 @@ class Event(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('event_registration', kwargs={'slug': self.slug})
+        return reverse('Eventpage', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.event_name

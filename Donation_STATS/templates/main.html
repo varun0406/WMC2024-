@@ -1,5 +1,9 @@
 {% extends "./base.html" %}
 {% block body %}
+
+
+
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
       @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
@@ -365,7 +369,7 @@
                     {% for q in qs %}
                         <tr>
                             <td> {{ forloop.counter }} </td>
-                            <td> {{ q.Donaters_UserID }} </td>
+                            <td> <a href ="{{q.get_absolute_url}}">{{ q.Donaters_UserID }} </a></td>
                             <td> buisnessman</td>
                             <td> <strong>{{q.value}}</strong> </td>
                         </tr>
@@ -433,4 +437,8 @@ function sortTable(column, sort_asc) {
 
     </script>
     <script src="https://kit.fontawesome.com/b59785c513.js" crossorigin="anonymous"></script>
+   {% block script %}
+      <script src="/static/stats/Dashboard.js"></script>
+   {% endblock %}
+
 {% endblock body %}

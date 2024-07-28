@@ -14,7 +14,7 @@ urlpatterns = [
 
     path("member",views.MemberShip_tier,name="MemberShip_tier"),
     path("Events",views.Events,name="Events"),
-    path("Eventpage",views.Eventpage,name="Events"),
+    path('Eventpage/<slug:slug>/', views.Eventpage, name='Eventpage'),
     path("Membership_Buy",views.Membership_Buy,name="Events"),
 
 ]
