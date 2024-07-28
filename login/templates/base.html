@@ -33,6 +33,33 @@
         <!-- Template Stylesheet -->
         <link href="/static/base/css/style.css" rel="stylesheet">
         <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+        <script>
+            "use strict";
+            
+            !function() {
+              var t = window.driftt = window.drift = window.driftt || [];
+              if (!t.init) {
+                if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+                t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
+                t.factory = function(e) {
+                  return function() {
+                    var n = Array.prototype.slice.call(arguments);
+                    return n.unshift(e), t.push(n), t;
+                  };
+                }, t.methods.forEach(function(e) {
+                  t[e] = t.factory(e);
+                }), t.load = function(t) {
+                  var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+                  o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+                  var i = document.getElementsByTagName("script")[0];
+                  i.parentNode.insertBefore(o, i);
+                };
+              }
+            }();
+            drift.SNIPPET_VERSION = '0.3.1';
+            drift.load('93zuh93e42f3');
+            </script>
+          <style>
         <style>
             .container::before {
                 height:0px
@@ -93,8 +120,8 @@
                 width:100%;
                 z-index:100000;
                 position: fixed;
-  top: 0;
-  left: 0;
+            top: 0;
+            left: 0;
 
             }
             
@@ -362,6 +389,16 @@
                         color: #c6c6c6;
                     }
                 }
+            }
+            .container::before {
+                height:0px
+            }
+            .drift-widget-chat-layout {
+                width: 344px;
+                height: 100%;
+                position: absolute;
+                bottom: 0;
+                right: 0px;
             }
         </style>
     </head>
