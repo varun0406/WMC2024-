@@ -872,7 +872,11 @@ border-bottom: 1px solid #e5e5e5;
 
     <div class="main-membership" style="background:#01010b;">
 	
-
+      {% if alert %}
+      <script>
+        alert("{{ alert }}");
+      </script>
+    {% endif %}
 
       <section class="section pricing">
         <div class="container" style="max-width:1200px">

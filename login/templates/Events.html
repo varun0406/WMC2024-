@@ -1,157 +1,81 @@
 {% extends './basenew.html' %}
 {% block body %}
 <style>
-    #nav-3{
-        border-bottom:2px solid white;
+    #nav-3 {
+        border-bottom: 2px solid white;
     }
     .news .blog-post .post-content {
-    position: relative;
-    padding: 30px 30px 25px 30px;
-     border-width: 0 0px 0px 0px; 
-    border-style: none;
-    border-color: transparent;
-}
+        position: relative;
+        padding: 30px 30px 25px 30px;
+        border-width: 0 0px 0px 0px;
+        border-style: none;
+        border-color: transparent;
+    }
 </style>
 <link rel="stylesheet" href="/static/Events/css/style.css">
 <link rel="stylesheet" href="/static/Events/css/style.css">
 <link href="/static/base/css/stylecopy.css" rel="stylesheet">
 
-
 <div class="main-class" style="margin-top:14px">
     <section class="content" style="height:auto">
-        <div class="container" >
+        <div class="container">
             <h1 class="gradient-text">KARMA EVENTS 2024</h1>
             <p>
                 This page does not exist. Please use the navigation to get to a working page.
             </p>
             <br>
-            <!-- <a class="button">
-                REGISTER
-            </a> -->
-            
-
-
         </div>
     </section>
-
 
     <div class="main-membership" style="background:black;width:100%">
         <section class="news section" style="padding:0px;width:100%;">
             <div class="container" style="padding:0px;width:86%;margin:auto;box-sizing:border-box;max-width:none">
-            <div class="row" style="padding:0px;margin:0px;width:100%">
-                <div class="col-12">
+                <div class="row" style="padding:0px;margin:0px;width:100%">
+                    <div class="col-12"></div>
                 </div>
-            </div>
-            <div class="row" style="padding:0px;margin:0px;width:100%;display:flex;justify-content:space-between;align-items:center">
-                <div class="" style="width:28%;padding:0px;min-width:100px;border:1px solid #ffe47f">
-                    <div class="blog-post">
-                        <div class="post-thumb">
-                        <a href="news-single.html">
-                            <img src="https://cdn.pixabay.com/photo/2016/11/23/15/48/audience-1853662_640.jpg" alt="post-image" class="img-fluid">
-                        </a>
-                        </div>
-                        <div class="post-content" style="border:0px;border-width:0px;padding: 30px 30px 0px 30px;">
-                        <div class="date">
-                            <h4>20<span>May</span></h4>
-                        </div>
-                        <div class="post-title">
-                            <h2><a href="news-single.html" style="color:white">Elementum purus id ultrices.</a></h2>
-                        </div>
-                        <div class="post-meta">
-                            <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <i class="fa fa-user-o"></i>
-                                <a href="#" style="color:white">Admin</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <i class="fa fa-heart-o"></i>
-                                <a href="#" style="color:white">350</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <i class="fa fa-comments-o"></i>
-                                <a href="#" style="color:white">30</a>
-                            </li>
-                            </ul>
-                        </div>
-                        <div class="button-" style="width:100%;display:flex;justify-content:center;align-items:center;border:0px;margin-bottom:-28px;margin-top:20px;margin-bottom:20px"><button type="button" class="btn btn-primary" style="background-color:#ff8472">REGISTER</button></div>
+                <div class="row" style="padding:0px;margin:0px;width:100%;display:flex;justify-content:space-between;align-items:center">
+                    {% for event in events %}
+                    <div class="" style="width:28%;padding:0px;min-width:100px;border:1px solid #ffe47f">
+                        <div class="blog-post">
+                            <div class="post-thumb">
+                                <a href="{{ event.get_absolute_url }}">
+                                    <img src="{% if event.image_url %}{{ event.image_url }}{% else %}https://via.placeholder.com/640x480{% endif %}" alt="post-image" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="post-content" style="border:0px;border-width:0px;padding: 30px 30px 0px 30px;">
+                                <div class="date">
+                                    <h4>{{ event.event_s_time|date:"d" }}<span>{{ event.event_s_time|date:"M" }}</span></h4>
+                                </div>
+                                <div class="post-title">
+                                    <h2><a href="{{ event.get_absolute_url }}" style="color:white">{{ event.event_name }}</a></h2>
+                                </div>
+                                <div class="post-meta">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <i class="fa fa-user-o"></i>
+                                            <a href="#" style="color:white">{{ event.organization_name }}</a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <i class="fa fa-heart-o"></i>
+                                            <a href="#" style="color:white">350</a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <i class="fa fa-comments-o"></i>
+                                            <a href="#" style="color:white">30</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="button-" style="width:100%;display:flex;justify-content:center;align-items:center;border:0px;margin-bottom:-28px;margin-top:20px;margin-bottom:20px">
+                                    <button type="button" class="btn btn-primary" style="background-color:#ff8472">REGISTER</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="" style="width:28%;padding:0px;min-width:100px;border:1px solid #ffe47f">
-                    <div class="blog-post">
-                        <div class="post-thumb">
-                        <a href="news-single.html">
-                            <img src="https://cdn.pixabay.com/photo/2016/11/23/15/48/audience-1853662_640.jpg" alt="post-image" class="img-fluid">
-                        </a>
-                        </div>
-                        <div class="post-content" style="border:0px;border-width:0px;padding: 30px 30px 0px 30px;">
-                        <div class="date">
-                            <h4>20<span>May</span></h4>
-                        </div>
-                        <div class="post-title">
-                            <h2><a href="news-single.html" style="color:white">Elementum purus id ultrices.</a></h2>
-                        </div>
-                        <div class="post-meta">
-                            <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <i class="fa fa-user-o"></i>
-                                <a href="#" style="color:white">Admin</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <i class="fa fa-heart-o"></i>
-                                <a href="#" style="color:white">350</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <i class="fa fa-comments-o"></i>
-                                <a href="#" style="color:white">30</a>
-                            </li>
-                            </ul>
-                        </div>
-                        <div class="button-" style="width:100%;display:flex;justify-content:center;align-items:center;border:0px;margin-bottom:-28px;margin-top:20px;margin-bottom:20px"><button type="button" class="btn btn-primary" style="background-color:#ff8472">REGISTER</button></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width:28%;padding:0px;min-width:100px;border:1px solid #ffe47f">
-                    <div class="blog-post">
-                        <div class="post-thumb">
-                        <a href="news-single.html">
-                            <img src="https://cdn.pixabay.com/photo/2016/11/23/15/48/audience-1853662_640.jpg" alt="post-image" class="img-fluid">
-                        </a>
-                        </div>
-                        <div class="post-content" style="border:0px;border-width:0px;padding: 30px 30px 0px 30px;">
-                        <div class="date">
-                            <h4>20<span>May</span></h4>
-                        </div>
-                        <div class="post-title">
-                            <h2><a href="news-single.html" style="color:white">Elementum purus id ultrices.</a></h2>
-                        </div>
-                        <div class="post-meta">
-                            <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <i class="fa fa-user-o"></i>
-                                <a href="#" style="color:white">Admin</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <i class="fa fa-heart-o"></i>
-                                <a href="#" style="color:white">350</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <i class="fa fa-comments-o"></i>
-                                <a href="#" style="color:white">30</a>
-                            </li>
-                            </ul>
-                        </div>
-                        <div class="button-" style="width:100%;display:flex;justify-content:center;align-items:center;border:0px;margin-bottom:-28px;margin-top:20px;margin-bottom:20px"><button type="button" class="btn btn-primary" style="background-color:#ff8472">REGISTER</button></div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
-            </div>
-      </section>
+        </section>
     </div>
 </div>
-
-
-
 
 {% endblock body %}

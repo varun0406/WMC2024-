@@ -1,0 +1,131 @@
+
+
+.main-content {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 70px;
+    align-items: center;
+    overflow: hidden;
+}
+
+.booking-form {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 25px;
+    border-radius: 5px;
+    float: left;
+    margin: 50px 0;
+}
+
+.booking-form h3 {
+    margin: 10px 0px;
+}
+
+.booking-form .input-group {
+    margin: 10px 0;
+}
+
+.first-class,
+.economy-class {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inp-width {
+    min-width: 300px;
+}
+
+.control {
+    padding: 0 10px;
+    color: #ffffff;
+    font-size: 30px;
+    background-color: #3352F2;
+    font-weight: bold;
+}
+
+.control:hover {
+    background-color: #F70C31;
+    transition: background-color 0.2s ease;
+}
+
+.booking-form .calculations {
+    margin: 10px 0;
+}
+
+.booking-form .calculations p {
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.booking-form input {
+    width: 100%;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: #F3F5FF;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.booking-form .inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.booking-content {
+    color: #fff;
+    width: 80%;
+}
+
+.booking-content h1 {
+    font-size: 70px;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+.btn-style {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    background-color: #3352F2;
+}
+
+.btn-style:hover,
+#print-button:hover {
+    background-color: #F60E36;
+    transition: background-color 0.2s ease;
+}
+
+.amount {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Booking confirmation form */
+#booking-confirmation {
+    display: none;
+}
+
+#print-button {
+    padding: 10px 20px;
+    font-size: 15px;
+    margin-top: 20px;
+    border: none;
+    background: #3352F2;
+    color: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    width: 100%;
+}

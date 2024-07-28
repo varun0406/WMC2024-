@@ -1,51 +1,44 @@
-{% comment %} {% extends 'C:\\Users\\VARUN\\Downloads\\GTA_WMC\\WMC2024-\\login\\templates\\base.html' %} {% endcomment %}
-{% load static %}
-{% block scripts%} 
-<script src="{% static 'stats/DashBoard.js' %}" defer ></script>
- {% endblock scripts %}
 
-{% block content%} 
-<div class="flex flex-col px-16 py-20 bg-indigo-900 max-md:px-5">
-    <div
-      class="flex flex-col self-end mt-1.5 text-6xl text-white max-md:max-w-full max-md:text-4xl"
-    >
-      <div class="max-md:max-w-full max-md:text-4xl">User’s Profile</div>
-      <div class="self-end mt-20 max-md:mt-10 max-md:max-w-full max-md:text-4xl">
-        Donation Charts
-      </div>
+
+{% load static %}
+
+{% block content %}
+  <style>
+    /* Add CSS styles here */
+    .profile {
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      background-image: linear-gradient(to right, #3b3f54, #727cf5);
+    }
+    .profile-header {
+      font-size: 6rem;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .profile-details {
+      background-color: #fff;
+      padding: 5px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+
+  <div class="profile">
+    <h1 class="profile-header">User's Profile</h1>
+    <div class="profile-details">
+      <h2>Profile Details</h2>
+      <p>Name: {{ name }} ({{ user }})</p>
+      <p>Value: {{ value }} Karma Points</p>
+      <p>Rank: {{ rank }} out of {{ total_users }}</p>
     </div>
-    <div class="mt-14 max-w-full w-[788px] max-md:mt-10">
-      <div class="flex gap-5 max-md:flex-col max-md:gap-0">
-        <div class="flex flex-col w-3/5 max-md:ml-0 max-md:w-full">
-          <div
-            class="text-6xl text-white max-md:mt-4 max-md:max-w-full max-md:text-4xl"
-          >
-            {{name}}
-            <br />
-            {{value}}
-            <br />
-            Karma Points
-            <br />
-            Rank
-            <br />
-          </div>
-        </div>
-        <div class="flex flex-col ml-5 w-2/5 max-md:ml-0 max-md:w-full">
-          <div
-            class="shrink-0 self-stretch m-auto max-w-full bg-zinc-300 h-[54px] w-[305px] max-md:mt-10"
-          ></div>
-        </div>
-      </div>
+    <div class="profile-details">
+      <h2>Donation History</h2>
+      <ul>
+        {% for donation in donations %}
+          <li>{{ donation.date }} - {{ donation.amount }} Karma Points</li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
-    <body>
-        {{name}}, {{user}}
-        
-        <script src="" async defer></script>
-
-
-        {{Donations}}
-    </body>
-
-
-{%endblock content%}
+{% endblock content %}

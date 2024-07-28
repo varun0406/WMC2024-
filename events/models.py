@@ -40,7 +40,7 @@ class Event(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('event_registration', kwargs={'slug': self.slug})
+        return reverse('Eventpage', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.event_name

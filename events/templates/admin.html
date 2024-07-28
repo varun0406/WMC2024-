@@ -143,7 +143,7 @@
                     <h3>Events</h3>
                     <ul id="event_list">
                         {% for event in events %}
-                            <li>{{ event.event_name }} - <a href="{% url 'edit_event' event.id %}">Edit</a> - <a href="{% url 'delete_event' event.id %}">Delete</a></li>
+                            <li>{{ event.event_name }} - <a href="{% url 'events:edit_event' event.id %}">Edit</a> - <a href="{% url 'events:delete_event' event.id %}">Delete</a></li>
                         {% endfor %}
                     </ul>
                 </div>

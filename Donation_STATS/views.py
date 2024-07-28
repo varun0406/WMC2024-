@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Donation,Statistics
 from login.models import Transactions,KarmaPoints,Profile
-
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 # Create your views here.
 
 from django.shortcuts import render
@@ -62,7 +63,13 @@ def donaters(request):
         )
         donation_obj.save()
         Profile.objects.filter(user_id=UserName).update(KarmaPoints=Profile.objects.get(user_id=UserName).KarmaPoints+Donation_amount)
-        
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
+            'leaderboard_group',
+            {
+                'type': 'send_leaderboard',
+            }
+        )
     context = {
         "user_id": request.user
     }
