@@ -89,7 +89,7 @@ def donate_main(request):
         print(Donaters_UserID)
         
         return redirect ("Donation_STATS:Donaters_Dashboard",slug=response.slug)
-    return render(request,".\main.html",{"qs":qs})#,{"qs":qs}
+    return render(request,".\main.html",{"qs":qs})
 
 
 

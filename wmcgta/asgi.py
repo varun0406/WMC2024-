@@ -16,3 +16,4 @@ application = ProtocolTypeRouter({
         )
     ),
 })
+print(Donation_STATS.routing.websocket_urlpatterns)
