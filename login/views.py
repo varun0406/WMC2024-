@@ -124,49 +124,68 @@ def Create_Profile(request):
     return render(request, 'Create_Profile.html')
 
 def About(request):
-    return render(request,'About.html')
+    user = request.user
+    print(user)
+    if user.is_authenticated:
+          
+        user_id= user.username
+        try:
+            user_profile = Profile.objects.get(user_id=user_id)
+        except Profile.DoesNotExist:
+            user_profile = None
+    else:
+        user_id= None
+        user_profile = None
+    params={
+        'user_ID':user_id,
+        'user_profile':user_profile
+        }
+    return render(request,'About.html',params)
 
 def Leaderboard(request):
     return render(request,'Lead.html')
 def Donate_Ngo(request):
     return render(request,'NGO_Donation.html')
+
+
 def Membership(request,alert=None):
-    if request.method=='POST':
-        user=request.user
-        user_id=str(user.username)
-        print(request.POST)
-        tier=request.POST.get('membership-tier')
-        print(tier)
-        Karma_Available=Profile.objects.get(user_id=user_id).KarmaPoints
-        print(Karma_Available)
-        if tier=="Gold":
-            if Karma_Available<100:
-                return HttpResponse("Not enough Karma Points")
-            else:
-                KarmaPoints.objects.create(user_id=user_id,karma_points=-100,karma_points_type="Membership Tier Upgrade")
-                Karma_Available=Karma_Available-100
-        elif tier=="Silver":
-            if Karma_Available<50:
-                return HttpResponse("Not enough Karma Points")
-            else:
-                KarmaPoints.objects.create(user_id=user_id,karma_points=-50,karma_points_type="Membership Tier Upgrade")
-                Karma_Available=Karma_Available-50
-        elif tier=="Bronze":
-            if Karma_Available<10:
-                return HttpResponse("Not enough Karma Points")
-            else:
-                Karma_Available=Karma_Available-10
-        KarmaPoints.objects.create(user_id=user_id,karma_points=-10,karma_points_type="Membership Tier Upgrade")
-        # Profile.objects.update(user_id=user_id,KarmaPoints=Karma_Available)
-        profile=Profile.objects.get(user_id=user_id)
-        print(Karma_Available)
-        profile.KarmaPoints = Karma_Available
-        profile.Membership_license = tier
-        profile.save()
-    return render(request,'Membership.html',{"alert":alert})
+    user = request.user
+    print(user)
+    if user.is_authenticated:
+          
+        user_id= user.username
+        try:
+            user_profile = Profile.objects.get(user_id=user_id)
+        except Profile.DoesNotExist:
+            user_profile = None
+    else:
+        user_id= None
+        user_profile = None
+    params={
+        'user_ID':user_id,
+        'user_profile':user_profile
+        }
+    return render(request,'Membership.html',params)
+
+
 def Events(request):
     events = Event.objects.all()
     user = request.user
+    print(user)
+    if user.is_authenticated:
+          
+        user_id= user.username
+        try:
+            user_profile = Profile.objects.get(user_id=user_id)
+        except Profile.DoesNotExist:
+            user_profile = None
+    else:
+        user_id= None
+        user_profile = None
+    params={
+        'user_ID':user_id,
+        'user_profile':user_profile
+        }
 
     print(user)  # This will print the User object or AnonymousUser instance
 
@@ -184,14 +203,47 @@ def Events(request):
         return render(request, "index.html", {"alert": "Profile not found. Please create a profile."})
 
     print(events)
-    return render(request, 'Events.html', {'events': events})
+    return render(request, 'Events.html', {'events': events},params)
    
 def Eventpage(request):
-    return render(request,'Eventpage.html')
+    user = request.user
+    print(user)
+    if user.is_authenticated:
+          
+        user_id= user.username
+        try:
+            user_profile = Profile.objects.get(user_id=user_id)
+        except Profile.DoesNotExist:
+            user_profile = None
+    else:
+        user_id= None
+        user_profile = None
+    params={
+        'user_ID':user_id,
+        'user_profile':user_profile
+        }
+    return render(request,'Eventpage.html',params)
+
+
 def Membership_Buy(request):
     user = request.user
     if not user.is_authenticated:
         return render(request, "index.html", {"alert": "You need to log in first to access this page"})
+    print(user)
+    if user.is_authenticated:
+          
+        user_id= user.username
+        try:
+            user_profile = Profile.objects.get(user_id=user_id)
+        except Profile.DoesNotExist:
+            user_profile = None
+    else:
+        user_id= None
+        user_profile = None
+    params={
+        'user_ID':user_id,
+        'user_profile':user_profile
+        }
     if request.method=='POST':
         user=request.user
         user_id=str(user.username)
@@ -231,7 +283,7 @@ def Membership_Buy(request):
         profile.KarmaPoints = Karma_Available
         profile.Membership_license = tier
         profile.save()
-        return render(request,'index.html', {"alert": f"You successfully bought our {tier} membership."})
-    return render(request,'Membership_Buy.html')
+        return render(request,'index.html', {"alert": f"You successfully bought our {tier} membership."},params)
+    return render(request,'Membership_Buy.html',params)
     
     

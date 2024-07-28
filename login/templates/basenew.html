@@ -1424,6 +1424,9 @@
                         {%if user.is_authenticated%}
                             {% if user_ID == user_profile.user_id %}
                                 <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="profile"><i class="bx"><img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px"></i>View Profile</a>
+                                {% if user_profile.user_type == "Admin" %}
+                                <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="/administ"><i class="bx"><img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px"></i>Admin Page</a>
+                                {%endif%}
                             {%else%}
                                 <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="Create_Profile"><i class="bx"><img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px"></i>Create Profile</a>
                                 {% endif %}
