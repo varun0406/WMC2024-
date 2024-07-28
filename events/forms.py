@@ -15,4 +15,4 @@ class OrganizationForm(forms.ModelForm):
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['event_name', 'event_desc', 'event_s_time', 'event_e_time', 'venue', 'organization']
+        fields = ['event_name', 'event_desc', 'event_s_time', 'event_e_time', 'venue', 'organization', 'Image1', 'Image2', 'Image3', 'Image4', 'Event_Tickets']

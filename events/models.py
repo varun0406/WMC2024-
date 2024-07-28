@@ -32,6 +32,11 @@ class Event(models.Model):
     event_e_time = models.DateTimeField()
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    Image1=models.ImageField(upload_to='media/',blank=True,null=True)
+    Image2=models.ImageField(upload_to='media/',blank=True,null=True)
+    Image3=models.ImageField(upload_to='media/',blank=True,null=True)
+    Image4=models.ImageField(upload_to='media/',blank=True,null=True)
+    Event_Tickets=models.IntegerField(default=0)
     slug = models.SlugField(max_length=255, unique=True, blank=True)
 
     def save(self, *args, **kwargs):

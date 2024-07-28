@@ -34,3 +34,14 @@ class Transactions(models.Model):
     
     def __str__(self):
         return f"{self.payer_id} : {self.payee_id} : {self.transaction_type} : {self.transaction_amount} : {self.transaction_date}"
+    
+    
+class UserQuery(models.Model):
+    query_id = models.AutoField(primary_key=True)
+    user_id = models.CharField(max_length=100)
+    user_email= models.EmailField()
+    query = models.TextField()
+    query_date = models.DateTimeField(auto_now_add=True)
+    query_status = models.CharField(max_length=100,default="Pending")
+    def __str__(self):
+        return f"{self.user_id} : {self.query} : {self.query_date} : {self.query_status}"
