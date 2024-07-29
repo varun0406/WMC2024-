@@ -45,3 +45,15 @@ class UserQuery(models.Model):
     query_status = models.CharField(max_length=100,default="Pending")
     def __str__(self):
         return f"{self.user_id} : {self.query} : {self.query_date} : {self.query_status}"
+    
+    
+class Testimonial(models.Model):
+        testimonial_id = models.AutoField(primary_key=True)
+        username = models.CharField(max_length=100)
+        Name= models.CharField(max_length=100)
+        Occupation= models.CharField(max_length=100)
+        Testimonial_topic=  models.CharField(max_length=100)
+        testimonial = models.TextField()
+        testimonial_date = models.DateTimeField(auto_now_add=True)
+        def __str__(self):
+            return f"{self.user_id} : {self.testimonial} : {self.testimonial_date}"

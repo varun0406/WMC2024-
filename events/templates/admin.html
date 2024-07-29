@@ -106,13 +106,13 @@
                     {{ venue_form.as_p }}
                     <button type="submit" name="create_venue">Create Venue</button>
                 </form>
-                <form method="POST" class="create-form">
+                <form method="POST" enctype="multipart/form-data" class="create-form">
                     {% csrf_token %}
                     <h3>Create Organization</h3>
                     {{ organization_form.as_p }}
                     <button type="submit" name="create_organization">Create Organization</button>
                 </form>
-                <form method="POST" class="create-form">
+                <form method="POST" enctype="multipart/form-data" class="create-form">
                     {% csrf_token %}
                     <h3>Create Event</h3>
                     {{ event_form.as_p }}
@@ -152,4 +152,3 @@
     </main>
 </body>
 </html>
-                   
