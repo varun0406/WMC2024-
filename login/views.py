@@ -6,6 +6,7 @@ from django.shortcuts import render,HttpResponse,redirect,get_object_or_404
 from django.contrib.auth import logout as django_logout
 from decouple import config
 from login.models import Profile,KarmaPoints,Transactions,UserQuery
+from .models import Testimonial as test
 from django.http import Http404
 from events.models import Event
 
@@ -311,11 +312,23 @@ def Testimonial(request):
     else:
         user_id= None
         user_profile = None
+    
+    if user.is_authenticated:
+          
+        user_id= user.username
+        try:
+            user_testimonial = test.objects.get(username=user_id)
+        except test.DoesNotExist:
+            user_testimonial=None
+    else:
+        user_testimonial=None
+    testi = test.objects.all()
     params={
         'user_ID':user_id,
-        'user_profile':user_profile
+        'user_profile':user_profile,
+        'user_testimonial':user_testimonial,
+        'test':testi
         }
-    
     return render(request,'testimonials.html',params)
     
 def Review(request):
@@ -335,4 +348,16 @@ def Review(request):
         'user_ID':user_id,
         'user_profile':user_profile
         }
+    if request.method=='POST':
+        Name= request.POST.get('name')
+        occupation=request.POST.get('occupation')
+        T_topic=request.POST.get('Review_topic')
+        testimonial=request.POST.get('opinion')
+        print(Name,occupation,T_topic,testimonial)
+        Testimo, created=test.objects.get_or_create(username=user_id)
+        Testimo.Name=Name
+        Testimo.Occupation=occupation
+        Testimo.Testimonial_topic=T_topic
+        Testimo.testimonial=testimonial
+        Testimo.save()
     return render(request,'review.html',params)

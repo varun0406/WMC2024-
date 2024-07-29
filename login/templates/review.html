@@ -165,7 +165,8 @@ font-style: normal;color:white;font-size:29px;Text-align:end;width:100%;position
 
 <div class="wrapper" style="margin-top:180px">
     <h3>Karma Program Review.</h3>
-    <form action="#">
+    <form method="POST" action="" id="membership_buy_form">
+		{% csrf_token %}
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" placeholder="Your name...">
@@ -175,8 +176,8 @@ font-style: normal;color:white;font-size:29px;Text-align:end;width:100%;position
             <input type="text" id="occupation" name="occupation" placeholder="Your occupation...">
         </div>
         <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Your email...">
+            <label for="text">Your Email:</label>
+            <input type="text" id="email" name="email" placeholder="Your email...">
         </div>
 		<div class="form-group">
             <label for="Topic">Review Topic</label>
@@ -194,12 +195,20 @@ font-style: normal;color:white;font-size:29px;Text-align:end;width:100%;position
         <div class="btn-group" style="    display: flex;
     justify-content: center;
     align-items: center;">
-            <button type="submit" class="btn submit">Submit</button>
+            <button class="btn submit" onclick="donate()">Submit</button>
         </div>
     </form>
 </div>
 
 <script>
+
+
+	var form =document.getElementById('membership_buy_form')
+    function donate(){
+    form.submit()
+    }
+
+
     const allStar = document.querySelectorAll('.rating .star')
 const ratingValue = document.querySelector('.rating input')
 
