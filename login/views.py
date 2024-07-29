@@ -5,7 +5,7 @@ from django.shortcuts import render,HttpResponse,redirect,get_object_or_404
 
 from django.contrib.auth import logout as django_logout
 from decouple import config
-from login.models import Profile,KarmaPoints,Transactions
+from login.models import Profile,KarmaPoints,Transactions,UserQuery
 from django.http import Http404
 from events.models import Event
 
@@ -61,6 +61,15 @@ def index(request):
         'user_ID':user_id,
         'user_profile':user_profile
         }
+    if request.method=='POST':
+        full_name = request.POST.get('FirstName')
+        email = request.POST.get('Email')
+        query_msg=request.POST.get('message')
+        user_query = UserQuery.objects.create(user_id=full_name, user_email=email, query=query_msg)
+        # Print the created instance
+        print(user_query)
+        context = {**params, "alert": "Your Query is submitted, will answer in 24 hours!"}
+        return render(request,'index.html',context)
     return render(request,'index.html',params)
 
         
@@ -203,7 +212,8 @@ def Events(request):
         return render(request, "index.html", {"alert": "Profile not found. Please create a profile."})
 
     print(events)
-    return render(request, 'Events.html', {'events': events,"params":params})
+
+    return render(request, 'Events.html', {'events': events,**params})
    
 def Eventpage(request,slug):
     user = request.user
@@ -286,5 +296,43 @@ def Membership_Buy(request):
         profile.save()
         return render(request,'index.html', {"alert": f"You successfully bought our {tier} membership."},params)
     return render(request,'Membership_Buy.html',params)
+
+
+def Testimonial(request):
+    user = request.user
+    print(user)
+    if user.is_authenticated:
+          
+        user_id= user.username
+        try:
+            user_profile = Profile.objects.get(user_id=user_id)
+        except Profile.DoesNotExist:
+            user_profile = None
+    else:
+        user_id= None
+        user_profile = None
+    params={
+        'user_ID':user_id,
+        'user_profile':user_profile
+        }
     
+    return render(request,'testimonials.html',params)
     
+def Review(request):
+    user = request.user
+    print(user)
+    if user.is_authenticated:
+          
+        user_id= user.username
+        try:
+            user_profile = Profile.objects.get(user_id=user_id)
+        except Profile.DoesNotExist:
+            user_profile = None
+    else:
+        user_id= None
+        user_profile = None
+    params={
+        'user_ID':user_id,
+        'user_profile':user_profile
+        }
+    return render(request,'review.html',params)
