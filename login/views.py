@@ -203,11 +203,12 @@ def Events(request):
         return render(request, "index.html", {"alert": "Profile not found. Please create a profile."})
 
     print(events)
-    return render(request, 'Events.html', {'events': events},params)
+    return render(request, 'Events.html', {'events': events,"params":params})
    
-def Eventpage(request):
+def Eventpage(request,slug):
     user = request.user
     print(user)
+    
     if user.is_authenticated:
           
         user_id= user.username

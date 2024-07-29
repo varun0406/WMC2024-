@@ -9,18 +9,17 @@ def admin_dashboard(request):
     organization_form = OrganizationForm()
     event_form = EventForm()
     user = request.user
-    print(user)
+    
     if user.is_authenticated:
-          
-        user_id= user.username
+        user_id = user.username
         try:
             user_profile = Profile.objects.get(user_id=user_id)
-            if user_profile.user_type!="Admin":
-                return render(request,'index.html', {"alert": "You are not ADMIN!"})
+            if user_profile.user_type != "Admin":
+                return render(request, 'index.html', {"alert": "You are not ADMIN!"})
         except Profile.DoesNotExist:
-            return render(request,'index.html', {"alert": "You have to login first to acces This page"})
+            return render(request, 'index.html', {"alert": "You have to login first to access This page"})
     else:
-        return render(request,'index.html', {"alert": "You have to login first to acces This page"})
+        return render(request, 'index.html', {"alert": "You have to login first to access This page"})
     
     if request.method == 'POST':
         if 'create_venue' in request.POST:
@@ -29,12 +28,12 @@ def admin_dashboard(request):
                 venue_form.save()
                 return redirect('events:admin_dashboard')
         elif 'create_organization' in request.POST:
-            organization_form = OrganizationForm(request.POST)
+            organization_form = OrganizationForm(request.POST, request.FILES)
             if organization_form.is_valid():
                 organization_form.save()
                 return redirect('events:admin_dashboard')
         elif 'create_event' in request.POST:
-            event_form = EventForm(request.POST)
+            event_form = EventForm(request.POST, request.FILES)
             if event_form.is_valid():
                 event_form.save()
                 return redirect('events:admin_dashboard')
@@ -53,7 +52,6 @@ def admin_dashboard(request):
         'organizations': organizations,
         'events': events,
     })
-
 def edit_venue(request, venue_id):
     venue = get_object_or_404(Venue, id=venue_id)
     if request.method == 'POST':
