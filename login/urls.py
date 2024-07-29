@@ -14,5 +14,7 @@ urlpatterns = [
     path("Events",views.Events,name="Events"),
     path('Eventpage/<slug:slug>/', views.Eventpage, name='Eventpage'),
     path("Membership_Buy",views.Membership_Buy,name="Events"),
+    path("Testimonials",views.Testimonial,name="Testimonials"),
+    path("Review",views.Review,name="Review"),
 
 ]

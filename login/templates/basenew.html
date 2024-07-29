@@ -1338,7 +1338,8 @@
       <div class="responsive-container-block big-container" style="width:400px;padding-bottom:0px;padding-right:0px;padding-top:0px;padding-left:opx;padding:0px">
         <div class="responsive-container-block container" style="width:400px;padding-bottom:0px;padding-right:0px;padding-top:0px;padding-left:opx;padding:0px">
           <div class="responsive-cell-block wk-ipadp-6 wk-tab-12 wk-mobile-12 wk-desk-6 right-one" id="i1zj" style="width:400px;padding-bottom:0px;padding-right:0px;padding-top:0px;padding-left:opx;padding:0px">
-            <form class="form-box">
+            <form class="form-box" method="POST" action="/" id="membership_buy_form">
+                {% csrf_token %}
               <div class="container-block form-wrapper">
                 <p class="text-blk contactus-head">
                   <a class="link" href="">
@@ -1353,10 +1354,10 @@
                     <input class="input" id="ijowk-7" name="FirstName" placeholder="First Name">
                   </div>
                   <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-6 wk-ipadp-6 emial" id="ityct" style="width:100%">
-                    <input class="input" id="ipmgh-7" name="Email" placeholder="Email">
+                    <input class="input" id="ipmgh-8" name="Email" placeholder="Email">
                   </div>
                   <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12" id="i634i-7">
-                    <textarea aria-placeholder="Type message here" class="textinput" id="i5vyy-7" placeholder="Type message here"></textarea>
+                    <textarea aria-placeholder="Type message here" class="textinput" id="ijowk-9" placeholder="Type message here" name="message"></textarea>
                   </div>
                 </div>
                 <button class="submit-btn">
@@ -1408,6 +1409,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="menu2" style="background-color:black">
                           <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="/donation"><i class="bx"><img src="/static/Events/img/charity (1).png" alt="" srcset="" style="height:26px"></i><div style="width:60%">Donate</div></a>
                           <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="/donate_main"><i class="bx"><img src="/static/Events/img/medal.png" alt="" srcset="" style="height:26px;margin-right: 10px;"></i><div>Leaderboard</div></a>
+                          <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="/Testimonials"><i class="bx"><img src="/static/Events/img/review (1).png" alt="" srcset="" style="height:26px;margin-right: 10px;"></i><div>Testimonials</div></a>
                           <a class="dropdown-item" id="item" style="color:white;font-size:17px;padding-right:64px;;padding-left:24px;padding-right:50px;font-weight:400" href="/profile"><img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px"><div style="width:60%">Profile</div></a>
                           <a class="dropdown-item" id="item" style="color:white;font-size:17px;padding-right:30px;padding-left:24px;padding-right:27px;font-weight:400" href="/Membership"><img src="/static/Events/img/premium.png" alt="" srcset="" style="height:26px;"><div>Membership</div></a>
                         </div>
@@ -1475,7 +1477,10 @@
                     
         });
 
-
+        var form =document.getElementById('membership_buy_form')
+    function donate(){
+    form.submit()
+    }
         var a=document.getElementById('message-box');
         var b=document.getElementById('message-input');
         b.style.display='none';
