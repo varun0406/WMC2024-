@@ -44,7 +44,7 @@ function handleTicketPrice(ticket, isIncrease) {
     if (ticket == 'first-class') {
         ticketPrice = newTicketNumber * 150;
     } else if (ticket == 'economy-class') {
-        ticketPrice = newTicketNumber * 100;
+        ticketPrice = newTicketNumber * 100; //ticket price put here 
     }
 
     console.log(ticketPrice);

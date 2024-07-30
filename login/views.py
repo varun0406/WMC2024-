@@ -8,7 +8,7 @@ from decouple import config
 from login.models import Profile,KarmaPoints,Transactions,UserQuery
 from .models import Testimonial as test
 from django.http import Http404
-from events.models import Event
+from events.models import Event,Venue,Organization
 
 def MemberShip_tier(request):
     if request.method=='POST':
@@ -227,13 +227,24 @@ def Eventpage(request,slug):
             user_profile = Profile.objects.get(user_id=user_id)
         except Profile.DoesNotExist:
             user_profile = None
+        try:
+            event = Event.objects.get(slug=slug)
+            venue=Venue.objects.get(id=event.venue_id)
+            org=Organization.objects.get(id=event.organization_id)
+           
+            
+        except Event.DoesNotExist:
+            return HttpResponse("error not event exist",status=404)
     else:
         user_id= None
         user_profile = None
     params={
-        'user_ID':user_id,
-        'user_profile':user_profile
-        }
+                'event':event,
+                'venue':venue,
+                'org':org,
+                'user_ID':user_id,
+                'user_profile':user_profile
+            }
     return render(request,'Eventpage.html',params)
 
 

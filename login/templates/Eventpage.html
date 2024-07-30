@@ -3,270 +3,328 @@
 <!-- Google Web Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira:wght@500;600;700&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira:wght@500;600;700&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
 <!-- Icon Font Stylesheet -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
 
 <!-- Customized Bootstrap Stylesheet -->
 <link href="/static/Eventpage/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
 <link href="/static/eventpage/css/style.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
-    rel="stylesheet">
-<!-- Stylesheet -->
-<link rel="stylesheet" href="/static/booking/css/style.css">
+<link href="/static/booking/css/style.css" rel="stylesheet">
+
 <style>
-    #nav-3{
-        border-bottom:2px solid white;
+    #nav-3 {
+        border-bottom: 2px solid white;
     }
-    .conta{
-        margin-right:6%;margin-left:6%
+    body {
+        background-color: black;
+        color: white;
+        font-family: 'Roboto', sans-serif;
     }
-    .col{
-        color:#26d48c;
+    .conta {
+        margin: 0 6%;
     }
-    .text-secondary{
-        color:#26d48c;
+    .col {
+        color: #26d48c;
+    }
+    .text-secondary {
+        color: #26d48c;
     }
     .fa-angle-right:before {
         content: "\f105";
         margin-right: 6px;
     }
-    body{
-        background-color:black;
+    .img-top {
+        margin-top: 80px;
+        width: 100%;
+        background: url('https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?cs=srgb&dl=pexels-wolfgang-1002140-2747449.jpg&fm=jpg') no-repeat center center;
+        background-size: cover;
+        height: 400px;
+    }
+    .event-header {
+        position: absolute;
+        top: 180px;
+        font-size: 38px;
+        font-weight: 600;
+        width: 100%;
+        text-align: center;
+        color: white;
+    }
+    .event-details {
+        width: 80%;
+        margin: 10% auto;
+    }
+    .event-images img {
+        max-width: 100%;
+        margin: 10px 0;
+    }
+    .booking-form {
+        width: 450px;
+        margin: 0 auto;
+        background: #333;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .booking-form h3 {
+        text-align: center;
+        color: #ffcc00;
+    }
+    .input-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .input-group input {
+        width: calc(100% - 10px);
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+    .plus-minus-btn {
+        display: flex;
+        align-items: center;
+    }
+    .plus-minus-btn span {
+        cursor: pointer;
+        padding: 0 10px;
+        background: #444;
+        color: white;
+    }
+    .amount {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+    }
+    .calculations hr {
+        border-top: 1px solid #666;
+    }
+    .btn-style {
+        background-color: #ffcc00;
+        color: black;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .btn-style:hover {
+        background-color: #ffaa00;
+    }
+    .footer {
+        background: black;
+        color: white;
+        padding: 20px 0;
+    }
+    .footer a {
+        color: white;
     }
 </style>
-      <div class="img-top" style="margin-top:80px;width:100%;background:url('https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?cs=srgb&dl=pexels-wolfgang-1002140-2747449.jpg&fm=jpg');background-size:cover;background-repeat:no-repeat;height:400px"></div>
 
+<div class="img-top"></div>
+<div class="event-header">EVENTS</div>
 
-      <div style="position:absolute;top:180px;font-size:38px;font-weight:600;width:100%;text-align:center;color:white">EVENTS</div>
-
-
+<section class="main-content">
+    <div class="event-details">
+        <h2>{{ event.event_name }}</h2>
+        <p>{{ event.event_desc }}</p>
+        <p>Start Time: {{ event.event_s_time }}</p>
+        <p>End Time: {{ event.event_e_time }}</p>
         
-        <!-- Page Header Start -->
-       
-        <!-- Page Header End -->
+        <p>Organized by: {{ org.org_name }}</p>
+        <div class="event-images">
+            {% if event.Image1 %}
+            <img src="{{ event.Image1.url }}" alt="Event Image 1">
+            {% endif %}
+            {% if event.Image2 %}
+            <img src="{{ event.Image2.url }}" alt="Event Image 2">
+            {% endif %}
+            {% if event.Image3 %}
+            <img src="{{ event.Image3.url }}" alt="Event Image 3">
+            {% endif %}
+            {% if event.Image4 %}
+            <img src="{{ event.Image4.url }}" alt="Event Image 4">
+            {% endif %}
+        </div>
+    </div>
+</section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        {% comment %} booking section {% endcomment %}
-
-        <section class="main-content" style="font-family: 'poppins', sans-serif" >
-            <div class="booking-form" id="booking-and-confirmation" style="width:450px;margin-left:90%">
-    
-                <!-- Booking input Form -->
-                <div id="booking-input">
-                    <h3 style="text-align: center;">Book Event Tickets</h3>
-                    <div class="input-group">
-                        <label for="flying-from">Full Name</label>
-                        <input class="inp-style" id="flying-from" type="text" name="" placeholder="full name" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="flying-to">Email</label>
-                        <input class="inp-style" id="flying-to" type="email" name="" placeholder="Email" required>
-                    </div>
-                    
-    
-                    <label for="first-class-ticket-number">Premium ($150)</label>
-                    <div class="input-group first-class">
-                        <div class="plus-minus-btn">
-                            <span id="first-class-minus" class="control">-</span>
-                        </div>
-                        <div>
-                            <input class="inp-style inp-width" type="text" name="" id="first-class-ticket-number" value="0">
-                        </div>
-                        <div class="plus-minus-btn">
-                            <span id="first-class-plus" class="control">+</span>
-                        </div>
-                    </div>
-    
-                    <label for="economy-class-ticket-number">Baisc ($100)</label>
-                    <div class="input-group economy-class">
-                        <div class="plus-minus-btn">
-                            <span id="economy-class-minus" class="control">-</span>
-                        </div>
-                        <div>
-                            <input class="inp-style inp-width" type="text" name="" id="economy-class-ticket-number" value="0">
-                        </div>
-                        <div class="plus-minus-btn">
-                            <span id="economy-class-plus" class="control">+</span>
-                        </div>
-                    </div>
-                    
-                    <div class="calculations">
-                        <div class="amount">
-                            <div class="left">
-                                <p>Subtotal</p>
-                            </div>
-                            <div class="right">
-                                <p>$<span id="price-subtotal">0</span></p>
-                            </div>
-                        </div>
-    
-                        <div class="amount">
-                            <div class="left">
-                                <p>Charge 10% VAT</p>
-                            </div>
-                            <div class="right">
-                                <p>$<span id="price-vat">0</span></p>
-                            </div>
-                        </div>
-                        <div class="amount">
-                            <div class="left">
-                                <p>Membership Discount(10%)</p>
-                            </div>
-                            <div class="right">
-                                <p>- $<span id="membership">0</span></p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="amount">
-                            <div class="left">
-                                <h4>Total</h4>
-                            </div>
-                            <div class="right">
-                                <p>$<span id="price-total">0</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn-style" id="book-now-button">Pay Now</button>
-                </div>
-    
-                <!-- booking confirmation form -->
-                
+<section class="main-content">
+    <div class="booking-form" id="booking-and-confirmation">
+        <div id="booking-input">
+            <h3>Book Event Tickets</h3>
+            <div class="input-group">
+                <label for="flying-from">Full Name</label>
+                <input class="inp-style" id="flying-from" type="text" placeholder="Full name" required>
             </div>
-        </section>
-    
-        <!-- Script file -->
-        <script src="/static/booking/js/script.js"></script>
-
-
-
-
-
-    <!-- Contact Section Begin -->
-    <section style="width:100%;box-sizing:border-box">
-        <div>
-            <div  style="display:flex;justify-content: center;align-items: center;color:white;background-color:black">
-                <div style="width:50%;text-align:center">
-                    <div class="section-title">
-                        <h2 style="color:yellow;font-size: 30px;">Location</h2>
-                        <p style="font-size: 20px;">Get directions to our event center</p>
+            <div class="input-group">
+                <label for="flying-to">Email</label>
+                <input class="inp-style" id="flying-to" type="email" placeholder="Email" required>
+            </div>
+            <label for="first-class-ticket-number">Premium ($150)</label>
+            <div class="input-group first-class">
+                <div class="plus-minus-btn">
+                    <span id="first-class-minus" class="control">-</span>
+                </div>
+                <div>
+                    <input class="inp-style inp-width" type="text" id="first-class-ticket-number" value="0">
+                </div>
+                <div class="plus-minus-btn">
+                    <span id="first-class-plus" class="control">+</span>
+                </div>
+            </div>
+            <label for="economy-class-ticket-number">Basic ($100)</label>
+            <div class="input-group economy-class">
+                <div class="plus-minus-btn">
+                    <span id="economy-class-minus" class="control">-</span>
+                </div>
+                <div>
+                    <input class="inp-style inp-width" type="text" id="economy-class-ticket-number" value="0">
+                </div>
+                <div class="plus-minus-btn">
+                    <span id="economy-class-plus" class="control">+</span>
+                </div>
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
                     </div>
-                    <div class="cs-text">
-                        <div class="ct-address">
-                            <span style="color:yellow;font-size:28px">Address:</span>
-                            <p style="font-size: 20px;">01 Pascale Springs Apt. 339, NY City <br />United State</p>
-                        </div>
-                        <ul style="list-style-type: none;">
-                            <li>
-                                <span style="    color: yellow;
-    font-size: 18px;margin-right:10px">Phone:</span>
-                                (+12)-345-67-8910
-                            </li>
-                            <li>
-                                <span style="    color: yellow;
-    font-size: 18px;margin-right:10px">Email:</span>
-                                info.colorlib@gmail.com
-                            </li>
-                        </ul>
-
+                    <div class="right">
+                        <p>$<span id="price-subtotal">0</span></p>
                     </div>
                 </div>
-                <div style="width:50%;display:flex;justify-content: center;align-items:center;">
-                    <div class="cs-map">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52901.38789495531!2d-118.19465514866786!3d34.03523211493029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2cf71ad83ff9f%3A0x518b28657f4543b7!2sEast%20Los%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1579763856144!5m2!1sen!2sbd"
-                            height="400" width="400" style="border:0;" allowfullscreen="">
-                        </iframe>
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
                     </div>
+                    <div class="right">
+                        <p>$<span id="price-vat">0</span></p>
+                    </div>
+                </div>
+                <div class="amount">
+                    <div class="left">
+                        <p>Membership Discount (10%)</p>
+                    </div>
+                    <div class="right">
+                        <p>- $<span id="membership">0</span></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="price-total">0</span></p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-style" id="book-now-button">Pay Now</button>
+        </div>
+    </div>
+</section>
+
+<section style="width: 100%; box-sizing: border-box;">
+    <div>
+        <div style="display: flex; justify-content: center; align-items: center; color: white; background-color: black;">
+            <div style="width: 50%; text-align: center;">
+                <div class="section-title">
+                    <h2 style="color: yellow; font-size: 30px;">Location</h2>
+                    <p style="font-size: 20px;">Get directions to our event center</p>
+                </div>
+                <div class="cs-text">
+                    <div class="ct-address">
+                        <span style="color: yellow; font-size: 28px;">Address:</span>
+                        <p style="font-size: 20px;"><iframe src="{{ venue.venue_address }}" width='600' height='450' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe></p>
+                    </div>
+                    <ul style="list-style-type: none;">
+                        <li>
+                            <span style="color: yellow; font-size: 24px;">Phone:</span>
+                            <p style="font-size: 20px;">{{ venue.venue_phone }}</p>
+                        </li>
+                        <li>
+                            <span style="color: yellow; font-size: 24px;">Email:</span>
+                            <p style="font-size: 20px;">{{ venue.venue_email }}</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Contact Section End -->
+        <div style="width: 50%;">
+            <iframe src="{{ venue.venue_location }}" width="600" height="450" style="border: 0;" allowfullscreen loading="lazy"></iframe>
+        </div>
+    </div>
+</section>
 
-
-{% comment %} 
-        <!-- Footer Start -->
-         <div class="container-fluid footer wow fadeIn" data-wow-delay=".3s" style="background-color:black;background:black;position:relative">
-            <div class="conta pt-5 pb-4" style="background-color:black" style="width: 100%">
-                <div class="row g-5">
-                    <div class="col-lg-3 col-md-6">
-                        <a href="index.html">
-                            <h1 class="text-white fw-bold d-block">High<span class=" col" style="color:#26d48c;padding:0px">Tech</span> </h1>
-                        </a>
-                        <p class="mt-4 text-light" style="font-size:17px;font-weight:400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta facere delectus qui placeat inventore consectetur repellendus optio debitis.</p>
-                        <div class="d-flex hightech-link" style="display: flex;justify-content: space-between;align-items: center;width: 200px;">
-                            <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i class="fab fa-facebook-f text-primary"></i></a>
-                            <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i class="fab fa-twitter text-primary"></i></a>
-                            <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-2"><i class="fab fa-instagram text-primary"></i></a>
-                            <a href="" class="btn-light nav-fill btn btn-square rounded-circle me-0"><i class="fab fa-linkedin-in text-primary"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a href="#" class="h3" style="color:#26d48c">Short Link</a>
-                        <div class="mt-4 d-flex flex-column short-link" style="font-size:17px;font-weight:500">
-                            <a href="" class="mb-2 text-white"><i class="fas fa-angle-right" style="color:#26d48c;margin-rigth:6px"></i>About us</a>
-                            <a href="" class="mb-2 text-white"><i class="fas fa-angle-right" style="color:#26d48c;margin-rigth:6px"></i>Contact us</a>
-                            <a href="" class="mb-2 text-white"><i class="fas fa-angle-right" style="color:#26d48c;margin-rigth:6px"></i>Our Services</a>
-                            <a href="" class="mb-2 text-white"><i class="fas fa-angle-right" style="color:#26d48c;margin-rigth:6px"></i>Our Projects</a>
-                            <a href="" class="mb-2 text-white"><i class="fas fa-angle-right" style="color:#26d48c;margin-rigth:6px"></i>Latest Blog</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a href="#" class="h3" style="color:#26d48c">Help Link</a>
-                        <div class="mt-4 d-flex flex-column help-link" style="font-size:17px;font-weight:500">
-                            <a href="" class="mb-2 text-white"><i class="fas fa-angle-right" style="color:#26d48c;margin-rigth:6px"></i>Terms Of use</a>
-                            <a href="" class="mb-2 text-white"><i class="fas fa-angle-right" style="color:#26d48c;margin-rigth:6px"></i>Privacy Policy</a>
-                            <a href="" class="mb-2 text-white"><i class="fas fa-angle-right" style="color:#26d48c;margin-rigth:6px"></i>Helps</a>
-                            <a href="" class="mb-2 text-white"><i class="fas fa-angle-right" style="color:#26d48c;margin-rigth:6px"></i>FQAs</a>
-                            <a href="" class="mb-2 text-white"><i class="fas fa-angle-right" style="color:#26d48c;margin-rigth:6px"></i>Contact</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a href="#" class="h3" style="color:#26d48c">Contact Us</a>
-                        <div class="text-white mt-4 d-flex flex-column contact-link">
-                            <a href="#" class="pb-3 text-light border-bottom border-primary" style="font-size:16px;font-weight:400"><i class="fas fa-map-marker-alt me-2" style="color:#26d48c;margin-rigth:6px"></i> 123 Street, New York, USA</a>
-                            <a href="#" class="py-3 text-light border-bottom border-primary" style="font-size:16px;font-weight:400"><i class="fas fa-phone-alt me-2" style="color:#26d48c;margin-rigth:6px"></i> +123 456 7890</a>
-                            <a href="#" class="py-3 text-light border-bottom border-primary" style="font-size:16px;font-weight:400"><i class="fas fa-envelope me-2" style="color:#26d48c;margin-rigth:6px"></i> info@exmple.con</a>
-                        </div>
-                    </div>
-                </div>
-                <hr class=" mt-5 mb-4" style="color:#ffffffa8;background-color:#ffffffa8">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start">
-                        <span class="text-light"><a href="#" class="text-secondary"><i class="fas fa-copyright text-secondary me-2"></i>Your Site Name</a>, All right reserved.</span>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        <span class="text-light">Designed By<a href="https://htmlcodex.com" class="text-secondary">HTML Codex</a> Distributed By <a href="https://themewagon.com">ThemeWagon</a></span>
-                    </div>
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-uppercase">Get In Touch</h4>
+                <p>{{ org.org_address }}</p>
+                <p><i class="fa fa-phone-alt mr-2"></i>{{ org.org_phone }}</p>
+                <p><i class="fa fa-envelope mr-2"></i>{{ org.org_email }}</p>
+                <div class="d-flex justify-content-start mt-4">
+                    {% comment %} <a class="btn btn-lg btn-dark btn-lg-square rounded-circle mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-lg btn-dark btn-lg-square rounded-circle mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-lg btn-dark btn-lg-square rounded-circle mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-lg btn-dark btn-lg-square rounded-circle mr-2" href="#"><i class="fab fa-instagram"></i></a> {% endcomment %}
                 </div>
             </div>
         </div>
-        <!-- Footer End --> {% endcomment %}
+    </div>
+</div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let firstClassPlus = document.getElementById('first-class-plus');
+        let firstClassMinus = document.getElementById('first-class-minus');
+        let economyClassPlus = document.getElementById('economy-class-plus');
+        let economyClassMinus = document.getElementById('economy-class-minus');
 
+        firstClassPlus.addEventListener('click', function() {
+            let firstClassInput = document.getElementById('first-class-ticket-number');
+            firstClassInput.value = parseInt(firstClassInput.value) + 1;
+            calculateTotal();
+        });
 
+        firstClassMinus.addEventListener('click', function() {
+            let firstClassInput = document.getElementById('first-class-ticket-number');
+            if (parseInt(firstClassInput.value) > 0) {
+                firstClassInput.value = parseInt(firstClassInput.value) - 1;
+                calculateTotal();
+            }
+        });
 
-{% endblock body%} 
+        economyClassPlus.addEventListener('click', function() {
+            let economyClassInput = document.getElementById('economy-class-ticket-number');
+            economyClassInput.value = parseInt(economyClassInput.value) + 1;
+            calculateTotal();
+        });
+
+        economyClassMinus.addEventListener('click', function() {
+            let economyClassInput = document.getElementById('economy-class-ticket-number');
+            if (parseInt(economyClassInput.value) > 0) {
+                economyClassInput.value = parseInt(economyClassInput.value) - 1;
+                calculateTotal();
+            }
+        });
+
+        function calculateTotal() {
+            let firstClassCount = parseInt(document.getElementById('first-class-ticket-number').value);
+            let economyClassCount = parseInt(document.getElementById('economy-class-ticket-number').value);
+
+            let subtotal = (firstClassCount * 150) + (economyClassCount * 100);
+            let vat = subtotal * 0.10;
+            let membershipDiscount = subtotal * 0.10;
+
+            document.getElementById('price-subtotal').innerText = subtotal.toFixed(2);
+            document.getElementById('price-vat').innerText = vat.toFixed(2);
+            document.getElementById('membership').innerText = membershipDiscount.toFixed(2);
+            document.getElementById('price-total').innerText = (subtotal + vat - membershipDiscount).toFixed(2);
+        }
+    });
+</script>
+{% endblock %}
