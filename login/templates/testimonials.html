@@ -345,11 +345,12 @@ textarea {
           <!-- Item5 Ends -->
       
           <!-- Item6 Starts -->
+          {% for item in test %}
           <div class="item testimonial-card">
             <main class="test-card-body card-shadow">
               <div class="quote">
                 <i class="fa fa-quote-left"></i>
-                <h2>A Approach to Spirituality</h2>
+                <h2>{{item.Testimonial_topic}}</h2>
               </div>
               <p>The Karma Program offers a holistic approach to spirituality that has deeply resonated with me. The sessions are insightful and have helped me cultivate a sense of inner peace. The events are not only enjoyable but also meaningful, knowing that the proceeds support a children's NGO.</p>
               <div class="ratings">
@@ -369,7 +370,7 @@ textarea {
                 <span>Gamer</span>
               </div>
             </div>
-          </div>
+          </div>{% endfor %}
           <!-- Item6 Ends -->
       
         </div>
@@ -381,10 +382,13 @@ textarea {
 
 
 
+
+    {% if user_testimonial is None %}
     <h1 style=" font-family: 'Merriweather', serif;
     font-weight: 300;
     font-style: normal;color:white;font-size:24px;Text-align:end;width:60%"><button type="button" class="btn btn-primary" style="margin-right:20px" onclick="btn_review()">Click Here</button>To give us review</h1>
 
+    {% endif %}
 
 
 
