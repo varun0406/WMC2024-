@@ -191,6 +191,7 @@
                         </div>
                         <div class="right">
                             <p>- $<span id="membership">0</span></p>
+                            <input type="hidden" id="membership-hidden" name="membership">
                         </div>
                     </div>
                     <hr>
@@ -200,6 +201,7 @@
                         </div>
                         <div class="right">
                             <p>$<span id="price-total">0</span></p>
+                            <input type="hidden" id="price-total-hidden" value='20' name="pricet">
                         </div>
                     </div>
                 </div>
@@ -249,6 +251,8 @@
         const priceTotal = document.getElementById('price-total');
         const ticketPrice = {{ event.Event_Tickets }};
         const discountPercent = {{ discount }};
+        var z=document.getElementById('price-total-hidden');
+        var y=document.getElementById("membership-hidden");
 
         document.getElementById('ticket-plus').addEventListener('click', function() {
             ticketNumber.value = parseInt(ticketNumber.value) + 1;
@@ -266,8 +270,10 @@
             const subtotal = ticketNumber.value * ticketPrice;
             priceSubtotal.innerText = subtotal.toFixed(2);
             const discountAmount = subtotal * (discountPercent / 100);
+            y.value=discountAmount
             membership.innerText = discountAmount.toFixed(2);
             const total = subtotal - discountAmount;
+            z.value= total;
             priceTotal.innerText = total.toFixed(2);
         }
     });

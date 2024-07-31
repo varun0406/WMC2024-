@@ -53,14 +53,22 @@ class Event(models.Model):
 
 class Ticket(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    tickets=models.SmallIntegerField()
+    tickets = models.SmallIntegerField()
     total_paid_price = models.DecimalField(max_digits=10, decimal_places=2)
     attendee_name = models.CharField(max_length=255, blank=True, null=True)
-    user_id=models.ForeignKey(Profile,on_delete=models.CASCADE)
-    email=models.EmailField(default=None)
-    discount=models.IntegerField()
-    
-    # Optional
+    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    email = models.EmailField(default=None)
+    discount = models.IntegerField()
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+       
+        if not self.slug:
+            self.slug = slugify(f"{self.event}-{self.user_id}")
+            super().save(*args, **kwargs)  # Save again to update slug
+
+    def get_absolute_url(self):
+        return reverse("ticket", kwargs={"slug": self.slug})
 
     def __str__(self):
-        return f"{self.event} - {self.ticket_type} - {self.price}"
+        return f"{self.event} - {self.attendee_name} - ${self.total_paid_price}"

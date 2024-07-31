@@ -219,9 +219,34 @@ def Events(request):
 def Eventpage(request,slug):
     user = request.user
     print(user)
-    if request.method =="POST":
-        full_name=request.POST.get()
-        pass
+    if request.method == "POST":
+        user_id = request.user.username
+        user_id = Profile.objects.get(user_id=user_id)
+        full_name = request.POST.get("full_name")
+        email = request.POST.get("email")
+        discount_amt = int(request.POST.get("membership"))
+        total_price_paid = int(request.POST.get("pricet"))
+        events = Event.objects.get(slug=slug)
+        ticket_number = int(request.POST.get("ticket_number"))  # Ensure this is an integer
+
+        print(user_id, full_name, email, discount_amt, total_price_paid, events, ticket_number)
+
+        obj = Ticket.objects.create(
+            user_id=user_id,
+            event=events,
+            discount=discount_amt,
+            email=email,
+            attendee_name=full_name,
+            total_paid_price=total_price_paid,
+            tickets=ticket_number
+        )
+
+        return redirect(request,"ticket", {
+            "slug": obj.slug,  # Pass the slug to the template
+        })
+
+        
+        
     if user.is_authenticated:
           
         user_id= user.username
@@ -384,3 +409,22 @@ def Review(request):
         Testimo.testimonial=testimonial
         Testimo.save()
     return render(request,'review.html',params)
+
+
+
+def ticket(request,slug):
+    user=request.user
+    if user.is_authenticated:
+        user_id=user.username
+        user_profile=Profile.objects.get(user_id=user_id)
+        ticket_data=Ticket.objects.get(slug=slug)
+        event_data=Event.objects.get(id=ticket_data.event.id)
+        venue_data=Venue.objects.get(id=event_data.venue.id)
+        
+        params={
+            "ticket":ticket_data,
+            "venue":venue_data,
+            "event":event_data
+        }
+        return render(request,"ticket.html",params)
+    
