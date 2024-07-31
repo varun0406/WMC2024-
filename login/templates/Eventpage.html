@@ -152,77 +152,60 @@
 
 <section class="main-content">
     <div class="booking-form" id="booking-and-confirmation">
-        <div id="booking-input">
-            <h3>Book Event Tickets</h3>
-            <div class="input-group">
-                <label for="flying-from">Full Name</label>
-                <input class="inp-style" id="flying-from" type="text" placeholder="Full name" required>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div id="booking-input">
+                <h3>Book Event Tickets</h3>
+                <div class="input-group">
+                    <label for="full-name">Full Name</label>
+                    <input class="inp-style" id="full-name" name="full_name" type="text" placeholder="Full name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input class="inp-style" id="email" name="email" type="email" placeholder="Email" required>
+                </div>
+                <label for="ticket-number">Tickets (${{ event.Event_Tickets }})</label>
+                <div class="input-group">
+                    <div class="plus-minus-btn">
+                        <span id="ticket-minus" class="control">-</span>
+                    </div>
+                    <div>
+                        <input class="inp-style inp-width" type="text" id="ticket-number" name="ticket_number" value="0">
+                    </div>
+                    <div class="plus-minus-btn">
+                        <span id="ticket-plus" class="control">+</span>
+                    </div>
+                </div>
+                <div class="calculations">
+                    <div class="amount">
+                        <div class="left">
+                            <p>Subtotal</p>
+                        </div>
+                        <div class="right">
+                            <p>$<span id="price-subtotal">0</span></p>
+                        </div>
+                    </div>
+                    <div class="amount">
+                        <div class="left">
+                            <p>Membership Discount ({{ discount }}%)</p>
+                        </div>
+                        <div class="right">
+                            <p>- $<span id="membership">0</span></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="amount">
+                        <div class="left">
+                            <h4>Total</h4>
+                        </div>
+                        <div class="right">
+                            <p>$<span id="price-total">0</span></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-style" id="book-now-button" type="submit">Pay Now</button>
             </div>
-            <div class="input-group">
-                <label for="flying-to">Email</label>
-                <input class="inp-style" id="flying-to" type="email" placeholder="Email" required>
-            </div>
-            <label for="first-class-ticket-number">Premium ($150)</label>
-            <div class="input-group first-class">
-                <div class="plus-minus-btn">
-                    <span id="first-class-minus" class="control">-</span>
-                </div>
-                <div>
-                    <input class="inp-style inp-width" type="text" id="first-class-ticket-number" value="0">
-                </div>
-                <div class="plus-minus-btn">
-                    <span id="first-class-plus" class="control">+</span>
-                </div>
-            </div>
-            <label for="economy-class-ticket-number">Basic ($100)</label>
-            <div class="input-group economy-class">
-                <div class="plus-minus-btn">
-                    <span id="economy-class-minus" class="control">-</span>
-                </div>
-                <div>
-                    <input class="inp-style inp-width" type="text" id="economy-class-ticket-number" value="0">
-                </div>
-                <div class="plus-minus-btn">
-                    <span id="economy-class-plus" class="control">+</span>
-                </div>
-            </div>
-            <div class="calculations">
-                <div class="amount">
-                    <div class="left">
-                        <p>Subtotal</p>
-                    </div>
-                    <div class="right">
-                        <p>$<span id="price-subtotal">0</span></p>
-                    </div>
-                </div>
-                <div class="amount">
-                    <div class="left">
-                        <p>Charge 10% VAT</p>
-                    </div>
-                    <div class="right">
-                        <p>$<span id="price-vat">0</span></p>
-                    </div>
-                </div>
-                <div class="amount">
-                    <div class="left">
-                        <p>Membership Discount (10%)</p>
-                    </div>
-                    <div class="right">
-                        <p>- $<span id="membership">0</span></p>
-                    </div>
-                </div>
-                <hr>
-                <div class="amount">
-                    <div class="left">
-                        <h4>Total</h4>
-                    </div>
-                    <div class="right">
-                        <p>$<span id="price-total">0</span></p>
-                    </div>
-                </div>
-            </div>
-            <button class="btn-style" id="book-now-button">Pay Now</button>
-        </div>
+        </form>
     </div>
 </section>
 
@@ -258,73 +241,36 @@
     </div>
 </section>
 
-<div class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h4 class="text-uppercase">Get In Touch</h4>
-                <p>{{ org.org_address }}</p>
-                <p><i class="fa fa-phone-alt mr-2"></i>{{ org.org_phone }}</p>
-                <p><i class="fa fa-envelope mr-2"></i>{{ org.org_email }}</p>
-                <div class="d-flex justify-content-start mt-4">
-                    {% comment %} <a class="btn btn-lg btn-dark btn-lg-square rounded-circle mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-lg btn-dark btn-lg-square rounded-circle mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-lg btn-dark btn-lg-square rounded-circle mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-lg btn-dark btn-lg-square rounded-circle mr-2" href="#"><i class="fab fa-instagram"></i></a> {% endcomment %}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        let firstClassPlus = document.getElementById('first-class-plus');
-        let firstClassMinus = document.getElementById('first-class-minus');
-        let economyClassPlus = document.getElementById('economy-class-plus');
-        let economyClassMinus = document.getElementById('economy-class-minus');
+        const ticketNumber = document.getElementById('ticket-number');
+        const priceSubtotal = document.getElementById('price-subtotal');
+        const membership = document.getElementById('membership');
+        const priceTotal = document.getElementById('price-total');
+        const ticketPrice = {{ event.Event_Tickets }};
+        const discountPercent = {{ discount }};
 
-        firstClassPlus.addEventListener('click', function() {
-            let firstClassInput = document.getElementById('first-class-ticket-number');
-            firstClassInput.value = parseInt(firstClassInput.value) + 1;
-            calculateTotal();
+        document.getElementById('ticket-plus').addEventListener('click', function() {
+            ticketNumber.value = parseInt(ticketNumber.value) + 1;
+            updatePrice();
         });
 
-        firstClassMinus.addEventListener('click', function() {
-            let firstClassInput = document.getElementById('first-class-ticket-number');
-            if (parseInt(firstClassInput.value) > 0) {
-                firstClassInput.value = parseInt(firstClassInput.value) - 1;
-                calculateTotal();
+        document.getElementById('ticket-minus').addEventListener('click', function() {
+            if (ticketNumber.value > 0) {
+                ticketNumber.value = parseInt(ticketNumber.value) - 1;
+                updatePrice();
             }
         });
 
-        economyClassPlus.addEventListener('click', function() {
-            let economyClassInput = document.getElementById('economy-class-ticket-number');
-            economyClassInput.value = parseInt(economyClassInput.value) + 1;
-            calculateTotal();
-        });
-
-        economyClassMinus.addEventListener('click', function() {
-            let economyClassInput = document.getElementById('economy-class-ticket-number');
-            if (parseInt(economyClassInput.value) > 0) {
-                economyClassInput.value = parseInt(economyClassInput.value) - 1;
-                calculateTotal();
-            }
-        });
-
-        function calculateTotal() {
-            let firstClassCount = parseInt(document.getElementById('first-class-ticket-number').value);
-            let economyClassCount = parseInt(document.getElementById('economy-class-ticket-number').value);
-
-            let subtotal = (firstClassCount * 150) + (economyClassCount * 100);
-            let vat = subtotal * 0.10;
-            let membershipDiscount = subtotal * 0.10;
-
-            document.getElementById('price-subtotal').innerText = subtotal.toFixed(2);
-            document.getElementById('price-vat').innerText = vat.toFixed(2);
-            document.getElementById('membership').innerText = membershipDiscount.toFixed(2);
-            document.getElementById('price-total').innerText = (subtotal + vat - membershipDiscount).toFixed(2);
+        function updatePrice() {
+            const subtotal = ticketNumber.value * ticketPrice;
+            priceSubtotal.innerText = subtotal.toFixed(2);
+            const discountAmount = subtotal * (discountPercent / 100);
+            membership.innerText = discountAmount.toFixed(2);
+            const total = subtotal - discountAmount;
+            priceTotal.innerText = total.toFixed(2);
         }
     });
 </script>
+
 {% endblock %}

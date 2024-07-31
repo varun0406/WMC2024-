@@ -8,7 +8,7 @@ from decouple import config
 from login.models import Profile,KarmaPoints,Transactions,UserQuery
 from .models import Testimonial as test
 from django.http import Http404
-from events.models import Event,Venue,Organization
+from events.models import Event,Venue,Organization,Ticket
 
 def MemberShip_tier(request):
     if request.method=='POST':
@@ -219,7 +219,9 @@ def Events(request):
 def Eventpage(request,slug):
     user = request.user
     print(user)
-    
+    if request.method =="POST":
+        full_name=request.POST.get()
+        pass
     if user.is_authenticated:
           
         user_id= user.username
@@ -231,6 +233,14 @@ def Eventpage(request,slug):
             event = Event.objects.get(slug=slug)
             venue=Venue.objects.get(id=event.venue_id)
             org=Organization.objects.get(id=event.organization_id)
+            discount=0
+            membership=Profile.objects.get(user_id=user_id).Membership_license
+            if membership=="Gold":
+                discount=40
+            elif membership=="Bronze":
+                discount=15
+            elif membership=="Silver":
+                discount=10
            
             
         except Event.DoesNotExist:
@@ -238,12 +248,14 @@ def Eventpage(request,slug):
     else:
         user_id= None
         user_profile = None
+    
     params={
                 'event':event,
                 'venue':venue,
                 'org':org,
                 'user_ID':user_id,
-                'user_profile':user_profile
+                'user_profile':user_profile,
+                "discount":discount
             }
     return render(request,'Eventpage.html',params)
 

@@ -4,6 +4,7 @@ from django.db import models
 
 from django.urls import reverse
 from django.utils.text import slugify
+from login.models import Profile
 class Organization(models.Model):
     org_name = models.CharField(max_length=255)
     org_contact = models.CharField(max_length=255, blank=True, null=True)
@@ -52,9 +53,14 @@ class Event(models.Model):
 
 class Ticket(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    ticket_type = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    attendee_name = models.CharField(max_length=255, blank=True, null=True)  # Optional
+    tickets=models.SmallIntegerField()
+    total_paid_price = models.DecimalField(max_digits=10, decimal_places=2)
+    attendee_name = models.CharField(max_length=255, blank=True, null=True)
+    user_id=models.ForeignKey(Profile,on_delete=models.CASCADE)
+    email=models.EmailField(default=None)
+    discount=models.IntegerField()
+    
+    # Optional
 
     def __str__(self):
         return f"{self.event} - {self.ticket_type} - {self.price}"
