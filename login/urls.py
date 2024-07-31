@@ -17,7 +17,7 @@ urlpatterns = [
     path("Membership_Buy",views.Membership_Buy,name="Events"),
     path("Testimonials",views.Testimonial,name="Testimonials"),
     path("Review",views.Review,name="Review"),
+    path("Quiz", views.Karma_Quiz, name="Karma_Quiz"),
     path("ticket/<slug:slug>/",views.ticket,name="ticket"),
-
 ]
 

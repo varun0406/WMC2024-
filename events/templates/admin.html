@@ -90,6 +90,99 @@
         button[type="submit"]:hover {
             background-color: #23527c;
         }
+        h1, h2, h3 {
+            margin-bottom: 0.5em;
+            color: #337ab7;
+          }
+          
+          /* Question Form Styles */
+          
+          .question-form-section {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          }
+          
+          .question-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+          }
+          
+          .form-field {
+            margin-bottom: 20px;
+          }
+          
+          label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+          }
+          
+          input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+          }
+          
+          input[type="text"]:focus, textarea:focus {
+            border-color: #337ab7;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          }
+          
+          .mcq-section {
+            margin-top: 20px;
+          }
+          
+          .mcq-field {
+            margin-bottom: 20px;
+          }
+          
+          .mcq-field label {
+            display: inline-block;
+            margin-right: 10px;
+          }
+          
+          .mcq-field input[type="text"] {
+            width: 50%;
+          }
+          
+          select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+          }
+          
+          select:focus {
+            border-color: #337ab7;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          }
+          
+          .form-actions {
+            margin-top: 20px;
+            text-align: center;
+          }
+          
+          button[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #337ab7;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+          
+          button[type="submit"]:hover {
+            background-color: #23527c;
+          }
     </style>
 </head>
 <body>
@@ -120,6 +213,11 @@
                 </form>
             </div>
         </section>
+
+
+        
+
+
         <section class="manage-section">
             <h2>Manage</h2>
             <div class="manage-lists">
@@ -149,6 +247,69 @@
                 </div>
             </div>
         </section>
+        <section class="question-form-section create-section">
+            <h2>Add a New Question</h2>
+            <form method="POST" enctype="multipart/form-data" class="question-form">
+                {% csrf_token %}
+                <section class="form-field">
+                    <label for="question-text">Question Text:</label>
+                    <textarea id="question-text" name="question-text" required></textarea>
+                </section>
+                <section class="mcq-section">
+                    <h3>Multiple Choice Questions:</h3>
+                    <section class="mcq-field">
+                        <label for="mcq1">Option 1:</label>
+                        <input type="text" id="mcq1" name="mcq1" required>
+                    </section>
+                    <section class="mcq-field">
+                        <label for="mcq2">Option 2:</label>
+                        <input type="text" id="mcq2" name="mcq2" required>
+                    </section>
+                    <section class="mcq-field">
+                        <label for="mcq3">Option 3:</label>
+                        <input type="text" id="mcq3" name="mcq3" required>
+                    </section>
+                    <section class="mcq-field">
+                        <label for="mcq4">Option 4:</label>
+                        <input type="text" id="mcq4" name="mcq4" required>
+                    </section>
+                </section>
+                <section class="form-field">
+                    <label for="answer">Answer:</label>
+                    <select id="answer" name="answer" required>
+                        <option value="">Select an option</option>
+                        <option value="Option1">Option 1</option>
+                        <option value="Option2">Option 2</option>
+                        <option value="Option3">Option 3</option>
+                        <option value="Option4">Option 4</option>
+                    </select>
+                </section>
+                <section class="form-actions">
+                    <button type="submit" name="add_question">Add Question</button>
+                </section>
+            </form>
+        </section>
+        <section class="section create-section">
+    <h2>Create Quiz</h2>
+    <form method="post">
+        {% csrf_token %}
+        <section class="form-field create-section">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+        </section>
+        <section class="form-field">
+            <label for="questions">Questions:</label>
+            {% for question in que %}
+            <label>
+                <input type="checkbox" name="questions[]" value="{{ question.id }}">{{ question.text}}
+            </label>
+            {% endfor %}
+        </section>
+        <section class="form-field">
+            <input type="submit" value="Create Quiz" name="Create_Quiz">
+        </section>
+    </form>
+</section>
     </main>
 </body>
 </html>

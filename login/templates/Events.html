@@ -35,14 +35,14 @@
                 </div>
                 <div class="row" style="padding:0px;margin:0px;width:100%;display:flex;justify-content:space-between;align-items:center">
                     {% for event in events %}
-                    <div class="" style="width:28%;padding:0px;min-width:100px;border:1px solid #ffe47f">
+                    <div class="" style="width:28%;padding:0px;min-width:100px;border:1px solid #ffe47f;width: 260px;height: 400px;">
                         <div class="blog-post">
                             <div class="post-thumb">
                                 <a href="{{ event.get_absolute_url }}">
-                                    <img src="{% if event.Image1 %}{{ event.Image1 }}{% else %}https://via.placeholder.com/640x480{% endif %}" alt="post-image" class="img-fluid">
+                                    <img style="height:200px;width:100%" src="{% if event.Image1 %}{{ event.Image1 }}{% else %}https://via.placeholder.com/640x480{% endif %}" alt="post-image" class="img-fluid">
                                 </a>
                             </div>
-                            <div class="post-content" style="border:0px;border-width:0px;padding: 30px 30px 0px 30px;">
+                            <div class="post-content" style="border:0px;border-width:0px;padding: 17px 30px 0px 30px;">
                                 <div class="date">
                                     <h4>{{ event.event_s_time|date:"d" }}<span>{{ event.event_s_time|date:"M" }}</span></h4>
                                 </div>
