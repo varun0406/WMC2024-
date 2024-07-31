@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Donation,Statistics
 from login.models import Transactions,KarmaPoints,Profile
+from events.models import Quiz,Question
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 # Create your views here.
@@ -108,3 +109,29 @@ def Donaters_Dashboard(request,slug):
         "user":request.user.username,
         "Donations":Donations
 })
+
+
+def qdemo(request):
+    q=Quiz.objects.get(title='aom')
+    p=q.questions.all()
+    print(q.questions.all())
+    quiz_data = [
+        {
+            "id": question.id,
+            "question": question.text,
+            "options": {
+                "a": question.option1,
+                "b": question.option2,
+                "c": question.option3,
+                "d": question.option4
+            },
+            "answer": getattr(question, question.correct_option),
+            "score": 0,
+            "status": ""
+        }
+        for question in p
+    ]
+    print(quiz_data)
+
+    params={"quiz":quiz_data}
+    return render(request,'qdemo.html',params)

@@ -1,0 +1,209 @@
+<!--index.html-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" 
+          content="width=device-width,
+                   initial-scale=1.0" />
+    <link rel="stylesheet"
+          href="./style.css" />
+    <title>Code Quiz</title>
+    <style>
+         /* Style.css */
+
+ * {
+     font-family: Georgia, Times, "Times New Roman", serif;
+ }
+
+ .quiz,
+ .scores {
+     margin: 50px auto 0 auto;
+     max-width: 400px;
+ }
+
+ #top {
+     color: green;
+ }
+
+ .containerNew {
+     border: 5px solid;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     height: 580px;
+     width: 50%;
+     transform: translate(-50%, -50%);
+     padding: 10px;
+ }
+
+ p {
+     margin: 15px 15px;
+ }
+
+ .landing {
+     text-align: center;
+ }
+
+ .scoresHeader {
+     position: absolute;
+     top: 15px;
+     left: 15px;
+ }
+
+ .timer {
+     position: absolute;
+     top: 15px;
+     right: 15px;
+ }
+
+ button {
+     display: inline-block;
+     margin: 10px;
+     cursor: pointer;
+     color: #fff;
+     background-color: #52865a;
+     border-radius: 5px;
+     border: 0;
+     padding: 20px;
+ }
+
+ button:hover {
+     background-color: #2a8d12;
+ }
+
+ .options button {
+     display: block;
+ }
+
+ input[type="text"] {
+     font-size: 100%;
+ }
+
+ .hide {
+     display: none;
+ }
+
+ .feedback {
+     font-style: bold;
+     font-size: 120%;
+     margin-top: 20px;
+     padding-top: 15px;
+     color: #fff;
+     border-top: 2px solid #4B0082;
+ }
+
+ ol {
+     padding-left: 15px;
+     max-height: 600px;
+     overflow: auto;
+ }
+
+ li {
+     padding: 5px;
+     list-style: decimal inside none;
+ }
+
+ li:nth-child(odd) {
+     background-color: #dfdae7;
+ }
+
+ @media screen and (max-width: 768px) {
+     .containerNew {
+         width: 80%;
+     }
+ }
+
+ @media screen and (max-width: 575px) {
+     .containerNew {
+         width: 90%;
+     }
+
+     .quiz,
+     .scores {
+         max-width: 90%;
+     }
+ }
+    </style>
+</head>
+
+<body>
+    <div class="containerNew">
+        <header>
+            <div>
+                <a href="./highscore.html">
+                    <button class="scores-header" 
+                            id="view-high-scores">
+                        View High Scores
+                    </button>
+                </a>
+            </div>
+
+            <div class="timer">
+                <p>
+                    Time:
+                    <span id="timer">
+                        0
+                    </span>
+                </p>
+            </div>
+        </header>
+
+        <main class="quiz">
+            <div id="quiz-start">
+                <div class="landing" 
+                     id="start-screen">
+                    <h1 id="top">
+                        GeeksforGeeks
+                    </h1>
+                    <h1>
+                        Coding Quiz Challenge
+                    </h1>
+                    <p>
+                        Try to answer the following
+                        code-related questions with
+                        in the time limit. Keep in
+                        mind that incorrect answers
+                        will penalize your score/time
+                        by ten seconds!
+                    </p>
+                    <button id="start">
+                        Start Quiz
+                    </button>
+                </div>
+            </div>
+
+            <div class="hide" id="questions">
+                <h2 id="question-words"></h2>
+                <div class="options" id="options">
+                </div>
+            </div>
+
+            <div class="hide" id="quiz-end">
+                <h2>All Done!</h2>
+                <p>Your final score is:
+                    <span id="score-final">
+                    </span>
+                </p>
+                <p>
+                    Please enter your name:
+                    <input type="text" 
+                           id="name" 
+                           max="3" />
+                    <button id="submit-score">
+                        Submit
+                    </button>
+                </p>
+            </div>
+
+            <div id="feedback" 
+                 class="feedback hide">
+            </div>
+        </main>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>

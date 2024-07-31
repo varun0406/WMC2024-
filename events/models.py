@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import JSONField
 
 # Create your models here.
 
@@ -58,3 +59,35 @@ class Ticket(models.Model):
 
     def __str__(self):
         return f"{self.event} - {self.ticket_type} - {self.price}"
+
+
+
+# quiz/models.py
+
+class Question(models.Model):
+    text = models.CharField(max_length=255)
+    option1 = models.CharField(max_length=255)
+    option2 = models.CharField(max_length=255)
+    option3 = models.CharField(max_length=255)
+    option4 = models.CharField(max_length=255)
+    CORRECT_OPTION_CHOICES = [
+        ('option1', 'Option 1'),
+        ('option2', 'Option 2'),
+        ('option3', 'Option 3'),
+        ('option4', 'Option 4')
+    ]
+    correct_option = models.CharField(
+        max_length=7,
+        choices=CORRECT_OPTION_CHOICES,
+        default='option1'
+    )
+
+    def __str__(self):
+        return self.text
+
+class Quiz(models.Model):
+    title = models.CharField(max_length=255)
+    questions = models.ManyToManyField(Question)
+
+    def __str__(self):
+        return self.title
