@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include("login.urls",namespace="login")),
     path('', include("Donation_STATS.urls",namespace="Donation_STATS")),
     path("", include("events.urls",namespace="events")),
+    path('auth/', include('social_django.urls', namespace='social')),
 ]
 
 if settings.DEBUG:

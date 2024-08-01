@@ -47,7 +47,7 @@ class Event(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('Eventpage', kwargs={'slug': self.slug})
+        return reverse('login:Eventpage', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.event_name
@@ -80,10 +80,10 @@ class Ticket(models.Model):
 
 class Question(models.Model):
     text = models.CharField(max_length=255)
-    Option1 = models.CharField(max_length=255)
-    option2 = models.CharField(max_length=255)
-    option3 = models.CharField(max_length=255)
-    option4 = models.CharField(max_length=255)
+    A = models.CharField(max_length=255)
+    B = models.CharField(max_length=255)
+    C = models.CharField(max_length=255)
+    D = models.CharField(max_length=255)
     CORRECT_OPTION_CHOICES = [
         ('option1', 'Option 1'),
         ('option2', 'Option 2'),

@@ -10,8 +10,6 @@ def admin_dashboard(request):
     event_form = EventForm()
     user = request.user
 
-    q=Quiz.objects.get(title='aom')
-    print(q.questions.all())
     
     if user.is_authenticated:
         user_id = user.username
@@ -33,7 +31,7 @@ def admin_dashboard(request):
             q4=request.POST.get('mcq4')
             ans=request.POST.get('answer')
 
-            Question.objects.create(text=t,option1=q1,option2=q2,option3=q3,option4=q4,correct_option=ans)
+            Question.objects.create(text=t,A=q1,B=q2,C=q3,D=q4,correct_option=ans)
             return redirect('events:admin_dashboard')
     if request.method == 'POST':
         if 'Create_Quiz' in request.POST:

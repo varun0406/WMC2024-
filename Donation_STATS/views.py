@@ -23,7 +23,7 @@ def donaters(request):
         print(Donation_amount)
         
         print("error point 1")
-        obj, created = Statistics.objects.get_or_create(Donaters_UserID=UserName, Name=FullName, defaults={'value': 0, 'ranking': 0})
+        obj, created = Statistics.objects.get_or_create(Donaters_UserID=UserName, defaults={'value': 0, 'ranking': 0})
         if created:
             obj.value = Donation_amount
         else:
@@ -114,21 +114,23 @@ def Donaters_Dashboard(request,slug):
 def qdemo(request):
     q=Quiz.objects.get(title='aom')
     p=q.questions.all()
+
     quiz_data = [
         {
             "id": z.id,
             "question": z.text,
             "options": {
-                "a": z.option1,
-                "b": z.option2,
-                "c": z.option3,
-                "d": z.option4
+                "a": z.A,
+                "b": z.B,
+                "c": z.C,
+                "d": z.D
             },
-            "answer": getattr(z, z.correct_option),
+            "answer":  z.correct_option,
             "score": 0,
             "status": ""
         }
         for z in p
+        
     ]
     print(quiz_data)
     params={}
