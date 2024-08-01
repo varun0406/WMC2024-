@@ -8,7 +8,7 @@ from decouple import config
 from login.models import Profile,KarmaPoints,Transactions,UserQuery
 from .models import Testimonial as test
 from django.http import Http404
-from events.models import Event,Venue,Organization,Ticket
+from events.models import Event,Venue,Organization
 
 def MemberShip_tier(request):
     if request.method=='POST':
@@ -46,6 +46,7 @@ def MemberShip_tier(request):
     
 # Create your views here.
 def index(request):
+    
     user = request.user
     print(user)
     if user.is_authenticated:
@@ -242,7 +243,9 @@ def Eventpage(request,slug):
             total_paid_price=total_price_paid,
             tickets=ticket_number
         )
-        return redirect(request,"ticket/{}".format(obj.slug))
+
+        return redirect('ticket', slug=obj.slug)
+
 
         
         
@@ -438,20 +441,20 @@ def Karma_Quiz(request):
     return render(request, 'quiz.html', params)
 
 
-def ticket(request,slug):
-    user=request.user
-    if user.is_authenticated:
-        user_id=user.username
-        user_profile=Profile.objects.get(user_id=user_id)
-        ticket_data=Ticket.objects.get(slug=slug)
-        event_data=Event.objects.get(id=ticket_data.event.id)
-        venue_data=Venue.objects.get(id=event_data.venue.id)
+# def ticket(request,slug):
+#     user=request.user
+#     if user.is_authenticated:
+#         user_id=user.username
+#         user_profile=Profile.objects.get(user_id=user_id)
+#         ticket_data=Ticket.objects.get(slug=slug)
+#         event_data=Event.objects.get(id=ticket_data.event.id)
+#         venue_data=Venue.objects.get(id=event_data.venue.id)
         
-        params={
-            "ticket":ticket_data,
-            "venue":venue_data,
-            "event":event_data
-        }
-        return render(request,"ticket.html",params)
+#         params={
+#             "ticket":ticket_data,
+#             "venue":venue_data,
+#             "event":event_data
+#         }
+#         return render(request,"ticket.html",params)
     
 
