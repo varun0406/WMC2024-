@@ -52,7 +52,19 @@ class Event(models.Model):
     def __str__(self):
         return self.event_name
 
+from django.utils.text import slugify
+import uuid
+
+from django.db import models
+from django.utils.text import slugify
+from django.urls import reverse
+import uuid
+
+from django.db import models
+import uuid
+
 class Ticket(models.Model):
+   
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     tickets = models.SmallIntegerField()
     total_paid_price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -60,22 +72,9 @@ class Ticket(models.Model):
     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
     email = models.EmailField(default=None)
     discount = models.IntegerField()
-    slug = models.SlugField(unique=True, blank=True)
-
-    def save(self, *args, **kwargs):
-       
-        if not self.slug:
-            self.slug = slugify(f"{self.event}-{self.user_id}")
-            super().save(*args, **kwargs)  # Save again to update slug
-
-    def get_absolute_url(self):
-        return reverse("ticket", kwargs={"slug": self.slug})
 
     def __str__(self):
-
         return f"{self.event} - {self.attendee_name} - ${self.total_paid_price}"
-
-
 
 # quiz/models.py
 

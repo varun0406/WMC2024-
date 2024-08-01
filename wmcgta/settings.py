@@ -59,20 +59,20 @@ INSTALLED_APPS = [
 ]
 
 
-# CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels.layers.InMemoryChannelLayer",
-#     },
-# }
-
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [("127.0.0.1", 6380)],
-        },
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
     },
 }
+
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [("127.0.0.1", 6380)],
+#         },
+#     },
+# }
 
 SOCIAL_AUTH_TRAILING_SLASH = False
 SOCIAL_AUTH_AUTH0_DOMAIN = config('APP_DOMAIN')
