@@ -262,12 +262,12 @@ def Eventpage(request,slug):
             org=Organization.objects.get(id=event.organization_id)
             discount=0
             membership=Profile.objects.get(user_id=user_id).Membership_license
-            if membership=="Gold":
-                discount=40
-            elif membership=="Bronze":
-                discount=15
-            elif membership=="Silver":
+            if membership=="basic":
                 discount=10
+            elif membership=="standard":
+                discount=15
+            elif membership=="premium":
+                discount=40
            
             
         except Event.DoesNotExist:
@@ -332,12 +332,13 @@ def Membership_Buy(request):
             if Karma_Available<500:
                 return render(request, "index.html", {"alert": "You dont have enough karma points to buy our Standard membership"})
             else:
-                KarmaPoints.objects.create(user_id=user_id,karma_points=-500,karma_points_type="Membership Tier Upgrade")
+                KarmaPoints.objects.create(user_id=user_id,karma_points=-500,karma_points_type="Standard Membership")
                 Karma_Available=Karma_Available-500
         elif tier=="premium":
             if Karma_Available<2000:
                 return render(request, "index.html", {"alert": "You dont have enough karma points to buy our Premium membership"})
             else:
+                KarmaPoints.objects.create(user_id=user_id,karma_points=-2000,karma_points_type="Premium Membership")
                 Karma_Available=Karma_Available-2000
         # Profile.objects.update(user_id=user_id,KarmaPoints=Karma_Available)
         profile=Profile.objects.get(user_id=user_id)

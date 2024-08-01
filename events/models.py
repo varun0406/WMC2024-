@@ -80,7 +80,7 @@ class Ticket(models.Model):
 
 class Question(models.Model):
     text = models.CharField(max_length=255)
-    option1 = models.CharField(max_length=255)
+    Option1 = models.CharField(max_length=255)
     option2 = models.CharField(max_length=255)
     option3 = models.CharField(max_length=255)
     option4 = models.CharField(max_length=255)

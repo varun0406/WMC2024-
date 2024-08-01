@@ -114,24 +114,22 @@ def Donaters_Dashboard(request,slug):
 def qdemo(request):
     q=Quiz.objects.get(title='aom')
     p=q.questions.all()
-    print(q.questions.all())
     quiz_data = [
         {
-            "id": question.id,
-            "question": question.text,
+            "id": z.id,
+            "question": z.text,
             "options": {
-                "a": question.option1,
-                "b": question.option2,
-                "c": question.option3,
-                "d": question.option4
+                "a": z.option1,
+                "b": z.option2,
+                "c": z.option3,
+                "d": z.option4
             },
-            "answer": getattr(question, question.correct_option),
+            "answer": getattr(z, z.correct_option),
             "score": 0,
             "status": ""
         }
-        for question in p
+        for z in p
     ]
     print(quiz_data)
-
-    params={"quiz":quiz_data}
+    params={}
     return render(request,'qdemo.html',params)

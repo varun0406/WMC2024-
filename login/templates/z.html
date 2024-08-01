@@ -181,7 +181,6 @@
     body{
         background-color:black;
         height:900px
-        background: linear-gradient(to bottom right, #070630 0%,black 100%);
     }
     
 </style>
@@ -318,12 +317,12 @@
                     <p style="font-size: 20px;">Get directions to our event center</p>
                     <ul style="list-style-type: none;">
                         <li>
-                            <span style="color: yellow; font-size: 24px;">Phone: </span>
-                            <p style="font-size: 20px;">{{ venue.venue_contact }}</p>
+                            <span style="color: yellow; font-size: 24px;">Phone:</span>
+                            <p style="font-size: 20px;">{{ venue.venue_phone }}</p>
                         </li>
                         <li>
                             <span style="color: yellow; font-size: 24px;">Email:</span>
-                            <p style="font-size: 20px;">{{ org.org_email }}</p>
+                            <p style="font-size: 20px;">{{ venue.venue_email }}</p>
                         </li>
                     </ul>
                 </div>
