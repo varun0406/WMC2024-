@@ -46,6 +46,7 @@ def MemberShip_tier(request):
     
 # Create your views here.
 def index(request):
+    
     user = request.user
     print(user)
     if user.is_authenticated:
