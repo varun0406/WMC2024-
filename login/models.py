@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import JSONField
 
 # Create your models here.
 class Profile(models.Model):
@@ -52,8 +53,9 @@ class Testimonial(models.Model):
         username = models.CharField(max_length=100)
         Name= models.CharField(max_length=100)
         Occupation= models.CharField(max_length=100)
+        rating=models.IntegerField(default=1)
         Testimonial_topic=  models.CharField(max_length=100)
         testimonial = models.TextField()
         testimonial_date = models.DateTimeField(auto_now_add=True)
         def __str__(self):
-            return f"{self.user_id} : {self.testimonial} : {self.testimonial_date}"
+            return f"{self.username} : {self.testimonial} : {self.testimonial_date}"

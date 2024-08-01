@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Venue, Organization, Event
+from .models import Venue, Organization, Event,Question,Quiz
 from .forms import VenueForm, OrganizationForm, EventForm
 from login.models import Profile
 
@@ -9,6 +9,9 @@ def admin_dashboard(request):
     organization_form = OrganizationForm()
     event_form = EventForm()
     user = request.user
+
+    q=Quiz.objects.get(title='aom')
+    print(q.questions.all())
     
     if user.is_authenticated:
         user_id = user.username
@@ -21,6 +24,34 @@ def admin_dashboard(request):
     else:
         return render(request, 'index.html', {"alert": "You have to login first to access This page"})
     
+    if request.method == 'POST':
+        if 'add_question' in request.POST:
+            t=request.POST.get('question-text')
+            q1=request.POST.get('mcq1')
+            q2=request.POST.get('mcq2')
+            q3=request.POST.get('mcq3')
+            q4=request.POST.get('mcq4')
+            ans=request.POST.get('answer')
+
+            Question.objects.create(text=t,option1=q1,option2=q2,option3=q3,option4=q4,correct_option=ans)
+            return redirect('events:admin_dashboard')
+    if request.method == 'POST':
+        if 'Create_Quiz' in request.POST:
+            title = request.POST.get('title')
+            questions = request.POST.getlist('questions[]')
+
+            quiz = Quiz(title=title)
+            quiz.save()
+
+            for question_id in questions:
+                question = Question.objects.get(id=question_id)
+                quiz.questions.add(question)
+
+            return redirect('events:admin_dashboard')  # redirect to quiz list page
+            # t=request.POST.get('title')
+            # q1=request.POST.get('questions')
+            # Quiz.objects.create(text=t,questions=q1)
+            # return redirect('events:admin_dashboard')
     if request.method == 'POST':
         if 'create_venue' in request.POST:
             venue_form = VenueForm(request.POST, request.FILES)
@@ -42,6 +73,7 @@ def admin_dashboard(request):
     venues = Venue.objects.all()
     organizations = Organization.objects.all()
     events = Event.objects.all()
+    questions=Question.objects.all()
 
     # Render the admin dashboard template with context data
     return render(request, 'admin.html', {
@@ -51,6 +83,7 @@ def admin_dashboard(request):
         'venues': venues,
         'organizations': organizations,
         'events': events,
+        'que':questions,
     })
 def edit_venue(request, venue_id):
     venue = get_object_or_404(Venue, id=venue_id)

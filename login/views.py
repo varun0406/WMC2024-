@@ -147,9 +147,11 @@ def About(request):
     else:
         user_id= None
         user_profile = None
+    testi = test.objects.all()
     params={
         'user_ID':user_id,
-        'user_profile':user_profile
+        'user_profile':user_profile,
+        'test':testi
         }
     return render(request,'About.html',params)
 
@@ -344,7 +346,7 @@ def Membership_Buy(request):
         profile.KarmaPoints = Karma_Available
         profile.Membership_license = tier
         profile.save()
-        return render(request,'index.html', {"alert": f"You successfully bought our {tier} membership."},params)
+        return render(request,'index.html', {"alert": f"You successfully bought our {tier} membership.","params":params})
     return render(request,'Membership_Buy.html',params)
 
 
@@ -368,9 +370,14 @@ def Testimonial(request):
         try:
             user_testimonial = test.objects.get(username=user_id)
         except test.DoesNotExist:
-            user_testimonial=None
+            if user_profile is None:
+                user_testimonial="h"
+            elif user_profile.Membership_license=="None":
+                user_testimonial="h"
+            else:
+                user_testimonial=None
     else:
-        user_testimonial=None
+        user_testimonial="h"
     testi = test.objects.all()
     params={
         'user_ID':user_id,
@@ -402,15 +409,36 @@ def Review(request):
         occupation=request.POST.get('occupation')
         T_topic=request.POST.get('Review_topic')
         testimonial=request.POST.get('opinion')
+        rati=request.POST.get('rating')
         print(Name,occupation,T_topic,testimonial)
         Testimo, created=test.objects.get_or_create(username=user_id)
         Testimo.Name=Name
         Testimo.Occupation=occupation
         Testimo.Testimonial_topic=T_topic
         Testimo.testimonial=testimonial
+        Testimo.rating=rati
+        print(rati)
         Testimo.save()
     return render(request,'review.html',params)
 
+
+def Karma_Quiz(request):
+    user = request.user
+    if user.is_authenticated:
+        user_id = user.username
+        try:
+            user_profile = Profile.objects.get(user_id=user_id)
+        except Profile.DoesNotExist:
+            user_profile = None
+            return render(request, "Create_Profile.html", {"alert": "You need to log in first to access this page"})
+    else:
+        return render(request, "index.html", {"alert": "You need to log in first to access this page"})
+    
+    params = {
+        'user_ID': user_id,
+        'user_profile': user_profile
+    }
+    return render(request, 'quiz.html', params)
 
 
 def ticket(request,slug):
@@ -429,3 +457,4 @@ def ticket(request,slug):
         }
         return render(request,"ticket.html",params)
     
+
