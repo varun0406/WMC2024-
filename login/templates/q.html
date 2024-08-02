@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Javascript Quiz</title>
+<link rel="stylesheet" href="style1.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<style>
+    .content {
+margin-top: 54px;
+}
+.header {
+padding: 15px;
+position: fixed;
+top: 0;
+width: 100%;
+z-index: 9999;
+}
+.left-title {
+width: 80px;
+color: #fff;
+font-size: 18px;
+float: left;
+}
+.right-title {
+width: 150px;
+text-align: right;
+float: right;
+color: #fff;
+}
+.quiz-body {
+margin-top: 15px;
+padding-bottom: 50px;
+}
+.option-block-container {
+margin-top: 20px;
+max-width: 420px;
+}
+.option-block {
+padding: 10px;
+background: aliceblue;
+border: 1px solid #84c5fe;
+margin-bottom: 10px;
+cursor: pointer;
+}
+.result-question {
+font-weight: bold;
+}
+.c-wrong {
+margin-left: 20px;
+color: #ff0000;
+}
+.c-correct {
+margin-left: 20px;
+color: green;
+}
+.last-row {
+border-bottom: 1px solid #ccc;
+padding-bottom: 25px;
+margin-bottom: 25px;
+}
+.res-header {
+border-bottom: 1px solid #ccc;
+margin-bottom: 15px;
+padding-bottom: 15px;
+}
+h4{
+    color:white;
+}
+*{
+    background-color:rgb(22, 28, 56);
+    color:white
+} 
+.form-check-label {
+    padding-left: 1.25rem;
+    margin-bottom: 0;
+    cursor: pointer;
+    background-color: aliceblue;
+}
+#optionval{
+    background-color: aliceblue;
+}
+.res-header {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    color: white;
+}
+.result-question {
+    font-weight: bold;
+    color: white;
+}
+.res-header{
+   color:white;}
+
+b, strong {
+    font-weight: inherit;
+    color: white;
+}
+#optionval {
+    background-color: aliceblue;
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+#quiz_instruction {
+    font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+.quiz,
+.scores {
+    margin: 50px auto 0 auto;
+    max-width: 400px;
+}
+
+#top {
+    color: green;
+}
+
+.containerNew {
+    border: 5px solid;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 580px;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+
+p {
+    margin: 15px 15px;
+}
+
+.landing {
+    text-align: center;
+}
+
+.scoresHeader {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+.timer {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+button {
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #52865a;
+    border-radius: 5px;
+    border: 0;
+    padding: 20px;
+}
+
+button:hover {
+    background-color: #2a8d12;
+}
+
+.options button {
+    display: block;
+}
+
+input[type="text"] {
+    font-size: 100%;
+}
+
+.hide {
+    display: none;
+}
+
+.feedback {
+    font-style: bold;
+    font-size: 120%;
+    margin-top: 20px;
+    padding-top: 15px;
+    color: #fff;
+    border-top: 2px solid #4B0082;
+}
+
+ol {
+    padding-left: 15px;
+    max-height: 600px;
+    overflow: auto;
+}
+
+li {
+    padding: 5px;
+    list-style: decimal inside none;
+}
+
+li:nth-child(odd) {
+    background-color: #dfdae7;
+}
+
+@media screen and (max-width: 768px) {
+    .containerNew {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .containerNew {
+        width: 90%;
+    }
+
+    .quiz,
+    .scores {
+        max-width: 90%;
+    }
+}
+</style>
+</head>
+<body>
+   <div id="quiz_instruction" style="background-color:black;width:100%;height:100vh;position:fixed;top:0px;left:0px;z-index:100">
+    <div class="containerNew" >
+        <header>
+            <div>
+                <a href="./highscore.html">
+                    <button class="scores-header" 
+                            id="view-high-scores">
+                        View High Scores
+                    </button>
+                </a>
+            </div>
+ 
+            <div class="timer">
+                <p>
+                    Time:
+                    <span id="timer">
+                        0
+                    </span>
+                </p>
+            </div>
+        </header>
+ 
+        <main class="quiz">
+            <div id="quiz-start">
+                <div class="landing" 
+                     id="start-screen">
+                    <h1 id="top">
+                        GeeksforGeeks
+                    </h1>
+                    <h1>
+                        Coding Quiz Challenge
+                    </h1>
+                    <p>
+                        Try to answer the following
+                        code-related questions with
+                        in the time limit. Keep in
+                        mind that incorrect answers
+                        will penalize your score/time
+                        by ten seconds!
+                    </p>
+                    <button id="start">
+                        Start Quiz
+                    </button>
+                </div>
+            </div>
+ 
+            <div class="hide" id="questions">
+                <h2 id="question-words"></h2>
+                <div class="options" id="options">
+                </div>
+            </div>
+ 
+            <div class="hide" id="quiz-end">
+                <h2>All Done!</h2>
+                <p>Your final score is:
+                    <span id="score-final">
+                    </span>
+                </p>
+                <p>
+                    Please enter your name:
+                    <input type="text" 
+                           id="name" 
+                           max="3" />
+                    <button id="submit-score">
+                        Submit
+                    </button>
+                </p>
+            </div>
+ 
+            <div id="feedback" 
+                 class="feedback hide">
+            </div>
+        </main>
+    </div>
+   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="header" style="background-color: rgb(22, 28, 56);">
+
+
+
+
+
+
+
+
+
+<div class="left-title">JS Quiz</div>
+
+
+
+<button style="position:absolute;top:10px;left:50%;display:none" type="button" id="home_btn" class="btn btn-primary">Home Page</button>
+<form action="" id="quiz_form" method="POST">
+    {% csrf_token %}
+    <input type="hidden" id="quiz_result" name="quiz_result" value="0" required>
+
+<div class="right-title">Total Questions: <span id="tque"></span></div>
+<div class="clearfix"></div>
+</header>
+<div class="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-12">
+<div id="result" class="quiz-body">
+<form name="quizForm" onSubmit="">
+<fieldset class="form-group">
+<h4><span id="qid">1.</span> <span id="question"></span></h4>
+<div class="option-block-container" id="question-options"> 
+</div> <!-- End of option block -->
+</fieldset>
+<button name="previous" id="previous" class="btn btn-success">Previous</button>
+&nbsp;
+<button name="next" id="next" class="btn btn-success">Next</button>
+</form>
+</div>
+</div> <!-- End of col-sm-12 -->
+</div> <!-- End of row -->
+</div> <!-- ENd of container fluid -->
+</div> <!-- End of content -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script src="app.js"></script>
+<script>
+    /* Created and coded by Abhilash Narayan */
+/* Quiz source: w3schools.com */
+console.log("hello")
+var quizData = {{ quiz_data|safe }};
+console.log(quizData)
+var quiz = {
+"JS": [
+
+]
+}
+
+
+{% comment %} quizData.forEach(function(item) {
+            var questionData = {
+                "id": item.id,
+                "question": item.question,
+                "options": [
+                    {
+                        "a": item.options.a,
+                        "b": item.options.b,
+                        "c": item.options.c,
+                        "d": item.options.d
+                    }
+                ],
+                "answer": item.answer,
+                "score": item.score,
+                "status": item.status
+            };
+            
+            quiz.JS.push(questionData);
+        }); {% endcomment %}
+
+
+
+        quizData.forEach(function(item) {
+            // Determine the correct answer based on the letter
+            var correctAnswer = "";
+            switch (item.answer) {
+                case 'Option1':
+                    correctAnswer = item.options.a;
+                    break;
+                case 'Option2':
+                    correctAnswer = item.options.b;
+                    break;
+                case 'Option3':
+                    correctAnswer = item.options.c;
+                    break;
+                case 'Option4':
+                    correctAnswer = item.options.d;
+                    break;
+            }
+
+            var questionData = {
+                "id": item.id,
+                "question": item.question,
+                "options": [
+                    {
+                        "a": item.options.a,
+                        "b": item.options.b,
+                        "c": item.options.c,
+                        "d": item.options.d
+                    }
+                ],
+                "answer": correctAnswer,
+                "score": item.score,
+                "status": item.status
+            };
+            quiz.JS.push(questionData);
+        });
+
+
+
+
+
+
+
+        document.getElementById('start').onclick = function() {
+            document.getElementById('quiz_instruction').style.display='none';
+        }
+
+
+
+
+
+
+
+
+
+
+
+console.log('function')
+
+function func_btn(){
+    console.log('hello_function_executed')
+
+    window.location.href = "https://example.com";
+    document.getElementById('quiz_result').value = this.score;
+    document.getElementById('quiz_form').submit();
+}
+
+
+
+var score = 0; // Replace with your actual score value
+
+    document.getElementById('home_btn').onclick = function() {
+        console.log('hello_function_executed');
+        // Check if score is defined and is a number
+        if (score !== undefined && typeof score === 'number') {
+            // Convert integer to string
+            var scoreString = score.toString();
+            
+            // Set the value of the input element
+            document.getElementById('quiz_result').value = scoreString;
+            
+            // Log the new value of the input element
+            console.log(document.getElementById('quiz_result').value);
+        } else {
+            console.error('Score is not defined or is not a number');
+        }
+
+        document.getElementById('quiz_form').submit();
+
+    };
+
+var quizApp = function () {
+this.score = 0;
+this.qno = 1;
+this.currentque = 0;
+var totalque = quiz.JS.length;
+this.displayQuiz = function (cque) {
+this.currentque = cque;
+if (this.currentque < totalque) {
+$("#tque").html(totalque);
+$("#previous").attr("disabled", false);
+$("#next").attr("disabled", false);
+$("#qid").html(quiz.JS[this.currentque].id + '.');
+$("#question").html(quiz.JS[this.currentque].question);
+$("#question-options").html("");
+for (var key in quiz.JS[this.currentque].options[0]) {
+if (quiz.JS[this.currentque].options[0].hasOwnProperty(key)) {
+$("#question-options").append(
+"<div class='form-check option-block'>" +
+"<label class='form-check-label'>" +
+"<input type='radio' class='form-check-input' name='option' id='q" + key + "' value='" + quiz.JS[this.currentque].options[0][key] + "'><span id='optionval'>" +
+quiz.JS[this.currentque].options[0][key] +
+"</span></label>"
+);
+}
+}
+}
+if (this.currentque <= 0) {
+$("#previous").attr("disabled", true);
+}
+if (this.currentque >= totalque) {
+
+$('#next').attr('disabled', true);
+for (var i = 0; i < totalque; i++) {
+this.score = this.score + quiz.JS[i].score;
+}
+score=this.score
+
+
+
+
+
+document.getElementById('home_btn').style.display = 'block';
+
+
+
+
+
+
+
+
+return this.showResult(this.score);
+}
+}
+this.showResult = function (scr) {
+$("#result").addClass('result');
+$("#result").html("<h1 class='res-header'>Total Score: &nbsp;" + scr + '/' + totalque + "</h1>");
+for (var j = 0; j < totalque; j++) {
+var res;
+if (quiz.JS[j].score == 0) {
+res = '<span class="wrong">' + quiz.JS[j].score + '</span><i class="fa fa-remove c-wrong"></i>';
+} else {
+res = '<span class="correct">' + quiz.JS[j].score + '</span><i class="fa fa-check c-correct"></i>';
+}
+$("#result").append(
+'<div class="result-question"><span>Q ' + quiz.JS[j].id + '</span> &nbsp;' + quiz.JS[j].question + '</div>' +
+'<div><b>Correct answer:</b> &nbsp;' + quiz.JS[j].answer + '</div>' +
+'<div class="last-row"><b>Score:</b> &nbsp;' + res +
+'</div>'
+);
+}
+}
+this.checkAnswer = function (option) {
+var answer = quiz.JS[this.currentque].answer;
+option = option.replace(/</g, "&lt;") //for <
+option = option.replace(/>/g, "&gt;") //for >
+option = option.replace(/"/g, "&quot;")
+if (option == quiz.JS[this.currentque].answer) {
+if (quiz.JS[this.currentque].score == "") {
+quiz.JS[this.currentque].score = 1;
+quiz.JS[this.currentque].status = "correct";
+}
+} else {
+quiz.JS[this.currentque].status = "wrong";
+}
+}
+this.changeQuestion = function (cque) {
+this.currentque = this.currentque + cque;
+this.displayQuiz(this.currentque);
+}
+}
+var jsq = new quizApp();
+var selectedopt;
+$(document).ready(function () {
+jsq.displayQuiz(0);
+$('#question-options').on('change', 'input[type=radio][name=option]', function (e) {
+//var radio = $(this).find('input:radio');
+$(this).prop("checked", true);
+selectedopt = $(this).val();
+});
+});
+$('#next').click(function (e) {
+e.preventDefault();
+if (selectedopt) {
+jsq.checkAnswer(selectedopt);
+}
+jsq.changeQuestion(1);
+});
+$('#previous').click(function (e) {
+e.preventDefault();
+if (selectedopt) {
+jsq.checkAnswer(selectedopt);
+}
+jsq.changeQuestion(-1);
+});
+
+
+</script>
+</body>
+</html>

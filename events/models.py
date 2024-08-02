@@ -77,13 +77,12 @@ class Ticket(models.Model):
         return f"{self.event} - {self.attendee_name} - ${self.total_paid_price}"
 
 # quiz/models.py
-
 class Question(models.Model):
     text = models.CharField(max_length=255)
-    A = models.CharField(max_length=255)
-    B = models.CharField(max_length=255)
-    C = models.CharField(max_length=255)
-    D = models.CharField(max_length=255)
+    a = models.CharField(max_length=255)
+    b = models.CharField(max_length=255)
+    c = models.CharField(max_length=255)
+    d = models.CharField(max_length=255)
     CORRECT_OPTION_CHOICES = [
         ('option1', 'Option 1'),
         ('option2', 'Option 2'),
@@ -96,13 +95,22 @@ class Question(models.Model):
         default='option1'
     )
 
-    def __str__(self):
+    def _str_(self):
         return self.text
 
 class Quiz(models.Model):
     title = models.CharField(max_length=255)
     questions = models.ManyToManyField(Question)
 
-    def __str__(self):
+    def _str_(self):
         return self.title
+    
 
+class QuizResult(models.Model):
+    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE,default=None)
+    quiz_id = models.CharField(max_length=100)  # Assuming quiz_id is a string
+    obtained_marks = models.FloatField()
+    total_marks = models.FloatField()
+
+    def _str_(self):
+        return f"Quiz {self.quiz_id}: {self.obtained_marks}/{self.total_marks}"
