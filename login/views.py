@@ -8,7 +8,7 @@ from decouple import config
 from login.models import Profile,KarmaPoints,Transactions,UserQuery
 from .models import Testimonial as test
 from django.http import Http404
-from events.models import Event,Venue,Organization,Ticket
+from events.models import Event,Venue,Organization,Ticket,Quiz,QuizResult
 
 def MemberShip_tier(request):
     if request.method=='POST':
@@ -415,6 +415,7 @@ def Review(request):
         Testimo.rating=rati
         print(rati)
         Testimo.save()
+        return render(request,'index.html', {"alert": "Thanks for giving us your prestigious Review"})
     return render(request,'review.html',params)
 
 
@@ -429,10 +430,12 @@ def Karma_Quiz(request):
             return render(request, "Create_Profile.html", {"alert": "You need to log in first to access this page"})
     else:
         return render(request, "index.html", {"alert": "You need to log in first to access this page"})
-    
+    q=Quiz.objects.all()
+    print(q)
     params = {
         'user_ID': user_id,
-        'user_profile': user_profile
+        'user_profile': user_profile,
+        'quiz_data':q
     }
     return render(request, 'quiz.html', params)
 
@@ -454,3 +457,83 @@ def ticket(request, ticket_id=None):
         return render(request,"ticket.html",params)
     
 
+def Karma_Quiz(request):
+    user = request.user
+    if user.is_authenticated:
+        user_id = user.username
+        try:
+            user_profile = Profile.objects.get(user_id=user_id)
+        except Profile.DoesNotExist:
+            user_profile = None
+            return render(request, "Create_Profile.html", {"alert": "You need to log in first to access this page"})
+    else:
+        return render(request, "index.html", {"alert": "You need to log in first to access this page"})
+    q=Quiz.objects.all()
+    print(q)
+    params = {
+        'user_ID': user_id,
+        'user_profile': user_profile,
+        'quiz_data':q
+    }
+    return render(request, 'quiz.html', params)
+
+
+
+def quiz_attempt(request,quiz_id):
+    user=request.user
+    user_id=user.username
+    if not user.is_authenticated:
+        return render(request, "index.html", {"alert": "You need to log in first to access this page"})
+    if not Profile.objects.filter(user_id=user_id).exists():
+        return render(request, "Create_Profile.html", {"alert": "You need to create a profile first to access this page"})
+    if request.method=='POST':
+        
+        
+        q=Quiz.objects.get(title='quiz2')
+        p=q.questions.all()
+        quiz_obtained_marks=request.POST.get('quiz_result')
+        quiz_data = [
+        {
+            "id": z.id,
+            "question": z.text,
+            "options": {
+                "a": z.a,
+                "b": z.b,
+                "c": z.c,
+                "d": z.d
+            },
+            "answer": z.correct_option,
+            "score": 0,
+            "status": ""
+        }
+        for z in p]
+        user_id=Profile.objects.get(user_id=user_id)
+        QuizResult.objects.create(
+            user_id=user_id,
+            quiz_id=q.id,
+            obtained_marks=quiz_obtained_marks,
+            total_marks=len(quiz_data)
+        )
+        print('hello')
+        return redirect('/')
+    q=Quiz.objects.get(id=quiz_id)
+    p=q.questions.all()
+    quiz_data = [
+        {
+            "id": z.id,
+            "question": z.text,
+            "options": {
+                "a": z.a,
+                "b": z.b,
+                "c": z.c,
+                "d": z.d
+            },
+            "answer": z.correct_option,
+            "score": 0,
+            "status": ""
+        }
+        for z in p
+    ]
+    print(quiz_data)
+    params={"quiz_data":quiz_data}
+    return render(request,'q.html',params)

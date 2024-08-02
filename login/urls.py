@@ -19,6 +19,9 @@ urlpatterns = [
     path("Testimonials",views.Testimonial,name="Testimonials"),
     path("Review",views.Review,name="Review"),
     path("Quiz", views.Karma_Quiz, name="Karma_Quiz"),
+    path('Quiz/<int:quiz_id>/', views.quiz_attempt, name='quiz_attempt'),
+   
+    
  
     path('ticket/<int:ticket_id>/', views.ticket, name='ticket_detail'),
 

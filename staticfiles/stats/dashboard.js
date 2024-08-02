@@ -33,7 +33,7 @@ function updateLeaderboardTable(data) {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${index + 1}</td>
-            <td><a href="/donator/${donator.slug}/">${donator.Donaters_UserID}</a></td>
+            <td><a href="/Donaters_Dashboard/${donator.slug}/">${donator.Donaters_UserID}</a></td>
             <td>businessman</td>
             <td><strong>${donator.value}</strong></td>
         `;
