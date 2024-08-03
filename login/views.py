@@ -461,6 +461,7 @@ def Karma_Quiz(request):
     user = request.user
     if user.is_authenticated:
         user_id = user.username
+        abc= user.username
         try:
             user_profile = Profile.objects.get(user_id=user_id)
         except Profile.DoesNotExist:
@@ -469,11 +470,18 @@ def Karma_Quiz(request):
     else:
         return render(request, "index.html", {"alert": "You need to log in first to access this page"})
     q=Quiz.objects.all()
-    print(q)
+    quiz_results = QuizResult.objects.filter(user_id=user_profile.id)
+    print(quiz_results)
+    quiz_given_user = []
+    for result in quiz_results:
+        quiz_given_user.append(int(result.quiz_id))
+    print("hello")
+    print(quiz_given_user)
     params = {
         'user_ID': user_id,
         'user_profile': user_profile,
-        'quiz_data':q
+        'quiz_data':q,
+        'quiz_given_user':quiz_given_user
     }
     return render(request, 'quiz.html', params)
 
@@ -488,9 +496,7 @@ def quiz_attempt(request,quiz_id):
     if not Profile.objects.filter(user_id=user_id).exists():
         return render(request, "Create_Profile.html", {"alert": "You need to create a profile first to access this page"})
     if request.method=='POST':
-        
-        
-        q=Quiz.objects.get(title='quiz2')
+        q=Quiz.objects.get(id=quiz_id)
         p=q.questions.all()
         quiz_obtained_marks=request.POST.get('quiz_result')
         quiz_data = [
@@ -498,10 +504,10 @@ def quiz_attempt(request,quiz_id):
             "id": z.id,
             "question": z.text,
             "options": {
-                "a": z.a,
-                "b": z.b,
-                "c": z.c,
-                "d": z.d
+                "a": z.A,
+                "b": z.B,
+                "c": z.C,
+                "d": z.D
             },
             "answer": z.correct_option,
             "score": 0,
@@ -515,8 +521,23 @@ def quiz_attempt(request,quiz_id):
             obtained_marks=quiz_obtained_marks,
             total_marks=len(quiz_data)
         )
+
+        karma_points_get = int(quiz_obtained_marks)*20 // len(quiz_data)
+        a = request.user
+        UserName = a.username
+        print(karma_points_get)
+        print("hello")
+        print(quiz_obtained_marks)
+        print(len(quiz_data))
+        KarmaPoints.objects.create(
+            user_id=UserName,
+            karma_points_type="Giving Quiz",
+            karma_points=karma_points_get,
+        )
+
+
         print('hello')
-        return redirect('/')
+        return render(request, "index.html", {"alert": f"Your quiz is successfully submitted and you received {karma_points_get} karma points"})
     user_id=Profile.objects.get(user_id=user_id)
     if QuizResult.objects.filter(user_id=user_id,quiz_id=quiz_id).exists():
         return HttpResponse("You have already attempted this quiz")
@@ -527,10 +548,10 @@ def quiz_attempt(request,quiz_id):
             "id": z.id,
             "question": z.text,
             "options": {
-                "a": z.a,
-                "b": z.b,
-                "c": z.c,
-                "d": z.d
+                "a": z.A,
+                "b": z.B,
+                "c": z.C,
+                "d": z.D
             },
             "answer": z.correct_option,
             "score": 0,
