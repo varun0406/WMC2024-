@@ -77,10 +77,10 @@ class Ticket(models.Model):
 # quiz/models.py
 class Question(models.Model):
     text = models.CharField(max_length=255)
-    a = models.CharField(max_length=255)
-    b = models.CharField(max_length=255)
-    c = models.CharField(max_length=255)
-    d = models.CharField(max_length=255)
+    A = models.CharField(max_length=255)
+    B = models.CharField(max_length=255)
+    C = models.CharField(max_length=255)
+    D = models.CharField(max_length=255)
     CORRECT_OPTION_CHOICES = [
         ('option1', 'Option 1'),
         ('option2', 'Option 2'),

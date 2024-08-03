@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Query Details</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+		}
+		.container {
+			width: 80%;
+			margin: 40px auto;
+			padding: 20px;
+			background-color: #f9f9f9;
+			border: 1px solid #ddd;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+		.query-details {
+			margin-bottom: 20px;
+		}
+		.query-details h2 {
+			margin-top: 0;
+		}
+		.query-details p {
+			margin-bottom: 10px;
+		}
+		.button {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.button:hover {
+			background-color: #3e8e41;
+		}
+		.button-back {
+			background-color: #999;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.button-back:hover {
+			background-color: #777;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="query-details">
+			<h2>Query Details</h2>
+			<p><strong>Query ID:</strong> {{ query.query_id }}</p>
+			<p><strong>User ID:</strong> {{ query.user_id }}</p>
+			<p><strong>User Email:</strong> {{ query.user_email }}</p>
+			<p><strong>Query:</strong> {{ query.query }}</p>
+			<p><strong>Query Date:</strong> {{ query.query_date }}</p>
+			<p><strong>Query Status:</strong> {{ query.query_status }}</p>
+		</div>
+		<button class="button" onclick="window.location.href ='/query/answered/{{query.query_id}}'">Query Answered</button>
+		<button class="button-back" onclick="location.href='/administ'">Back to Admin</button>
+	</div>
+
+	<script>
+		function markQueryAnswered() {
+			// Add your logic here to mark the query as answered
+			// For example, you can make an AJAX request to update the query status
+			window.location.href = '/query/{{query.query_id}}';
+		}
+	</script>
+</body>
+</html>
