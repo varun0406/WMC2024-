@@ -5,7 +5,7 @@ from .models import Venue, Event, Organization
 class VenueForm(forms.ModelForm):
     class Meta:
         model = Venue
-        fields = ['venue_name', 'venue_address', 'venue_contact', 'venue_capacity', 'image']
+        fields = ['venue_name', 'venue_address', 'venue_contact', 'venue_capacity']
 
 class OrganizationForm(forms.ModelForm):
     class Meta:

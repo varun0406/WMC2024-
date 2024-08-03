@@ -21,7 +21,7 @@ class Venue(models.Model):
     venue_address = models.TextField(blank=True, null=True)
     venue_contact = models.CharField(max_length=255, blank=True, null=True)
     venue_capacity = models.IntegerField()
-    image=CloudinaryField('image',blank=True,null=True)
+    
 
     def __str__(self):
         return self.venue_name

@@ -112,14 +112,14 @@ def edit_organization(request, org_id):
             return redirect('events:admin_dashboard')
     else:
         form = OrganizationForm(instance=organization)
-    return render(request, 'edit_organization.html', {'form': form})
+    return render(request, 'edit_organisation.html', {'form': form})
 
 def delete_organization(request, org_id):
     organization = get_object_or_404(Organization, id=org_id)
     if request.method == 'POST':
         organization.delete()
         return redirect('events:admin_dashboard')
-    return render(request, 'delete_organization.html', {'organization': organization})
+    return render(request, 'delete_organisation.html', {'organization': organization})
 
 def edit_event(request, event_id):
     event = get_object_or_404(Event, id=event_id)

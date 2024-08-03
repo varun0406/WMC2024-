@@ -534,6 +534,7 @@ def quiz_attempt(request,quiz_id):
             karma_points_type="Giving Quiz",
             karma_points=karma_points_get,
         )
+        Profile.objects.update(user_id=UserName,KarmaPoints=Profile.objects.get(user_id=UserName).KarmaPoints+karma_points_get)
 
 
         print('hello')
