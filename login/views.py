@@ -482,6 +482,7 @@ def Karma_Quiz(request):
 def quiz_attempt(request,quiz_id):
     user=request.user
     user_id=user.username
+    
     if not user.is_authenticated:
         return render(request, "index.html", {"alert": "You need to log in first to access this page"})
     if not Profile.objects.filter(user_id=user_id).exists():
@@ -516,6 +517,9 @@ def quiz_attempt(request,quiz_id):
         )
         print('hello')
         return redirect('/')
+    user_id=Profile.objects.get(user_id=user_id)
+    if QuizResult.objects.filter(user_id=user_id,quiz_id=quiz_id).exists():
+        return HttpResponse("You have already attempted this quiz")
     q=Quiz.objects.get(id=quiz_id)
     p=q.questions.all()
     quiz_data = [
