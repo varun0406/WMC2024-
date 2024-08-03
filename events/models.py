@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import JSONField
-
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 from django.urls import reverse
@@ -21,7 +21,7 @@ class Venue(models.Model):
     venue_address = models.TextField(blank=True, null=True)
     venue_contact = models.CharField(max_length=255, blank=True, null=True)
     venue_capacity = models.IntegerField()
-    image=models.ImageField(upload_to='media/',blank=True,null=True)
+    image=CloudinaryField('image',blank=True,null=True)
 
     def __str__(self):
         return self.venue_name
@@ -34,10 +34,8 @@ class Event(models.Model):
     event_e_time = models.DateTimeField()
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
-    Image1=models.ImageField(upload_to='media/',blank=True,null=True)
-    Image2=models.ImageField(upload_to='media/',blank=True,null=True)
-    Image3=models.ImageField(upload_to='media/',blank=True,null=True)
-    Image4=models.ImageField(upload_to='media/',blank=True,null=True)
+    Image1=CloudinaryField('image',blank=True,null=True)
+   
     Event_Tickets=models.IntegerField(default=0)
     slug = models.SlugField(max_length=255, unique=True, blank=True)
 
