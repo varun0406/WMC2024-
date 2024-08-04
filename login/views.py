@@ -419,25 +419,6 @@ def Review(request):
     return render(request,'review.html',params)
 
 
-def Karma_Quiz(request):
-    user = request.user
-    if user.is_authenticated:
-        user_id = user.username
-        try:
-            user_profile = Profile.objects.get(user_id=user_id)
-        except Profile.DoesNotExist:
-            user_profile = None
-            return render(request, "Create_Profile.html", {"alert": "You need to log in first to access this page"})
-    else:
-        return render(request, "index.html", {"alert": "You need to log in first to access this page"})
-    q=Quiz.objects.all()
-    print(q)
-    params = {
-        'user_ID': user_id,
-        'user_profile': user_profile,
-        'quiz_data':q
-    }
-    return render(request, 'quiz.html', params)
 
 
 def ticket(request, ticket_id=None):
