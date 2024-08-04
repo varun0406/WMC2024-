@@ -36,6 +36,18 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'wmc-430316.as.r.appspot.com']
 
+#import cloudinary
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+#cloudinary.config
+
+cloudinary.config(
+    cloud_name = "dmsa3ib6y",
+    api_key = "138859459485269",
+    api_secret = "ccvozh5avpGJB7loe4duy2Iinr8"
+)
 
 
 # Application definition

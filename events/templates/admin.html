@@ -245,6 +245,14 @@
                         {% endfor %}
                     </ul>
                 </div>
+                <div class="manage-list">
+                    <h3>Query</h3>
+                    <ul id="event_list">
+                        {% for query in querys %}
+                            <li>{{ forloop.counter }} - <a href="/query/{{query.query_id}}">Details</a> - <a href="/query/answered/{{query.query_id}}">Answered</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </section>
         <section class="question-form-section create-section">
@@ -313,3 +321,4 @@
     </main>
 </body>
 </html>
+

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Venue, Organization, Event,Question,Quiz
 from .forms import VenueForm, OrganizationForm, EventForm
-from login.models import Profile
+from login.models import Profile,UserQuery
 
 def admin_dashboard(request):
     # Initialize forms for GET request
@@ -72,6 +72,7 @@ def admin_dashboard(request):
     organizations = Organization.objects.all()
     events = Event.objects.all()
     questions=Question.objects.all()
+    query=UserQuery.objects.all()
 
     # Render the admin dashboard template with context data
     return render(request, 'admin.html', {
@@ -82,6 +83,7 @@ def admin_dashboard(request):
         'organizations': organizations,
         'events': events,
         'que':questions,
+        'querys':query,
     })
 def edit_venue(request, venue_id):
     venue = get_object_or_404(Venue, id=venue_id)
@@ -110,14 +112,14 @@ def edit_organization(request, org_id):
             return redirect('events:admin_dashboard')
     else:
         form = OrganizationForm(instance=organization)
-    return render(request, 'edit_organization.html', {'form': form})
+    return render(request, 'edit_organisation.html', {'form': form})
 
 def delete_organization(request, org_id):
     organization = get_object_or_404(Organization, id=org_id)
     if request.method == 'POST':
         organization.delete()
         return redirect('events:admin_dashboard')
-    return render(request, 'delete_organization.html', {'organization': organization})
+    return render(request, 'delete_organisation.html', {'organization': organization})
 
 def edit_event(request, event_id):
     event = get_object_or_404(Event, id=event_id)
@@ -136,3 +138,12 @@ def delete_event(request, event_id):
         event.delete()
         return redirect('events:admin_dashboard')
     return render(request, 'delete_event.html', {'event': event})
+
+def query_details(request, query_id):
+    query = get_object_or_404(UserQuery, query_id=query_id)
+    return render(request, 'query_details.html', {'query': query})
+
+def query_answered(request, query_id):
+    query = get_object_or_404(UserQuery, query_id=query_id)
+    query.delete()
+    return redirect('/administ')

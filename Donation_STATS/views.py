@@ -49,7 +49,7 @@ def donaters(request):
         karma_points_obj, karma_points_created = KarmaPoints.objects.get_or_create(
             user_id=payer_id,
             karma_points_type="Donation",
-            karma_points=(Donation_amount),
+            karma_points=(Donation_amount)//10,
             reference_id=transaction_obj.transaction_id
         )
         karma_points_obj.save()
@@ -63,7 +63,7 @@ def donaters(request):
             donation_description=donation_description
         )
         donation_obj.save()
-        Profile.objects.filter(user_id=UserName).update(KarmaPoints=Profile.objects.get(user_id=UserName).KarmaPoints+Donation_amount)
+        Profile.objects.filter(user_id=UserName).update(KarmaPoints=Profile.objects.get(user_id=UserName).KarmaPoints+(Donation_amount//10))
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
             'leaderboard_group',
