@@ -27,16 +27,20 @@ class Venue(models.Model):
         return self.venue_name
 
 
+from django.db import models
+from django.urls import reverse
+from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
+
 class Event(models.Model):
     event_name = models.CharField(max_length=255)
     event_desc = models.TextField(blank=True, null=True)
     event_s_time = models.DateTimeField()
     event_e_time = models.DateTimeField()
-    venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
-    Image1=CloudinaryField('image',blank=True,null=True)
-   
-    Event_Tickets=models.IntegerField(default=0)
+    venue = models.ForeignKey('Venue', on_delete=models.CASCADE)
+    organization = models.ForeignKey('Organization', on_delete=models.CASCADE)
+    Image1 = CloudinaryField('image', blank=True, null=True)
+    Event_Tickets = models.IntegerField(default=0)
     slug = models.SlugField(max_length=255, unique=True, blank=True)
 
     def save(self, *args, **kwargs):

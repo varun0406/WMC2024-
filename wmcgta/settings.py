@@ -66,10 +66,17 @@ INSTALLED_APPS = [
     'Donation_STATS',
     "events",
     
+]
+CLOUDINARY_STORAGE = {
+    'CLOUDINARY_URL': 'cloudinary://138859459485269:ccvozh5avpGJB7loe4duy2Iinr8@dmsa3ib6y',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
     
 
 
-]
+
 
 # LEAFLET_CONFIG = {
 #     'DEFAULT_CENTER': (0, 0),
