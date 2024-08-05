@@ -42,8 +42,6 @@ Welcome to the Epsilon Program website, an immersive and engaging experience ins
 
 
 
-## URL Endpoints
-
 ### Donation Stats
 - **Leaderboard**: `/leaderboard/` - View the donation leaderboard.
 - **Donaters Dashboard**: `/Donaters_Dashboard/<slug:slug>/` - View the dashboard for a specific donater.
