@@ -3,18 +3,18 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <style>
-    body{
-        background: linear-gradient(to bottom right, #070630 0%,black 100%)
+    body {
+        background: black;
     }
     #map {
-        width: 60%; /* Set the width to 60% of the parent element */
+        width: 60%;
         height: 600px;
-        min-width: 800px; /* Set the minimum width to 800px */
-        max-width: 800px; /* Set the maximum width to 800px */
-        margin: 0 auto; /* Center the map horizontally */
-        border: 1px solid #ccc; /* Add a border around the map */
-        border-radius: 10px; /* Add a rounded corner effect */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a drop shadow effect */
+        min-width: 800px;
+        max-width: 800px;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
     .popup-content {
         padding: 10px;
@@ -22,19 +22,24 @@
         border: 1px solid black;
     }
     .map-title {
-        font-family: 'Playfair Display', serif; /* Use a stylish font */
-        font-size: 24px; /* Set the font size */
-        font-weight: bold; /* Make the font bold */
-        text-align: center; /* Center the text */
-        margin-bottom: 10px; /* Add some space between the title and the map */
+        font-family: 'Playfair Display', serif;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 10px;
     }
-    #image:before{
-        display:none;
-        z-index:-1;
+    #image:before {
+        display: none;
+        z-index: -1;
     }
-    #image  {
-        display:none;
-        z-index:-1;
+    #image {
+        display: none;
+        z-index: -1;
+    }
+    .popup-content {
+        padding: 10px;
+        background: white;
+        border: 0px;
     }
 </style>
 <div class="map-title" style="width:100%;display:flex;align-items:center;justify-content:center;position:absolute;top:106px">
@@ -44,40 +49,39 @@
 <div id="map" style="margin-top:160px;z-index:1"></div>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-    // Define the image bounds (southwest and northeast corners)
     var imageUrl = '/static/map.png'; // Replace with the path to your image
     var imageBounds = [[0, 0], [600, 800]]; // Adjust based on your image's dimensions
 
-    // Initialize the map
     var map = L.map('map', {
-        crs: L.CRS.Simple, // Use a simple coordinate reference system
-        minZoom: 0
+        crs: L.CRS.Simple,
+        minZoom: 0,
+        maxBounds: imageBounds, // Restrict the map view to the image bounds
+        maxBoundsViscosity: 1.0, // Ensure the map does not move out of bounds
+        zoomControl: true
     });
 
-    // Add the image overlay to the map with a minimum scale
     L.imageOverlay(imageUrl, imageBounds, {
-        minScale: 1 // Set the minimum scale to 1
+        minScale: 1
     }).addTo(map);
 
-    // Set the initial view of the map to the image bounds
     map.fitBounds(imageBounds);
 
-    // Define marker data with coordinates and labels
     var markers = [
-        {coords: [407, 320], label: 'Karma Center'},
-        {coords: [307, 414], label: 'Cult Site 1'},
-        {coords: [292, 266], label: 'Cult Site 2'},
-        {coords: [499, 510], label: 'Cult Site 3'},
-   
-   
+        {coords: [407, 220], label: 'Karma Center', imageUrl: 'https://c1.wallpaperflare.com/preview/770/373/177/art-of-living-international-center-meditation-hall-interior.jpg', description: 'The main Karma Center.'},
+        {coords: [267, 300], label: 'Cult Site 1', imageUrl: 'https://s7d2.scene7.com/is/image/sherwinwilliams/Science_of_Spirituality_8:SmartCropFiveToThree?wid=668&hei=400&fit=constrain,1', description: 'Cult Site 1'},
+        {coords: [562, 316], label: 'Cult Site 2', imageUrl: 'https://w0.peakpx.com/wallpaper/421/117/HD-wallpaper-spiritual-retreat-spires-angel-dome-trees-sky-spiritual-clouds-mountain-house-of-worship-water-arches-statue-stone-bridge-tower-blue.jpg', description: 'Cult Site 2'},
+        {coords: [499, 110], label: 'Cult Site 3', imageUrl: 'https://png.pngtree.com/thumb_back/fh260/background/20220812/pngtree-jaro-cathedral-christianity-worship-tower-photo-image_14324586.jpg', description: 'Cult Site 3'}
     ];
 
-    // Add markers to the map
     markers.forEach(function(marker) {
+        var popupContent = '<div class="popup-content">' +
+                            '<h3>' + marker.label + '</h3>' +
+                            '<img src="' + marker.imageUrl + '" alt="' + marker.label + '" style="width:100%;height:auto;">' +
+                            '<p>' + marker.description + '</p>' +
+                           '</div>';
         L.marker([marker.coords[1], marker.coords[0]]).addTo(map)
-            .bindPopup(marker.label);
+            .bindPopup(popupContent, { autoPan: false }); // Disable auto panning
     });
 </script>
-</body>
 
 {% endblock body %}

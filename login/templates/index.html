@@ -12,11 +12,12 @@
   <link href="/new/css/style.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="/static/base/css/stylecopy.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <style>
       :root {
         --marquee-width: 80vw;
         --marquee-height: 20vh;
-        /* --marquee-elements: 12; */ /* defined with JavaScript */
+        /* --marquee-elements: 12; / / defined with JavaScript */
         --marquee-elements-displayed: 5;
         --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
         --marquee-animation-duration: calc(var(--marquee-elements) * 3s);
@@ -67,7 +68,7 @@
         flex-shrink: 0;
         width: var(--marquee-element-width);
         max-height: 100%;
-        font-size: calc(var(--marquee-height)*3/4); /* 5rem; */
+        font-size: calc(var(--marquee-height)3/4); / 5rem; */
         white-space: nowrap;
       }
       
@@ -122,9 +123,9 @@
 
 
 
-          /*-----------------------------------*\
+          /-----------------------------------\
           #style.css
-        \*-----------------------------------*/
+        \-----------------------------------/
 
         /**
         * copyright 2022 codewithsadee
@@ -134,9 +135,9 @@
 
 
 
-        /*-----------------------------------*\
+        /-----------------------------------\
       #CUSTOM PROPERTY
-    \*-----------------------------------*/
+    \-----------------------------------/
 
     :root {
 
@@ -214,9 +215,9 @@
 
 
 
-    /*-----------------------------------*\
+    /-----------------------------------\
       #RESET
-    \*-----------------------------------*/
+    \-----------------------------------/
 
     *,
     *::before,
@@ -288,9 +289,9 @@
 
 
 
-    /*-----------------------------------*\
+    /-----------------------------------\
       #REUSED STYLE
-    \*-----------------------------------*/
+    \-----------------------------------/
 
     .container { padding-inline: 20px; }
 
@@ -343,9 +344,9 @@
 
 
 
-    /*-----------------------------------*\
+    /-----------------------------------\
       #ABOUT
-    \*-----------------------------------*/
+    \-----------------------------------/
 
     .abs-img,
     .abs-icon { display: none; }
@@ -368,9 +369,9 @@
 
 
 
-    /*-----------------------------------*\
+    /-----------------------------------\
       #PORTFOLIO
-    \*-----------------------------------*/
+    \-----------------------------------/
 
     .portfolio .section-title { margin-block-end: 18px; }
 
@@ -423,7 +424,7 @@
 
 
 
-    /*-----------------------------------*\
+    /-----------------------------------\
       
 
 
@@ -431,15 +432,15 @@
 
 
 
-    /*-----------------------------------*\
+    /-----------------------------------\
       #BACK TO TOP
-    \*-----------------------------------*/
+    \-----------------------------------/
 
 
 
-    /*-----------------------------------*\
+    /-----------------------------------\
       #MEDIA QUERIES
-    \*-----------------------------------*/
+    \-----------------------------------/
 
     /**
     * responsive for larger than 600px screen
@@ -844,7 +845,67 @@
       }
 
 
-</style>
+
+
+
+
+
+
+
+
+
+        #map {
+            width: 60%;
+            height: 600px;
+            min-width: 800px;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .popup-content {
+            padding: 10px;
+            background: white;
+            border: 1px solid black;
+        }
+        .map-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        #image:before {
+            display: none;
+            z-index: -1;
+        }
+        #image {
+            display: none;
+            z-index: -1;
+        }
+        .popup-content {
+            padding: 10px;
+            background: white;
+            border: 0px;
+        }
+
+        body{
+          background-color:black
+        }
+        .popup-content {
+          padding: 10px;
+          background: white;
+          border: 0px;
+      }
+      .leaflet-popup-content p {
+        margin: 17px 0;
+        margin: 0em;
+        font-size: 14px;
+        margin-top: 12px;
+        text-align:center
+    }  
+    </style>
 <div class="image">
 </div>
 
@@ -1088,9 +1149,46 @@
 
 
       
+    <div class="map-title" style="width:100%;display:flex;align-items:center;justify-content:center;position:absolute;top:2746px">
+      <h1 style="color:white;font-size:38px">Karma Center Map</h1>
+  </div>
+  <div id="map" style="margin-top:160px;z-index:1"></div>
 
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    var imageUrl = '/static/map.png'; // Replace with the path to your image
+    var imageBounds = [[0, 0], [600, 800]]; // Adjust based on your image's dimensions
 
-      <script>
+    var map = L.map('map', {
+        crs: L.CRS.Simple,
+        minZoom: 0,
+        maxBounds: imageBounds, // Restrict the map view to the image bounds
+        maxBoundsViscosity: 1.0, // Ensure the map does not move out of bounds
+        zoomControl: true
+    });
+
+    L.imageOverlay(imageUrl, imageBounds, {
+        minScale: 1
+    }).addTo(map);
+
+    map.fitBounds(imageBounds);
+
+    var markers = [
+        {coords: [407, 220], label: 'Karma Center', imageUrl: 'https://c1.wallpaperflare.com/preview/770/373/177/art-of-living-international-center-meditation-hall-interior.jpg', description: 'The main Karma Center.'},
+        {coords: [307, 350], label: 'Cult Site 1', imageUrl: 'https://s7d2.scene7.com/is/image/sherwinwilliams/Science_of_Spirituality_8:SmartCropFiveToThree?wid=668&hei=400&fit=constrain,1', description: 'Cult Site 1'},
+        {coords: [592, 366], label: 'Cult Site 2', imageUrl: 'https://w0.peakpx.com/wallpaper/421/117/HD-wallpaper-spiritual-retreat-spires-angel-dome-trees-sky-spiritual-clouds-mountain-house-of-worship-water-arches-statue-stone-bridge-tower-blue.jpg', description: 'Cult Site 2'},
+        {coords: [499, 110], label: 'Cult Site 3', imageUrl: 'https://png.pngtree.com/thumb_back/fh260/background/20220812/pngtree-jaro-cathedral-christianity-worship-tower-photo-image_14324586.jpg', description: 'Cult Site 3'}
+    ];
+
+    markers.forEach(function(marker) {
+        var popupContent = '<div class="popup-content">' +
+                            '<h3>' + marker.label + '</h3>' +
+                            '<img src="' + marker.imageUrl + '" alt="' + marker.label + '" style="width:100%;height:auto;">' +
+                            '<p>' + marker.description + '</p>' +
+                           '</div>';
+        L.marker([marker.coords[1], marker.coords[0]]).addTo(map)
+            .bindPopup(popupContent, { autoPan: false }); // Disable auto panning
+    });
 
 
         function abc(){

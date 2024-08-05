@@ -1408,7 +1408,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="menu2" style="background-color:black">
                           <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="/donation"><i class="bx"><img src="/static/base/img/charity (1).png" alt="" srcset="" style="height:26px"></i><div style="width:60%">Donate</div></a>
-                          <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="/donate_main"><i class="bx"><img src="/static/base/img/medal.png" alt="" srcset="" style="height:26px;margin-right: 10px;"></i><div>Leaderboard</div></a>
+                          <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="/leaderboard"><i class="bx"><img src="/static/base/img/medal.png" alt="" srcset="" style="height:26px;margin-right: 10px;"></i><div>Leaderboard</div></a>
                           <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="/Testimonials"><i class="bx"><img src="/static/base/img/review (1).png" alt="" srcset="" style="height:26px;margin-right: 10px;"></i><div>Testimonials</div></a>
                           <a class="dropdown-item" id="item" style="color:white;font-size:17px;padding-right:64px;;padding-left:24px;padding-right:50px;font-weight:400" href="/Quiz"><img src="/static/base/img/quiz (4).png" alt="" srcset="" style="height:26px"><div style="width:60%">Quiz</div></a>
                           <a class="dropdown-item" id="item" style="color:white;font-size:17px;padding-right:64px;;padding-left:24px;padding-right:50px;font-weight:400" href="/map"><i class="fa-solid fa-map-location-dot" style="color: #ffffff;height:26px;margin-right:10px"></i><div style="width:60%">Map</div></a>
@@ -1427,16 +1427,16 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="menu1" style="background-color:black">
                         {%if user.is_authenticated%}
                             {% if user_ID == user_profile.user_id %}
-                                <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="profile"><i class="bx"><img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px"></i>View Profile</a>
+                                <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="/profile"><i class="bx"><img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px"></i>View Profile</a>
                                 {% if user_profile.user_type == "Admin" %}
                                 <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="/administ"><i class="bx"><img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px"></i>Admin Page</a>
                                 {%endif%}
                             {%else%}
-                                <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="Create_Profile"><i class="bx"><img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px"></i>Create Profile</a>
+                                <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="/Create_Profile"><i class="bx"><img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px"></i>Create Profile</a>
                                 {% endif %}
-                                <a class="dropdown-item" id="item" style="color:white;font-size:17px;padding-right:64px;;padding-left:24px;padding-right:50px;font-weight:400" href="logout"><img src="/static/base/img/logout.png" alt="" srcset="" style="height:26px">Logout</a>
+                                <a class="dropdown-item" id="item" style="color:white;font-size:17px;padding-right:64px;;padding-left:24px;padding-right:50px;font-weight:400" href="/logout"><img src="/static/base/img/logout.png" alt="" srcset="" style="height:26px">Logout</a>
                                 {%else%}
-                            <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="login/auth0"><i class="bx"><img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px;margin-right: 10px;"></i>Login/ Sign Up</a>
+                            <a class="dropdown-item" id="item" style="color:white;font-size:17px;font-weight:400" href="/login/auth0"><i class="bx"><img src="/static/base/img/profile.png" alt="" srcset="" style="height:26px;margin-right: 10px;"></i>Login/ Sign Up</a>
                         {% endif %}
                     </div>
                   </div>
