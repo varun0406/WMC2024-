@@ -66,10 +66,19 @@ INSTALLED_APPS = [
     'Donation_STATS',
     "events",
     
+    
 
 
 ]
 
+# LEAFLET_CONFIG = {
+#     'DEFAULT_CENTER': (0, 0),
+#     'DEFAULT_ZOOM': 2,
+#     'MIN_ZOOM': 1,
+#     'MAX_ZOOM': 18,
+#     'TILES': 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+#     'ATTRIBUTION_PREFIX': 'Powered by Django Leaflet',
+# }
 
 CHANNEL_LAYERS = {
     "default": {

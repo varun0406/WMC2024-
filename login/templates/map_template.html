@@ -1,0 +1,83 @@
+{% extends './basenew.html' %}
+{% block body %}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<style>
+    body{
+        background: linear-gradient(to bottom right, #070630 0%,black 100%)
+    }
+    #map {
+        width: 60%; /* Set the width to 60% of the parent element */
+        height: 600px;
+        min-width: 800px; /* Set the minimum width to 800px */
+        max-width: 800px; /* Set the maximum width to 800px */
+        margin: 0 auto; /* Center the map horizontally */
+        border: 1px solid #ccc; /* Add a border around the map */
+        border-radius: 10px; /* Add a rounded corner effect */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a drop shadow effect */
+    }
+    .popup-content {
+        padding: 10px;
+        background: white;
+        border: 1px solid black;
+    }
+    .map-title {
+        font-family: 'Playfair Display', serif; /* Use a stylish font */
+        font-size: 24px; /* Set the font size */
+        font-weight: bold; /* Make the font bold */
+        text-align: center; /* Center the text */
+        margin-bottom: 10px; /* Add some space between the title and the map */
+    }
+    #image:before{
+        display:none;
+        z-index:-1;
+    }
+    #image  {
+        display:none;
+        z-index:-1;
+    }
+</style>
+<div class="map-title" style="width:100%;display:flex;align-items:center;justify-content:center;position:absolute;top:106px">
+    <h1 style="color:white">Karma Center Map</h1>
+</div>
+<div class="map-title">Karma Center Map</div>
+<div id="map" style="margin-top:160px;z-index:1"></div>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    // Define the image bounds (southwest and northeast corners)
+    var imageUrl = '/static/map.png'; // Replace with the path to your image
+    var imageBounds = [[0, 0], [600, 800]]; // Adjust based on your image's dimensions
+
+    // Initialize the map
+    var map = L.map('map', {
+        crs: L.CRS.Simple, // Use a simple coordinate reference system
+        minZoom: 0
+    });
+
+    // Add the image overlay to the map with a minimum scale
+    L.imageOverlay(imageUrl, imageBounds, {
+        minScale: 1 // Set the minimum scale to 1
+    }).addTo(map);
+
+    // Set the initial view of the map to the image bounds
+    map.fitBounds(imageBounds);
+
+    // Define marker data with coordinates and labels
+    var markers = [
+        {coords: [407, 320], label: 'Karma Center'},
+        {coords: [307, 414], label: 'Cult Site 1'},
+        {coords: [292, 266], label: 'Cult Site 2'},
+        {coords: [499, 510], label: 'Cult Site 3'},
+   
+   
+    ];
+
+    // Add markers to the map
+    markers.forEach(function(marker) {
+        L.marker([marker.coords[1], marker.coords[0]]).addTo(map)
+            .bindPopup(marker.label);
+    });
+</script>
+</body>
+
+{% endblock body %}

@@ -20,6 +20,7 @@ urlpatterns = [
     path("Review",views.Review,name="Review"),
     path("Quiz", views.Karma_Quiz, name="Karma_Quiz"),
     path('Quiz/<int:quiz_id>/', views.quiz_attempt, name='quiz_attempt'),
+     path('map/', views.map_view, name='map_view'),
    
     
  

@@ -71,6 +71,7 @@ def donaters(request):
                 'type': 'send_leaderboard',
             }
         )
+        return render(request, "index.html", {"alert": "Thnaks for your kind Donation"})
     context = {
         "user_id": request.user
     }

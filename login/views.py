@@ -101,7 +101,7 @@ def logout(request):
     django_logout(request)
     domain= config("APP_DOMAIN")
     client_id = config("APP_CLIENTID")
-    return_to = "http://localhost:8000"
+    return_to =  request.build_absolute_uri('/')
     return HttpResponseRedirect (f"https://{domain}/v2/logout?client_id={client_id}&returnTo={return_to}")
 def Create_Profile(request):
         
@@ -545,3 +545,5 @@ def quiz_attempt(request,quiz_id):
     print(quiz_data)
     params={"quiz_data":quiz_data}
     return render(request,'q.html',params)
+def map_view(request):
+    return render(request, 'map_template.html')

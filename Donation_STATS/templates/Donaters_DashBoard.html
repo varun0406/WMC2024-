@@ -29,16 +29,9 @@
     <div class="profile-details">
       <h2>Profile Details</h2>
       <p>Name: {{ name }} ({{ user }})</p>
-      <p>Value: {{ value }} Karma Points</p>
-      <p>Rank: {{ rank }} out of {{ total_users }}</p>
+      <p>Value: {{ value }} Total Donations</p>
+    
     </div>
-    <div class="profile-details">
-      <h2>Donation History</h2>
-      <ul>
-        {% for donation in donations %}
-          <li>{{ donation.date }} - {{ donation.amount }} Karma Points</li>
-        {% endfor %}
-      </ul>
-    </div>
+   
   </div>
 {% endblock content %}
