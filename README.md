@@ -98,3 +98,8 @@ python manage.py runserver
 pip install -r requirements.txt
 ```
 Open your web browser and navigate to http://127.0.0.1:8000
+# Admin Credentials
+Email id :- epsilon@gmail.com
+
+
+Password :-Epsilon@123
