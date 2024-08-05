@@ -1,6 +1,21 @@
 # Epsilon Program Website
 
 Welcome to the Epsilon Program website, an immersive and engaging experience inspired by the satirical Epsilon Program from the GTA V universe.
+# Images 
+![WhatsApp Image 2024-08-06 at 00 04 29_418ad436](https://github.com/user-attachments/assets/107fc05d-d1c6-44fe-b454-6fa2ed25ce3d)
+-
+![WhatsApp Image 2024-08-06 at 00 06 07_86ffa815](https://github.com/user-attachments/assets/38ffd63d-175e-45c9-b4ab-10d74019eb14)
+-
+![WhatsApp Image 2024-08-06 at 00 08 52_6b6aebf2](https://github.com/user-attachments/assets/8b7f5ec1-04c8-46ce-b474-af60bd839f48)
+-
+![WhatsApp Image 2024-08-06 at 00 09 43_587eed0d](https://github.com/user-attachments/assets/4a14f978-2624-4331-a85a-e6de639e8751)
+-
+![WhatsApp Image 2024-08-06 at 00 10 27_649f7e83](https://github.com/user-attachments/assets/d302c016-4ab1-4d4d-af18-7e44166794ac)
+-
+## Video Overview
+
+Watch this video to get an overview of the Epsilon Program Website:
+[![Epsilon Program Website Overview](https://img.youtube.com/vi/M5vFXCn9cjw/0.jpg)](https://www.youtube.com/watch?v=M5vFXCn9cjw)
 
 ## Features
 
@@ -22,7 +37,6 @@ Welcome to the Epsilon Program website, an immersive and engaging experience ins
 - **User Interaction**: Admins can view and respond to user queries.
 - **Quiz Management**: Admins have the capability to create quizzes and manage questions.
 
-
 ### Event Listing and Registration
 - **Members-Only Events**: Events are listed for members, who can register to attend.
 
@@ -35,19 +49,10 @@ Welcome to the Epsilon Program website, an immersive and engaging experience ins
 
 ### Bonus Features
 - **Personality Quiz**: A fun quiz to encourage user on upliftment which can be directly created by Admin and user's will recieve karma points against it.
-- **Inquiry Form**: Users can ask questions through the inquiry form, Admin can see and answer them from it's Dashboard
+- **Inquiry Form**: Users can ask questions through the inquiry form, Admin can see and answer them from its Dashboard.
 - **Interactive Map**: A map showing the locations of Epsilon Program centers and landmarks.
 
 ## URL Endpoints
-
-
-
-### Donation Stats
-- **Leaderboard**: `/leaderboard/` - View the donation leaderboard.
-- **Donaters Dashboard**: `/Donaters_Dashboard/<slug:slug>/` - View the dashboard for a specific donater.
-- **Donation**: `/donation` - Make a donation.
-- **Qdemo**: `/qdemo` - Demo for queries.
-
 
 ### Donation Stats
 - **Leaderboard**: `/leaderboard/` - View the donation leaderboard.
@@ -83,3 +88,13 @@ Welcome to the Epsilon Program website, an immersive and engaging experience ins
 - **Quiz Attempt**: `/Quiz/<int:quiz_id>/` - Attempt a specific quiz.
 - **Map**: `/map/` - View the interactive map.
 - **Ticket Detail**: `/ticket/<int:ticket_id>/` - View details for a specific ticket.
+
+## Project Setup
+
+#### 1. Clone the repository:
+```bash
+git clone https://github.com/varun0406/WMC2024-.git
+python manage.py runserver
+pip install -r requirements.txt
+```
+Open your web browser and navigate to http://127.0.0.1:8000
