@@ -15,10 +15,13 @@ Welcome to the Epsilon Program website, an immersive and engaging experience ins
 - **Purchase Memberships**: Users can purchase memberships according to their needs using virtual currency (Karma Points).
 
 ### Member Stories
-- **Fake Testimonials**: Showcase testimonials and stories from current members, describing their positive experiences and personal growth.
+- **Live Testimonials**: Users have the option to submit testimonials, which are showcased live on the website, highlighting their positive experiences and personal growth.
 
 ### Admin Features
-- **Post Events**: Admins can post events that are visible only to members.
+- **Event Management**: Admins can manage event data, including creating, deleting, and modifying events. They can set dynamic ticket prices and apply membership discounts to events, venues, and organizations.
+- **User Interaction**: Admins can view and respond to user queries.
+- **Quiz Management**: Admins have the capability to create quizzes and manage questions.
+
 
 ### Event Listing and Registration
 - **Members-Only Events**: Events are listed for members, who can register to attend.
@@ -28,12 +31,12 @@ Welcome to the Epsilon Program website, an immersive and engaging experience ins
 - **Total Donations**: The total accumulated donations are visible on the site.
 
 ### Virtual Currency
-- **Earn and Spend Currency**: Users receive virtual currency to purchase memberships and make donations.
+- **Earn and Spend Currency**: Users receive virtual currency on making donations, which can be used in buying memberships.
 
 ### Bonus Features
-- **Personality Quiz**: A fun quiz to determine which Epsilon Program character or archetype the user aligns with.
-- **Inquiry Form**: Users can ask questions through the inquiry form.
-- **Interactive Map**: A map showing the locations of Epsilon Program centers and landmarks in Los Santos.
+- **Personality Quiz**: A fun quiz to encourage user on upliftment which can be directly created by Admin and user's will recieve karma points against it.
+- **Inquiry Form**: Users can ask questions through the inquiry form, Admin can see and answer them from it's Dashboard
+- **Interactive Map**: A map showing the locations of Epsilon Program centers and landmarks.
 
 ## URL Endpoints
 
