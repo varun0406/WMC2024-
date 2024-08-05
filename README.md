@@ -1,7 +1,11 @@
 # Epsilon Program Website
 
 Welcome to the Epsilon Program website, an immersive and engaging experience inspired by the satirical Epsilon Program from the GTA V universe.
-https://youtu.be/M5vFXCn9cjw?si=PZVna-2FLN2T5s5y
+
+## Video Overview
+
+Watch this video to get an overview of the Epsilon Program Website:
+[![Epsilon Program Website Overview](https://img.youtube.com/vi/M5vFXCn9cjw/0.jpg)](https://www.youtube.com/watch?v=M5vFXCn9cjw)
 
 ## Features
 
@@ -23,7 +27,6 @@ https://youtu.be/M5vFXCn9cjw?si=PZVna-2FLN2T5s5y
 - **User Interaction**: Admins can view and respond to user queries.
 - **Quiz Management**: Admins have the capability to create quizzes and manage questions.
 
-
 ### Event Listing and Registration
 - **Members-Only Events**: Events are listed for members, who can register to attend.
 
@@ -36,19 +39,10 @@ https://youtu.be/M5vFXCn9cjw?si=PZVna-2FLN2T5s5y
 
 ### Bonus Features
 - **Personality Quiz**: A fun quiz to encourage user on upliftment which can be directly created by Admin and user's will recieve karma points against it.
-- **Inquiry Form**: Users can ask questions through the inquiry form, Admin can see and answer them from it's Dashboard
+- **Inquiry Form**: Users can ask questions through the inquiry form, Admin can see and answer them from its Dashboard.
 - **Interactive Map**: A map showing the locations of Epsilon Program centers and landmarks.
 
 ## URL Endpoints
-
-
-
-### Donation Stats
-- **Leaderboard**: `/leaderboard/` - View the donation leaderboard.
-- **Donaters Dashboard**: `/Donaters_Dashboard/<slug:slug>/` - View the dashboard for a specific donater.
-- **Donation**: `/donation` - Make a donation.
-- **Qdemo**: `/qdemo` - Demo for queries.
-
 
 ### Donation Stats
 - **Leaderboard**: `/leaderboard/` - View the donation leaderboard.
@@ -84,3 +78,10 @@ https://youtu.be/M5vFXCn9cjw?si=PZVna-2FLN2T5s5y
 - **Quiz Attempt**: `/Quiz/<int:quiz_id>/` - Attempt a specific quiz.
 - **Map**: `/map/` - View the interactive map.
 - **Ticket Detail**: `/ticket/<int:ticket_id>/` - View details for a specific ticket.
+
+## Project Setup
+
+#### 1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/epsilon-program-website.git
+cd epsilon-program-website
