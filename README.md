@@ -94,8 +94,9 @@ Watch this video to get an overview of the Epsilon Program Website:
 #### 1. Clone the repository:
 ```bash
 git clone https://github.com/varun0406/WMC2024-.git
-python manage.py runserver
 pip install -r requirements.txt
+python manage.py runserver
+
 ```
 Open your web browser and navigate to http://127.0.0.1:8000
 # Admin Credentials
