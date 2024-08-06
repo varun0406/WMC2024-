@@ -11,7 +11,13 @@ from .models import Statistics, Donation
 
 def donaters(request):
     user_id = request.user
+    if not request.user.is_authenticated:
+            return render(request, "index.html", {"alert": "Please login to donate"})
+        
+    if not Profile.objects.filter(user_id=user_id).exists():
+        return render(request, "index.html", {"alert": "Please complete your profile to donate"})
     if request.method == "POST":
+        
         
         user_id = request.user
         UserName = user_id.username
